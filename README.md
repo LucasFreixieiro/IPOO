@@ -63,4 +63,4 @@ Após 28 dias estes ID's são eliminados
 Projeto incrível feito em 1 semana xD
 
 # Doações: 
-paypal.me/lucasfreixieiro
+https://www.paypal.com/paypalme/lucasfreixieiro
