@@ -5,8 +5,8 @@ Autores: Lucas Freixieiro & Liliana Santos
 
 # Infos
 # Tarefas - 24/12/2020
-- [] Menus
-- [] Enumerados
+- [ ] Menus
+- [ ] Enumerados
 
 ## Registo
 * O registo é feito durante as aulas
