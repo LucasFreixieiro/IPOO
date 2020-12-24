@@ -4,9 +4,16 @@ V.1.0.0
 Autores: Lucas Freixieiro & Liliana Santos
 
 # Infos
+
+# Done
+- [x] Menus (UserMenu, HealthOrganizationMenu, AdministrationMenu)
+- [x] Enumerados (UserState)
+- [x] Salas de aula (Classroom) // Classe que contem as caracteristicas da sala de aula
+
 # Tarefas - 24/12/2020
-- [ ] Menus
-- [ ] Enumerados
+- [ ] Utilizador
+- [ ] Aulas
+- [ ] Reader
 
 ## Registo
 * O registo é feito durante as aulas
