@@ -9,11 +9,12 @@ Autores: Lucas Freixieiro & Liliana Santos
 - [x] Menus (UserMenu, HealthOrganizationMenu, AdministrationMenu)
 - [x] Enumerados (UserState)
 - [x] Salas de aula (Classroom) // Classe que contem as caracteristicas da sala de aula
+- [x] Reader
 
 # Tarefas - 26/12/2020
 - [ ] Utilizador
 - [ ] Aulas
-- [ ] Reader
+
 
 ## Registo
 * O registo é feito durante as aulas
