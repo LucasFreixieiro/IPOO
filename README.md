@@ -10,7 +10,7 @@ Autores: Lucas Freixieiro & Liliana Santos
 - [x] Enumerados (UserState)
 - [x] Salas de aula (Classroom) // Classe que contem as caracteristicas da sala de aula
 
-# Tarefas - 24/12/2020
+# Tarefas - 26/12/2020
 - [ ] Utilizador
 - [ ] Aulas
 - [ ] Reader
