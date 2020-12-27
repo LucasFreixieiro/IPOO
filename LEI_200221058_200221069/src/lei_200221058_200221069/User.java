@@ -6,6 +6,8 @@
 package lei_200221058_200221069;
 
 import java.util.UUID;
+import java.lang.Object;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  *
@@ -21,14 +23,16 @@ public class User {
     //Estado do utilizador (continuo, infetado ou em isolamento)
     private UserState userState;
     //Lista com os IDs gerados
-    private String[] transmitIDs;
+    private String[] transmitedIds;
     //Lista com os ID's recebidos
-    private String[] receivedIDs;
+    private String[] receivedIds;
 
     //Construtor
     public User(String userID, UserState userState) {
         this.userID = userID;
         this.userState = userState;
+        transmitedIds = new String[0];
+        receivedIds = new String[0];
     }
     
     public String getUserID() {
@@ -47,16 +51,28 @@ public class User {
         this.userState = userState;
     }
 
-    public String[] getTransmitIDs() {
-        return transmitIDs;
+    public String[] getTransmitedIds() {
+        return transmitedIds;
+    }
+    
+    public void listTransmitedIds() {
+        for(String transmitedID : transmitedIds){
+            System.out.println(transmitedID);
+        }
     }
 
-    public void setTransmitIDs() {
-        //this.transmitIDs[numberOfIDs] = UUID.randomUUID().toString();
+    public void setTransmitedIds() {
+        transmitedIds = ArrayUtils.add(transmitedIds, UUID.randomUUID().toString());
     }
 
     public String[] getReceivedIDs() {
-        return receivedIDs;
+        return receivedIds;
+    }
+    
+    public void listReceivedIds() {
+        for(String receivedID : receivedIds){
+            System.out.println(receivedID);
+        }
     }
 
     public void setReceivedIDs() {
