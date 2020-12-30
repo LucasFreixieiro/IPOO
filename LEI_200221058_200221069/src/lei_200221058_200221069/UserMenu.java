@@ -11,7 +11,50 @@ package lei_200221058_200221069;
  * @v1.0.0
  */
 public class UserMenu {
+    //Número de Utilizador
     private int numberID;
+
+    public UserMenu(int numberID) {
+        this.numberID = numberID;
+        int option;
+        
+        InputReader reader = new InputReader();
+        showUserMenu();
+        
+        option = reader.getNumber("");
+        while(option != 0){
+            switch(option){
+                case 1:{
+                    System.out.println("");
+                    break;
+                }
+                case 2:{
+                    System.out.println("");
+                    break;
+                }
+                case 3:{
+                    System.out.println("");
+                    break;
+                }
+                case 4:{
+                    System.out.println("");
+                    break;
+                }
+                case 5:{
+                    System.out.println("");
+                    break;
+                }
+                default:{
+                    System.out.println("Opção não reconhecida");
+                }
+            }
+        }
+        /*User user1 = new User("1", UserState.NORMAL);
+        user1.setTransmitedIds();
+        user1.setTransmitedIds();
+        user1.listTransmitedIds();
+        //System.out.println(user1.getTransmitedIds());*/
+    }
     
     //Menu do utilizador
     public void showUserMenu(){
@@ -26,10 +69,4 @@ public class UserMenu {
         System.out.println("5 - Ver estatísticas diárias");
         System.out.println("0 - Sair");
     }
-    
-   public void showTeacherMenu(){
-       showUserMenu();
-       System.out.println("6 - Iniciar aula");
-       System.out.println("7 - Terminar aula");
-   }
 }
