@@ -18,7 +18,7 @@ public class AdministrationMenu {
         int option; //Variável auxiliar para guardar temporáriamente a escolha do administrador
         InputReader reader = new InputReader();
         
-        showAdministrationMenu(); //Demostra o menu ao administrador
+        showAdministrationMenu(); //Demonstra o menu ao administrador
         option = reader.getNumber("");
         
         //Enquanto a opção for diferente de 0 o programa continuará a correr
@@ -45,7 +45,7 @@ public class AdministrationMenu {
                     System.out.println("");
                     break;
                 default:
-                    System.out.println("default");
+                    System.out.println("Opção não reconhecida");
                     break;
             }
             
