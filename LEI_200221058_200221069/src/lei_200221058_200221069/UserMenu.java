@@ -11,17 +11,25 @@ package lei_200221058_200221069;
  * @v1.0.0
  */
 public class UserMenu {
+    
+    private UserDB userDB;
     //Número de Utilizador
     private int numberID;
+    private UserState status;
 
-    public UserMenu(int numberID) {
+    public UserMenu(UserDB userDB) {
+        this.userDB = userDB;
+    }
+    
+    public void run(int numberID, UserState status){
         this.numberID = numberID;
+        this.status = status;
         int option;
         
         InputReader reader = new InputReader();
         showUserMenu();
         
-        option = reader.getNumber("");
+        option = reader.getOption("");
         while(option != 0){
             switch(option){
                 case 1:{
@@ -49,18 +57,13 @@ public class UserMenu {
                 }
             }
         }
-        /*User user1 = new User("1", UserState.NORMAL);
-        user1.setTransmitedIds();
-        user1.setTransmitedIds();
-        user1.listTransmitedIds();
-        //System.out.println(user1.getTransmitedIds());*/
     }
     
     //Menu do utilizador
     public void showUserMenu(){
         System.out.println("\tSistema de rastreio de contactos em sala de aula\n");
         System.out.println("\t\tUtilizador: " + numberID);
-        System.out.println("\t\tEstado: " );
+        System.out.println("\t\tEstado: " + status);
         System.out.println("Insira a sua opção: ");
         System.out.println("1 - Verificar indicações da Entidade de Saúde");
         System.out.println("2 - Declarar-se como infetado");
