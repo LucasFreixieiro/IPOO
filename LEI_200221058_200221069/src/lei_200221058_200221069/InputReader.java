@@ -79,6 +79,7 @@ public class InputReader {
         int option = reader.nextInt();
         while(option > 3 || option < 1){
             System.out.print(question);
+            System.out.println("Opção inválida! Escolha uma opção válida.");
             option = reader.nextInt();
         }
         switch(option){
