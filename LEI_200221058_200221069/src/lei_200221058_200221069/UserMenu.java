@@ -14,16 +14,14 @@ public class UserMenu {
     
     private UserDB userDB;
     //Número de Utilizador
-    private String numberID;
-    private UserState status;
+    private User user;
 
     public UserMenu(UserDB userDB) {
         this.userDB = userDB;
     }
     
-    public void run(String numberID, UserState status){
-        this.numberID = numberID;
-        this.status = status;
+    public void run(String numberID){
+        user = userDB.getUser(numberID);
         int option;
         
         InputReader reader = new InputReader();
@@ -37,7 +35,7 @@ public class UserMenu {
                     break;
                 }
                 case 2:{
-                    System.out.println("");
+                    setInfectedState();
                     break;
                 }
                 case 3:{
@@ -56,14 +54,22 @@ public class UserMenu {
                     System.out.println("Opção não reconhecida");
                 }
             }
+            
+            //De forma a que a informação não apareça de seguida
+            //ao utilizador é pedido que ele insira um enter para continuar o programa
+            reader.getText("Prima Enter para continuar");
+            
+            //Demonstração do menu e pedido de nova opção
+            showUserMenu();
+            option = reader.getOption("");
         }
     }
     
     //Menu do utilizador
     public void showUserMenu(){
         System.out.println("\tSistema de rastreio de contactos em sala de aula\n");
-        System.out.println("\t\tUtilizador: " + numberID);
-        System.out.println("\t\tEstado: " + status);
+        System.out.println("\t\tUtilizador: " + user.getUserID());
+        System.out.println("\t\tEstado: " + user.getUserState());
         System.out.println("Insira a sua opção: ");
         System.out.println("1 - Verificar indicações da Entidade de Saúde");
         System.out.println("2 - Declarar-se como infetado");
@@ -71,5 +77,11 @@ public class UserMenu {
         System.out.println("4 - Terminar isolamento.");
         System.out.println("5 - Ver estatísticas diárias");
         System.out.println("0 - Sair");
+    }
+    
+    public void setInfectedState(){
+        if(user != null){
+            user.setUserState(UserState.INFECTED);
+        }
     }
 }
