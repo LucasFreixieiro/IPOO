@@ -5,21 +5,28 @@
  */
 package lei_200221058_200221069;
 
+import org.apache.commons.lang3.ArrayUtils;
 /**
  *
     * @author Lucas Freixieiro
  */
 public class AdministrationMenu {
     
-    //Atributos 
-    private Classroom[] classrooms; //Será que isto devia de ficar aqui?
+    //Atributos
+    InputReader reader;
+    private ClassroomDB classrooms; //Será que isto devia de ficar aqui?
+    private UserDB users;
 
-    public AdministrationMenu() {
+    public AdministrationMenu(UserDB users, ClassroomDB classrooms) {
+        reader = new InputReader();
+        this.users = users;
+        this.classrooms = classrooms;
+    }
+    
+    public void run(){
         int option; //Variável auxiliar para guardar temporáriamente a escolha do administrador
-        InputReader reader = new InputReader();
-        
         showAdministrationMenu(); //Demonstra o menu ao administrador
-        option = reader.getNumber("");
+        option = reader.getOption("");
         
         //Enquanto a opção for diferente de 0 o programa continuará a correr
         while(option != 0){
@@ -27,22 +34,22 @@ public class AdministrationMenu {
             //Ponte para os métodos correspondentes às opções
             switch(option){
                 case 1:
-                    System.out.println("ola amigos");
+                    newUser();
                     break;
                 case 2:
-                    System.out.println("");
+                    removeUser();
                     break;
                 case 3:
-                    System.out.println("");
+                    showUsers();
                     break;
                 case 4:
-                    System.out.println("");
+                    newClassroom();
                     break;
                 case 5:
-                    System.out.println("");
+                    removeClassroom();
                     break;
                 case 6:
-                    System.out.println("");
+                    showClassrooms();
                     break;
                 default:
                     System.out.println("Opção não reconhecida");
@@ -55,7 +62,7 @@ public class AdministrationMenu {
             
             //Demonstração do menu e pedido de nova opção
             showAdministrationMenu();
-            option = reader.getNumber("");
+            option = reader.getOption("");
         }
     }
     
@@ -73,7 +80,51 @@ public class AdministrationMenu {
         System.out.println("0 - Sair");
     }
     
-    /*public void createClassroom(){
+    public void newUser(){
+        int numberID;
+        UserState status;
         
-    }*/
+        numberID = reader.getUserID("Número de Utilizador");
+        status = reader.getUserState("Estado do Utilizador");
+        
+        User user = new User(numberID, status);
+        users.addUser(user);
+    }
+    
+    public void removeUser(){
+        int numberID;
+        numberID = reader.getUserID("Número de Utilizador");
+        
+        users.removeUser(numberID);
+    }
+    
+    public void showUsers(){
+        for(User user : users.getUsers()){
+            System.out.println(user.getUserID());
+        }
+    }
+    
+    public void newClassroom(){
+        String name;
+        int capacity;
+        
+        name = reader.getText("Nome da sala");
+        capacity = reader.getOption("Capacidade da sala"); //Provavelmente mudar o nome do método será melhor
+        
+        Classroom classroom = new Classroom(name, capacity);
+        classrooms.addClassrooms(classroom);
+    }
+    
+    public void removeClassroom(){
+        String name;
+        name = reader.getText("Nome da sala");
+        
+        classrooms.removeClassroom(name);
+    }
+    
+    public void showClassrooms(){
+        for(Classroom classroom : classrooms.getClassrooms()){
+            System.out.println(classroom.getName());
+        }
+    }
 }
