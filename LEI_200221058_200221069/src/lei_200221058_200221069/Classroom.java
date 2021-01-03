@@ -20,7 +20,7 @@ public class Classroom {
     private int capacity;
     private String name;
 
-    public Classroom(int capacity, String name) {
+    public Classroom(String name, int capacity) {
         if(capacity>0 && name != null && !name.isEmpty()){
             this.capacity = capacity;
             this.name = name;
