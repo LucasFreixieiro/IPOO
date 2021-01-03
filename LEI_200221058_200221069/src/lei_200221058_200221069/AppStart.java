@@ -14,16 +14,59 @@ public class AppStart {
     /**
      * @param args the command line arguments
      */
+    
+    //public static User[] users;
+    
+    //UserMenu userMenu;
+    //AdministrationMenu administrationMenu;
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        //init instances
         InputReader reader = new InputReader();
-        reader.getText("Ola");
-        AdministrationMenu admin = new AdministrationMenu();
-        //AshowAdministrationMenu();
-        //EncryptionText enc = new EncryptionText();
+        UserDB userDB = new UserDB();
+        ClassroomDB classroomDB = new ClassroomDB();
+        UserMenu userMenu = new UserMenu(userDB);
+        AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
+        
+        //declare internal variables
+        int option;
+        
+        showMainMenu(); //Demonstra o menu principal
+        option = reader.getOption("");
+        
+        adminMenu.showUsers();
+        //Enquanto a opção for diferente de 0 o programa continuará a correr
+        while(option!=0){
+            //Ponte para os métodos correspondentes às opções
+            switch(option){
+                case 1:
+                    System.out.println("ola amigos");
+                    break;
+                case 2:
+                    userMenu.run(reader.getUserID("Número de Utilizador"), reader.getUserState("Estado do Utilizador"));
+                    break;
+                case 3:
+                    System.out.println("");
+                    break;
+                case 4:
+                    adminMenu.run();
+                    break;
+                default:
+                    System.out.println("Opção não reconhecida");
+                    break;
+            }
+        
+        //De forma a que a informação não apareça de seguida
+        //ao utilizador é pedido que ele insira um enter para continuar o programa
+        reader.getText("Prima Enter para continuar");
+            
+        //Demonstração do menu e pedido de nova opção
+        showMainMenu();
+        option = reader.getOption("");
+        }
     }
     
-    public void showMainMenu(){
+    public static void showMainMenu(){
         System.out.println("\tSistema de rastreio de contactos em sala de aula");
         System.out.println("\t\tBem-vindo!!!");
         System.out.println("Insira a sua opção:");
