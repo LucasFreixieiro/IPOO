@@ -26,9 +26,9 @@ public class UserDB {
         users = ArrayUtils.add(users, user);
     }
 
-    public void removeUser(int numberID){
+    public void removeUser(String numberID){
         for(User user : users){
-            if(user.getUserID() == numberID){
+            if(user.getUserID().equals(numberID)){
                 users = ArrayUtils.removeElement(users, user);
                 return;
             }

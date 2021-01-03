@@ -14,14 +14,14 @@ public class UserMenu {
     
     private UserDB userDB;
     //Número de Utilizador
-    private int numberID;
+    private String numberID;
     private UserState status;
 
     public UserMenu(UserDB userDB) {
         this.userDB = userDB;
     }
     
-    public void run(int numberID, UserState status){
+    public void run(String numberID, UserState status){
         this.numberID = numberID;
         this.status = status;
         int option;

@@ -19,7 +19,7 @@ public class User {
     //Identificação do utilizador
     //No caso dos alunos o seu número de aluno
     //No caso dos professores um número mecanográfico
-    private int userID; 
+    private String userID; 
     //Estado do utilizador (continuo, infetado ou em isolamento)
     private UserState userState;
     //Lista com os IDs gerados
@@ -28,7 +28,7 @@ public class User {
     private String[] receivedIds;
 
     //Construtor
-    public User(int userID, UserState userState) {
+    public User(String userID, UserState userState) {
         this.userID = userID;
         this.userState = userState;
         transmitedIds = new String[0];
@@ -36,14 +36,14 @@ public class User {
     }
     //Método para obter o id do utilizador
     //@return String com o número do utilizador
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
     //Método para atualizar o atributo do número de utilizador
     //Só atribui o novo número caso o parametro passado tenha o tamanho de 9 caracteres
     //@params setUserID
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
     

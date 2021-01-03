@@ -36,23 +36,19 @@ public class InputReader {
         return number;
     }
     
-    public int getUserID(String question){
+    public String getUserID(String question){
+        String userID;
         if(question == null) {
         question = "";
         }
         question += "> ";
         System.out.print(question);
-        while (!reader.hasNextInt()) {
-        reader.nextLine();
-        System.out.print(question);
-        }
-        int number = reader.nextInt();
-        while(((int) (Math.log10(number) + 1)) != 9){
+        userID = reader.nextLine();
+        while(userID.length()!=9){
             System.out.print(question);
-            number = reader.nextInt();
+            userID = reader.nextLine();
         }
-        reader.nextLine();
-        return number;        
+        return userID;        
     }
     
     public String getText(String question){
@@ -64,7 +60,7 @@ public class InputReader {
         
         return reader.nextLine();
     }
-    //assasaa
+    
     public UserState getUserState(String question){
         UserState status = UserState.NORMAL;
         System.out.println("Estados:");
