@@ -81,7 +81,7 @@ public class AdministrationMenu {
     }
     
     public void newUser(){
-        int numberID;
+        String numberID;
         UserState status;
         
         numberID = reader.getUserID("Número de Utilizador");
@@ -92,7 +92,7 @@ public class AdministrationMenu {
     }
     
     public void removeUser(){
-        int numberID;
+        String numberID;
         numberID = reader.getUserID("Número de Utilizador");
         
         users.removeUser(numberID);
