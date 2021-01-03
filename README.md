@@ -11,9 +11,10 @@ Autores: Lucas Freixieiro & Liliana Santos
 - [x] Salas de aula (Classroom) // Classe que contem as caracteristicas da sala de aula
 - [x] Reader
 
-# Tarefas - 26/12/2020
+# Tarefas -
 - [ ] Utilizador
 - [ ] Aulas
+- [ ] Validação se o User já existe ao criá-lo e ao eliminá-lo
 
 
 ## Registo
