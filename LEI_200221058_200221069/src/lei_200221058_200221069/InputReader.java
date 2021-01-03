@@ -64,7 +64,7 @@ public class InputReader {
         
         return reader.nextLine();
     }
-    
+    //assasaa
     public UserState getUserState(String question){
         UserState status = UserState.NORMAL;
         System.out.println("Estados:");
