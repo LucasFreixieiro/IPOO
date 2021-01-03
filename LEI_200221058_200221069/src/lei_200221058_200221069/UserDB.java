@@ -35,4 +35,14 @@ public class UserDB {
         }
     }
     
+    public User getUser(String numberID){
+        for(User user : users){
+            if(user.getUserID().equalsIgnoreCase(numberID)){
+                return user;
+            }
+        }
+        System.out.println("Utilizador inválido");
+        return null;
+    }
+    
 }

@@ -43,7 +43,7 @@ public class AppStart {
                     System.out.println("ola amigos");
                     break;
                 case 2:
-                    userMenu.run(reader.getUserID("Número de Utilizador"), reader.getUserState("Estado do Utilizador"));
+                    userMenu.run(reader.getUserID("Número de Utilizador"));
                     break;
                 case 3:
                     System.out.println("");
