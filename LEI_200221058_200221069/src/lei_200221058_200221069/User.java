@@ -7,6 +7,7 @@ package lei_200221058_200221069;
 
 import java.util.UUID;
 import java.lang.Object;
+import java.time.LocalDate;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
@@ -23,16 +24,16 @@ public class User {
     //Estado do utilizador (continuo, infetado ou em isolamento)
     private UserState userState;
     //Lista com os IDs gerados
-    private String[] transmitedIds;
+    private Id[] transmitedIds;
     //Lista com os ID's recebidos
-    private String[] receivedIds;
+    private Id[] receivedIds;
 
     //Construtor
     public User(String userID, UserState userState) {
         this.userID = userID;
         this.userState = userState;
-        transmitedIds = new String[0];
-        receivedIds = new String[0];
+        transmitedIds = new Id[0];
+        receivedIds = new Id[0];
     }
     //Método para obter o id do utilizador
     //@return String com o número do utilizador
@@ -60,38 +61,38 @@ public class User {
 
     //Método para obter os Ids transmitidos
     //@return String[] com o array dos ids transmitidos
-    public String[] getTransmitedIds() {
+    public Id[] getTransmitedIds() {
         return transmitedIds;
     }
     
     //Método para obter os ids transmitidos (gerados) em forma de texto
     public void listTransmitedIds() {
-        for(String transmitedID : transmitedIds){
+        for(Id transmitedID : transmitedIds){
             System.out.println(transmitedID);
         }
     }
     
     //Método para atualizar o array que contém os ids transmitidos (gerados).
     public void setTransmitedIds() {
-        transmitedIds = ArrayUtils.add(transmitedIds, UUID.randomUUID().toString());
+        transmitedIds = ArrayUtils.add(transmitedIds,new Id(LocalDate.now(),UUID.randomUUID().toString()));
     }
     
     //Método para obter os Ids recebidos durante as aulas
     //@return String[]
-    public String[] getReceivedIDs() {
+    public Id[] getReceivedIDs() {
         return receivedIds;
     }
     
     //Método para listar os ids recebidos
     public void listReceivedIds() {
-        for(String receivedID : receivedIds){
+        for(Id receivedID : receivedIds){
             System.out.println(receivedID);
         }
     }
 
     //Método para atualizar o array dos ids recebidos
     //@params String[] ids
-    public void setReceivedIDs(String[] ids) {
+    public void setReceivedIDs(Id[] ids) {
         receivedIds = ArrayUtils.addAll(receivedIds, ids);
     }
     
