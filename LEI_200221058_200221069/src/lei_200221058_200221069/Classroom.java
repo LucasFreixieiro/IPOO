@@ -39,7 +39,7 @@ public class Classroom {
         if(capacity>0)
             this.capacity = capacity;
         else
-            System.out.println("Campo inválido.\nPor favor insira uma capacidade acima de 0");
+            System.out.println("Campo inválido.\nPor favor insira uma capacidade acima de 0.");
     }
 
     public String getName() {
