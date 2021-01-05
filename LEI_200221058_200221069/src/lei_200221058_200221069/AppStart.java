@@ -23,10 +23,14 @@ public class AppStart {
     public static void main(String[] args) {
         //init instances
         InputReader reader = new InputReader();
+        
         UserDB userDB = new UserDB();
         ClassroomDB classroomDB = new ClassroomDB();
+        HealthOrganizationRecomendations recomendations = new HealthOrganizationRecomendations();
+        
         UserMenu userMenu = new UserMenu(userDB);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
+        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations);
         
         //declare internal variables
         int option;
@@ -46,7 +50,7 @@ public class AppStart {
                     userMenu.run(reader.getUserID("Número de Utilizador"));
                     break;
                 case 3:
-                    System.out.println("");
+                    healthOrganizationMenu.run();
                     break;
                 case 4:
                     adminMenu.run();

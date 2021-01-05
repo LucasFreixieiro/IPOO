@@ -35,15 +35,17 @@ public class UserMenu {
                     break;
                 }
                 case 2:{
-                    setInfectedState();
+                    setNewState(UserState.INFECTED);
                     break;
                 }
                 case 3:{
-                    System.out.println("");
+                    //verificar se não está em isolamento ou infetado
+                    setNewState(UserState.ISOLATION);
                     break;
                 }
                 case 4:{
-                    System.out.println("");
+                    //Verificar se está em isolamento
+                    setNewState(UserState.NORMAL);
                     break;
                 }
                 case 5:{
@@ -79,9 +81,9 @@ public class UserMenu {
         System.out.println("0 - Sair");
     }
     
-    public void setInfectedState(){
+    public void setNewState(UserState userState){
         if(user != null){
-            user.setUserState(UserState.INFECTED);
+            user.setUserState(userState);
         }
     }
 }
