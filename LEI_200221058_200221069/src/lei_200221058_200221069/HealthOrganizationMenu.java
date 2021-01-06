@@ -18,7 +18,7 @@ public class HealthOrganizationMenu {
     public HealthOrganizationMenu(HealthOrganizationRecomendations recomendations, UserDB userDB) {
         reader = new InputReader();
         this.recomendations = recomendations;
-         statistics = new Statistics(userDB);
+        statistics = new Statistics(userDB);
     }
     
     public void run(){

@@ -15,9 +15,11 @@ public class UserMenu {
     private UserDB userDB;
     //Número de Utilizador
     private User user;
+    private HealthOrganizationRecomendations recomendations;
 
-    public UserMenu(UserDB userDB) {
+    public UserMenu(UserDB userDB, HealthOrganizationRecomendations recomendations) {
         this.userDB = userDB;
+        this.recomendations = recomendations;
     }
     
     public void run(String numberID){
@@ -31,7 +33,7 @@ public class UserMenu {
         while(option != 0){
             switch(option){
                 case 1:{
-                    System.out.println("");
+                    showRecomendations();
                     break;
                 }
                 case 2:{
@@ -85,5 +87,9 @@ public class UserMenu {
         if(user != null){
             user.setUserState(userState);
         }
+    }
+    
+    public void showRecomendations(){
+        recomendations.listRecomendations();
     }
 }

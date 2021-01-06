@@ -29,7 +29,7 @@ public class AppStart {
         LessonDB lessonDB = new LessonDB();
         HealthOrganizationRecomendations recomendations = new HealthOrganizationRecomendations();
         
-        UserMenu userMenu = new UserMenu(userDB);
+        UserMenu userMenu = new UserMenu(userDB, recomendations);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
         HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
