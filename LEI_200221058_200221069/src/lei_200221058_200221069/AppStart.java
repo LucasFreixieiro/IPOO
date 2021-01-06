@@ -7,7 +7,7 @@ package lei_200221058_200221069;
 
 /**
  *
- * @author lukef
+ * @author Lucas Freixieiro
  */
 public class AppStart {
 
@@ -26,11 +26,13 @@ public class AppStart {
         
         UserDB userDB = new UserDB();
         ClassroomDB classroomDB = new ClassroomDB();
+        LessonDB lessonDB = new LessonDB();
         HealthOrganizationRecomendations recomendations = new HealthOrganizationRecomendations();
         
         UserMenu userMenu = new UserMenu(userDB);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
         HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
+        TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
         
         //declare internal variables
         int option;
@@ -44,7 +46,7 @@ public class AppStart {
             //Ponte para os métodos correspondentes às opções
             switch(option){
                 case 1:
-                    System.out.println("ola amigos");
+                    teacherMenu.run();
                     break;
                 case 2:
                     userMenu.run(reader.getUserID("Número de Utilizador"));
