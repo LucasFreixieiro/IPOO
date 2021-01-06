@@ -12,10 +12,13 @@ package lei_200221058_200221069;
 public class HealthOrganizationMenu {
     private HealthOrganizationRecomendations recomendations;
     private InputReader reader;
+    private Statistics statistics;
 
-    public HealthOrganizationMenu(HealthOrganizationRecomendations recomendations) {
+
+    public HealthOrganizationMenu(HealthOrganizationRecomendations recomendations, UserDB userDB) {
         reader = new InputReader();
         this.recomendations = recomendations;
+         statistics = new Statistics(userDB);
     }
     
     public void run(){
@@ -30,7 +33,7 @@ public class HealthOrganizationMenu {
                     break;
                 }
                 case 2:{
-                    System.out.println("");
+                    statistics.Statistics();
                     break;
                 }
                 case 3:{

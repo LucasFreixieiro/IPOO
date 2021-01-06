@@ -30,7 +30,7 @@ public class AppStart {
         
         UserMenu userMenu = new UserMenu(userDB);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
-        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations);
+        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
         
         //declare internal variables
         int option;
