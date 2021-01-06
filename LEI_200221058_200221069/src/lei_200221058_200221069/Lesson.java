@@ -18,13 +18,17 @@ Classe que contém as informações acerca de uma aula
 */
 public class Lesson {
     private int ID;
+    private User teacher;
+    private Classroom classroom;
     private UserDB attendances;
     private LocalDate lessonDate;
     private LocalTime lessonStart;
     private LocalTime lessonEnd;
 
-    public Lesson(int ID) {
+    public Lesson(int ID, User teacher, Classroom classroom) {
         this.ID = ID;
+        this.teacher = teacher;
+        this.classroom = classroom;
         this.lessonDate = LocalDate.now();
         lessonStart = LocalTime.now();
     }

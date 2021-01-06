@@ -24,8 +24,8 @@ public class UserMenu {
         statistics = new Statistics(userDB);
     }
     
-    public void run(String numberID){
-        user = userDB.getUser(numberID);
+    public void run(User user){
+        user = user;
         int option;
         
         InputReader reader = new InputReader();

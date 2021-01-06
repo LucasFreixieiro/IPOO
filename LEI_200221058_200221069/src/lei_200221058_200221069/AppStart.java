@@ -46,11 +46,22 @@ public class AppStart {
             //Ponte para os métodos correspondentes às opções
             switch(option){
                 case 1:
-                    teacherMenu.run();
-                    break;
+                    Classroom classroom = classroomDB.getClassroom(reader.getText("Nome da sala"));
+                    String numberID = reader.getUserID("Número de Utilizador");
+                    if(numberID != null && classroom != null)
+                        teacherMenu.run(numberID, classroom);
+                    else{
+                        System.out.println("Dados inválidos");
+                        break;
+                    }
                 case 2:
-                    userMenu.run(reader.getUserID("Número de Utilizador"));
-                    break;
+                    User user = userDB.getUser(reader.getUserID("Número de Utilizador"));
+                    if(user != null)
+                        userMenu.run(user);
+                    else{
+                        System.out.println("Dados inválidos");
+                        break;
+                    }
                 case 3:
                     healthOrganizationMenu.run();
                     break;

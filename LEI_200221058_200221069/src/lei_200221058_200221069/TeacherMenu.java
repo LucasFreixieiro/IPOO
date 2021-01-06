@@ -14,66 +14,72 @@ public class TeacherMenu {
     
     private LessonDB lessonDB;
     private UserDB userDB;
+    private UserDB attendances;
+    
     private InputReader reader;
     
-    private UserDB attendances;
     private Lesson lesson;
+    private User user;
     private boolean flag;
     private int numberOfLessons;
+    private int numberOfStudents;
 
     public TeacherMenu(LessonDB lessonDB, UserDB userDB) {
         reader = new InputReader();
         this.lessonDB = lessonDB;
         this.userDB = userDB;
         numberOfLessons = 0;
+        numberOfStudents = 0;
     }
     
-    public void run(){
-        System.out.println(flag);
-        int option;
-        attendances = new UserDB();
-        
-        
-        showTeacherMenu();
-        
-        option = reader.getOption("");
-        while(option != 0 || flag){
-            switch(option){
-                case 1:{
-                    setAttendances();
-                    break;
-                }
-                case 2:{
-                    if(!flag)
-                        startLesson();
-                    else
-                        System.out.println("Aula já iniciada");
-                    break;
-                }
-                case 3:{
-                    endLesson();
-                    break;
-                }
-                case 4:{
-                    listLessons();
-                    break;
-                }
-                case 5:{
-                    listAttendances();
-                    break;
-                }
-                default:{
-                    System.out.println("Opção não reconhecida");
-                }
-            }
-            
-            //De forma a que a informação não apareça de seguida
-            //ao utilizador é pedido que ele insira um enter para continuar o programa
-            reader.getText("Prima Enter para continuar");
-            
-            //Demonstração do menu e pedido de nova opção
+    public void run(String numberID, Classroom classroom){
+        user = userDB.getUser(numberID);
+        if(user != null && classroom != null){
+            int option;
+            int capacity = classroom.getCapacity();
+            attendances = new UserDB();
+
             showTeacherMenu();
+
             option = reader.getOption("");
+            while(option != 0 || flag){
+                switch(option){
+                    case 1:{
+                        setAttendances(capacity);
+                        break;
+                    }
+                    case 2:{
+                        if(!flag)
+                            startLesson(classroom);
+                        else
+                            System.out.println("Aula já iniciada");
+                        break;
+                    }
+                    case 3:{
+                        endLesson();
+                        break;
+                    }
+                    case 4:{
+                        listLessons();
+                        break;
+                    }
+                    case 5:{
+                        listAttendances();
+                        break;
+                    }
+                    default:{
+                        System.out.println("Opção não reconhecida");
+                    }
+                }
+
+                //De forma a que a informação não apareça de seguida
+                //ao utilizador é pedido que ele insira um enter para continuar o programa
+                reader.getText("Prima Enter para continuar");
+
+                //Demonstração do menu e pedido de nova opção
+                showTeacherMenu();
+                option = reader.getOption("");
+            }
         }
     }
     
@@ -86,19 +92,21 @@ public class TeacherMenu {
        System.out.println("0 - Sair");
    }
     
-   public void setAttendances(){
+   public void setAttendances(int capacity){
        int option;
        
        showAttendanceMenu();
        option = reader.getOption("Opção");
        
-       while(option!=0){
+       while(option!=0 || numberOfStudents<capacity){
            switch(option){
                case 1:{
                    User user;
                    user = userDB.getUser(reader.getUserID("Número de Aluno"));
-                   if(user!=null)
+                   if(user!=null){
                        attendances.addUser(user);
+                       numberOfStudents++;
+                   } 
                    else
                        System.out.println("Aluno inexistente");
                }
@@ -113,8 +121,8 @@ public class TeacherMenu {
        System.out.println("0 - Sair");
    }
    
-   public void startLesson(){
-       lesson = new Lesson(numberOfLessons);
+   public void startLesson(Classroom classroom){
+       lesson = new Lesson(numberOfLessons, user, classroom);
        lessonDB.addLesson(lesson);
        flag = true;
        numberOfLessons++;
@@ -124,6 +132,7 @@ public class TeacherMenu {
        if(flag){
            lesson.endLesson(attendances);
            flag = false;
+           numberOfStudents = 0;
        }
        else
            System.out.println("Aula sem inicio");
