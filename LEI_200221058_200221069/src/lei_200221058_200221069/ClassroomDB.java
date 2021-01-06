@@ -60,4 +60,13 @@ public class ClassroomDB {
         }
         return index;
     }
+    
+    public boolean verifyClassroom(String name){
+        for(Classroom classroom : classrooms){
+            if(classroom.getName().equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

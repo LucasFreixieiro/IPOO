@@ -62,4 +62,13 @@ public class UserDB {
     public int getTotalCount(){
         return users.length;
     }
+    
+    public boolean verifyUser(String numberID){
+        for(User user : users){
+            if(user.getUserID().equalsIgnoreCase(numberID)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

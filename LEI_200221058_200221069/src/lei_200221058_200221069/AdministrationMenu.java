@@ -84,18 +84,25 @@ public class AdministrationMenu {
         UserState status;
         
         numberID = reader.getUserID("Número de Utilizador");
-        status = reader.getUserState("Estado do Utilizador");
+        if(users.verifyUser(numberID) == false){
+            status = reader.getUserState("Estado do Utilizador");
         
-        User user = new User(numberID, status);
-        users.addUser(user);
+            User user = new User(numberID, status);
+            users.addUser(user);
+            System.out.println("Utilizador adicionado");
+        }
+        else
+            System.out.println("Utilizador já existente");
     }
     
     public void removeUser(){
         String numberID;
         numberID = reader.getUserID("Número de Utilizador");
         User user = users.getUser(numberID);
-        if(user!=null)
+        if(user!=null){
             users.removeUser(user);
+            System.out.println("Utilizador removido");
+        }
     }
     
     public void showUsers(){
@@ -109,18 +116,26 @@ public class AdministrationMenu {
         int capacity;
         
         name = reader.getText("Nome da sala");
-        capacity = reader.getOption("Capacidade da sala"); //Provavelmente mudar o nome do método será melhor
+        if(classrooms.verifyClassroom(name) == false){
+            capacity = reader.getOption("Capacidade da sala"); //Provavelmente mudar o nome do método será melhor
         
-        Classroom classroom = new Classroom(name, capacity);
-        classrooms.addClassrooms(classroom);
+            Classroom classroom = new Classroom(name, capacity);
+            classrooms.addClassrooms(classroom);
+            System.out.println("Sala criada");
+        }
+        else
+            System.out.println("Sala de aula existente");
+        
     }
     
     public void removeClassroom(){
         String name;
         name = reader.getText("Nome da sala");
         Classroom classroom = classrooms.getClassroom(name);
-        if(classroom != null)
+        if(classroom != null){
             classrooms.removeClassroom(classroom);
+            System.out.println("Sala removida");
+        }    
     }
     
     public void showClassrooms(){
