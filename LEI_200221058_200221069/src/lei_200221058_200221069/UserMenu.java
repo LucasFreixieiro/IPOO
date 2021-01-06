@@ -16,10 +16,12 @@ public class UserMenu {
     //Número de Utilizador
     private User user;
     private HealthOrganizationRecomendations recomendations;
+    private Statistics statistics;
 
     public UserMenu(UserDB userDB, HealthOrganizationRecomendations recomendations) {
         this.userDB = userDB;
         this.recomendations = recomendations;
+        statistics = new Statistics(userDB);
     }
     
     public void run(String numberID){
@@ -51,7 +53,7 @@ public class UserMenu {
                     break;
                 }
                 case 5:{
-                    System.out.println("");
+                    statistics.Statistics();
                     break;
                 }
                 default:{
