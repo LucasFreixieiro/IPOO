@@ -25,9 +25,15 @@ public class HealthOrganizationRecomendations {
     }
     
     public void newRecomendation(){
-        String recomendation = "" + recomendations.length + " - ";
-        recomendation += reader.getText("Recomendação");
-        recomendations = ArrayUtils.add(recomendations, recomendation);
+        String recomendation;
+        recomendation = reader.getText("Recomendação");
+        
+        String[] newRecomendationArray = new String[recomendations.length+1];
+        System.arraycopy(recomendations, 0, newRecomendationArray, 0, recomendations.length);
+        int j = recomendations.length + 1;
+        recomendations = new String[j];
+        System.arraycopy(newRecomendationArray, 0, recomendations, 0, recomendations.length);
+        recomendations[recomendations.length-1] = recomendation;
     }
     
     public void removeRecomendation(int option){
@@ -35,19 +41,23 @@ public class HealthOrganizationRecomendations {
             System.out.println("Opção não reconhecida");
         }
         else{
-            recomendations = ArrayUtils.remove(recomendations, option);
+            String[] newRecomendationArray = new String[recomendations.length-1];
+            System.arraycopy(recomendations, 0, newRecomendationArray, 0, option);
+            System.arraycopy(recomendations, option + 1, newRecomendationArray, option, recomendations.length - option - 1);
+            recomendations = new String[recomendations.length-1];
+            System.arraycopy(newRecomendationArray, 0, recomendations, 0, newRecomendationArray.length);
         }
     }
     
     public void editRecomendation(int option){
-        String newRecomendation = "" + recomendations.length + " - ";
-        newRecomendation += reader.getText("Recomendação");
+        String newRecomendation;
+        newRecomendation = reader.getText("Recomendação");
         recomendations[option] = newRecomendation;
     }
     
     public void listRecomendations(){
-        for(String recomendation : getRecomendations()){
-            System.out.println(recomendation);
+        for(int i=0; i<recomendations.length; i++){
+            System.out.println(i + " - " + recomendations[i]);
         }
     }
 }

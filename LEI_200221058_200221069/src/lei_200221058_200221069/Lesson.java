@@ -17,14 +17,32 @@ import java.time.LocalTime;
 Classe que contém as informações acerca de uma aula
 */
 public class Lesson {
+    private int ID;
     private UserDB attendances;
     private LocalDate lessonDate;
     private LocalTime lessonStart;
     private LocalTime lessonEnd;
 
-    public Lesson() {
+    public Lesson(int ID) {
+        this.ID = ID;
         this.lessonDate = LocalDate.now();
         lessonStart = LocalTime.now();
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public LocalDate getLessonDate() {
+        return lessonDate;
+    }
+
+    public LocalTime getLessonStart() {
+        return lessonStart;
+    }
+
+    public LocalTime getLessonEnd() {
+        return lessonEnd;
     }
     
     public void startLesson(){
@@ -33,11 +51,14 @@ public class Lesson {
     
     public void endLesson(UserDB attendances){
         this.attendances = attendances;
-        lessonStart = LocalTime.now();
+        lessonEnd = LocalTime.now();
     }
     
     public UserDB getAttendances() {
         return attendances;
     }
     
+    public int getTotalAttendances(){
+        return getAttendances().getTotalCount();
+    }
 }

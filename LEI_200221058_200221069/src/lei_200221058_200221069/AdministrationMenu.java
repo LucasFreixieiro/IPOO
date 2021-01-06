@@ -93,8 +93,9 @@ public class AdministrationMenu {
     public void removeUser(){
         String numberID;
         numberID = reader.getUserID("Número de Utilizador");
-        
-        users.removeUser(numberID);
+        User user = users.getUser(numberID);
+        if(user!=null)
+            users.removeUser(user);
     }
     
     public void showUsers(){
@@ -117,8 +118,9 @@ public class AdministrationMenu {
     public void removeClassroom(){
         String name;
         name = reader.getText("Nome da sala");
-        
-        classrooms.removeClassroom(name);
+        Classroom classroom = classrooms.getClassroom(name);
+        if(classroom != null)
+            classrooms.removeClassroom(classroom);
     }
     
     public void showClassrooms(){

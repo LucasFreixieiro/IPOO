@@ -19,11 +19,13 @@ public class TeacherMenu {
     private UserDB attendances;
     private Lesson lesson;
     private boolean flag;
+    private int numberOfLessons;
 
     public TeacherMenu(LessonDB lessonDB, UserDB userDB) {
         reader = new InputReader();
         this.lessonDB = lessonDB;
         this.userDB = userDB;
+        numberOfLessons = 0;
     }
     
     public void run(){
@@ -52,6 +54,14 @@ public class TeacherMenu {
                     endLesson();
                     break;
                 }
+                case 4:{
+                    listLessons();
+                    break;
+                }
+                case 5:{
+                    listAttendances();
+                    break;
+                }
                 default:{
                     System.out.println("Opção não reconhecida");
                 }
@@ -71,6 +81,8 @@ public class TeacherMenu {
        System.out.println("1 - Registar Presenças");
        System.out.println("2 - Iniciar aula");
        System.out.println("3 - Terminar aula");
+       System.out.println("4 - Registo de aulas");
+       System.out.println("5 - Presenças por aula");
        System.out.println("0 - Sair");
    }
     
@@ -102,19 +114,41 @@ public class TeacherMenu {
    }
    
    public void startLesson(){
-       lesson = new Lesson();
+       lesson = new Lesson(numberOfLessons);
        lessonDB.addLesson(lesson);
        flag = true;
+       numberOfLessons++;
    }
    
    public void endLesson(){
        if(flag){
            lesson.endLesson(attendances);
-           lessonDB.addLesson(lesson);
            flag = false;
        }
        else
            System.out.println("Aula sem inicio");
    }
-           
+   
+   public void listAttendances(){
+       System.out.println("1 - Ver Aulas");
+       System.out.println("0 - Sair");
+       
+       int option = reader.getOption("Opção");
+       
+       while(option!=0){
+           if(option == 1){
+               listLessons();
+               int lesson = reader.getOption("Opção");
+               lessonDB.listAttendances(lesson);
+           }  
+           System.out.println("1 - Ver Aulas");
+           System.out.println("0 - Sair");
+           option = reader.getOption("Opção");
+       }
+   }
+   
+   public void listLessons(){
+       lessonDB.listLessons();
+   }
+   
 }
