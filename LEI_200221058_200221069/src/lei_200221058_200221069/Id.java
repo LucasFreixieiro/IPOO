@@ -16,7 +16,7 @@ public class Id {
     private LocalDate date;
     private String value;
     
-    public Id(LocalDate date, String value){
+    public Id(String value, LocalDate date){
         this.date = date;
         this.value = value;
     }

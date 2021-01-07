@@ -5,13 +5,16 @@
  */
 package lei_200221058_200221069;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 /**
  *
  * @author Lucas Freixieiro
  */
 public class UserDB {
     private User[] users;
-
+            
     public UserDB() {
         users = new User[0];
     }
@@ -71,4 +74,21 @@ public class UserDB {
         }
         return false;
     }
+    
+    public void setIDs(){
+        String ID;
+        LocalDate today;
+        for(int i=0; i<users.length; i++){
+            System.out.println(i);
+            ID = UUID.randomUUID().toString();
+            today = LocalDate.now();
+            System.out.println(users[i].getUserID());
+            users[i].setTransmitedIds(ID, today);
+            for(int j=0; j<users.length; j++){
+                if(i != j){
+                    users[j].setReceivedIDs(ID, today);
+                }
+            }
+        }
+    }   
 }

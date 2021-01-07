@@ -73,8 +73,14 @@ public class User {
     }
     
     //Método para atualizar o array que contém os ids transmitidos (gerados).
-    public void setTransmitedIds() {
-        transmitedIds = ArrayUtils.add(transmitedIds,new Id(LocalDate.now(),UUID.randomUUID().toString()));
+    public void setTransmitedIds(String value, LocalDate date) {
+        int size = transmitedIds.length + 1;
+        Id[] newIdArray = new Id[size];
+        System.arraycopy(transmitedIds, 0, newIdArray, 0, transmitedIds.length);
+        transmitedIds = new Id[size];
+        System.arraycopy(newIdArray, 0, transmitedIds, 0, newIdArray.length);
+        Id id = new Id(value, date);
+        transmitedIds[transmitedIds.length-1] = id;
     }
     
     //Método para obter os Ids recebidos durante as aulas
@@ -92,8 +98,25 @@ public class User {
 
     //Método para atualizar o array dos ids recebidos
     //@params String[] ids
-    public void setReceivedIDs(Id[] ids) {
-        receivedIds = ArrayUtils.addAll(receivedIds, ids);
+    public void setReceivedIDs(String value, LocalDate date) {
+        /*
+        int size = receivedIds.length + ids.length;
+        //Criar array auxiliar com o tamanho do antigo mais os novos ids recebidos
+        Id[] newIDArray = new Id[size];
+        //copiar o array antigo para o array novo
+        System.arraycopy(receivedIds, 0, newIDArray, 0, receivedIds.length);
+        //copiar o array do parametro para o novo array
+        System.arraycopy(ids, 0, newIDArray, receivedIds.length, ids.length);
+        receivedIds = new Id[size];
+        System.arraycopy(newIDArray, 0, receivedIds, 0, newIDArray.length);
+        */
+        int size = receivedIds.length + 1;
+        Id[] newIdArray = new Id[size];
+        System.arraycopy(receivedIds, 0, newIdArray, 0, receivedIds.length);
+        receivedIds = new Id[size];
+        System.arraycopy(newIdArray, 0, receivedIds, 0, newIdArray.length);
+        Id id = new Id(value, date);
+        receivedIds[receivedIds.length-1] = id;
     }
     
 }

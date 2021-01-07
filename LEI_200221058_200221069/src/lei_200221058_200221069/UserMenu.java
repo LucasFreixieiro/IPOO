@@ -25,7 +25,7 @@ public class UserMenu {
     }
     
     public void run(User user){
-        user = user;
+        this.user = user;
         int option;
         
         InputReader reader = new InputReader();
@@ -56,8 +56,13 @@ public class UserMenu {
                     statistics.Statistics();
                     break;
                 }
+                case 6:{
+                    listIds();
+                    break;
+                }
                 default:{
                     System.out.println("Opção não reconhecida");
+                    break;
                 }
             }
             
@@ -93,5 +98,10 @@ public class UserMenu {
     
     public void showRecomendations(){
         recomendations.listRecomendations();
+    }
+    
+    public void listIds(){
+        user.listTransmitedIds();
+        user.listReceivedIds();
     }
 }

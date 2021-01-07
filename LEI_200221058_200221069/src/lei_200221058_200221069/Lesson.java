@@ -20,7 +20,8 @@ public class Lesson {
     private int ID;
     private User teacher;
     private Classroom classroom;
-    private UserDB attendances;
+    private UserDB attendancesAtStart;
+    private UserDB attendancesAtEnd;
     private LocalDate lessonDate;
     private LocalTime lessonStart;
     private LocalTime lessonEnd;
@@ -49,22 +50,41 @@ public class Lesson {
         return lessonEnd;
     }
     
-    public void startLesson(){
+    public void startLesson(UserDB attendancesAtStart){
+        this.attendancesAtStart = attendancesAtStart;
         lessonStart = LocalTime.now();
+        this.attendancesAtStart.setIDs();
     }
     
-    public void endLesson(UserDB attendances){
-        this.attendances = attendances;
+    public void endLesson(UserDB attendancesAtEnd){
+        int size = attendancesAtEnd.getUsers().length;
+        User[] users = attendancesAtEnd.getUsers();
+        for(int  i=0; i<size;i++){
+            users[i].getUserID();
+        }
+        this.attendancesAtEnd = attendancesAtEnd;
         lessonEnd = LocalTime.now();
+        this.attendancesAtEnd.setIDs();
     }
     
-    public UserDB getAttendances() {
-        return attendances;
+    public UserDB getAttendancesAtStart() {
+        return attendancesAtStart;
     }
     
-    public int getTotalAttendances(){
-        if(getAttendances() != null)
-            return getAttendances().getTotalCount();
+    public UserDB getAttendancesAtEnd() {
+        return attendancesAtEnd;
+    }
+    
+    public int getTotalAttendancesAtStart(){
+        if(getAttendancesAtStart() != null)
+            return getAttendancesAtStart().getTotalCount();
+        else
+            return 0;
+    }
+    
+    public int getTotalAttendancesAtEnd(){
+        if(getAttendancesAtEnd() != null)
+            return getAttendancesAtEnd().getTotalCount();
         else
             return 0;
     }

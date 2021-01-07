@@ -54,11 +54,14 @@ public class LessonDB {
     
     public void listLessons(){
         for(int i=0; i<lessons.length; i++){
-            System.out.println("Lição Nº: " + lessons[i].getID() + "\nTotal de presenças: " + lessons[i].getTotalAttendances());
+            System.out.println("Lição Nº: " + lessons[i].getID() + "\nTotal de presenças no inicio: " + lessons[i].getTotalAttendancesAtStart() + "\nTotal de presenças no fim: " + lessons[i].getTotalAttendancesAtEnd());
         }
     }
     
     public void listAttendances(int option){
+        User[] studentsAtStart;
+        User[] studentsAtEnd;
+        
         Lesson lesson = null;
         for(int i=0; i<lessons.length; i++){
             if(lessons[i].getID() == option){
@@ -68,12 +71,22 @@ public class LessonDB {
         }
         
         if(lesson != null){
-            int numberOfStudents = lesson.getTotalAttendances();
-            User[] students = lesson.getAttendances().getUsers();   
-        
-            for(int i=0; i<numberOfStudents; i++){
-                System.out.println(students[i].getUserID());
-            }
+            int numberOfStudentsAtStart = lesson.getTotalAttendancesAtStart();
+            int numberOfStudentsAtEnd = lesson.getTotalAttendancesAtEnd();
+            if(numberOfStudentsAtStart>0){
+                studentsAtStart = lesson.getAttendancesAtStart().getUsers();
+                System.out.println("Presenças no inicio da aula: ");
+                for(int i=0; i<numberOfStudentsAtStart; i++){
+                    System.out.println(studentsAtStart[i].getUserID());
+                }
+            } 
+            if(numberOfStudentsAtEnd>0){
+                studentsAtEnd = lesson.getAttendancesAtEnd().getUsers(); 
+                System.out.println("Presenças no fima da aula: ");
+                for(int i=0; i<numberOfStudentsAtEnd; i++){
+                    System.out.println(studentsAtEnd[i].getUserID());
+                }
+            }         
         }
         else
             System.out.println("Lição não encontrada");
