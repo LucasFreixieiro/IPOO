@@ -9,26 +9,25 @@ package lei_200221058_200221069;
  *
  * @author Lucas Freixieiro
  */
-
 //Classe para as salas de aula
 /*
 Requerimentos:
 -> Capacidade (Lugares disponiveis na sala)
 -> Nome (Nome da sala)
-*/
+ */
 public class Classroom {
+
     private int capacity;
     private String name;
 
     public Classroom(String name, int capacity) {
-        if(capacity>0 && name != null && !name.isEmpty()){
+        if (capacity > 0 && name != null && !name.isEmpty()) {
             this.capacity = capacity;
             this.name = name;
+        } else {
+            System.out.println("Campos inválidos.\nPor favor insira novamente!");
         }
-        else {
-            System.out.println("Campos inválidos.\nPor favor insira novamente!");    
-        }
-        
+
     }
 
     public int getCapacity() {
@@ -36,10 +35,11 @@ public class Classroom {
     }
 
     public void setCapacity(int capacity) {
-        if(capacity>0)
+        if (capacity > 0) {
             this.capacity = capacity;
-        else
+        } else {
             System.out.println("Campo inválido.\nPor favor insira uma capacidade acima de 0.");
+        }
     }
 
     public String getName() {
@@ -47,11 +47,11 @@ public class Classroom {
     }
 
     public void setName(String name) {
-        if(name != null && !name.isEmpty())
+        if (name != null && !name.isEmpty()) {
             this.name = name;
-        else
+        } else {
             System.out.println("Campo inválido.\nPor favor insira um nome válido!");
+        }
     }
-    
-    
+
 }

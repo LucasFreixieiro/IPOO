@@ -12,19 +12,18 @@ package lei_200221058_200221069;
 
 /*
 Enumerado para o estado do utilizador
-*/
+ */
 
-/*
+ /*
 NORMAL -> continuo
 INFECTED -> Infetado
 ISOLATION -> Em isolamento
-*/
-
+ */
 public enum UserState {
     NORMAL, INFECTED, ISOLATION;
-    
+
     public String toString() {
-        switch(this) {
+        switch (this) {
             case NORMAL:
                 return "Contínuo";
             case INFECTED:

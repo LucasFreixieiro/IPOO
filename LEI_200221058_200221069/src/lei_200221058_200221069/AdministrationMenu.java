@@ -7,10 +7,10 @@ package lei_200221058_200221069;
 
 /**
  *
-    * @author Lucas Freixieiro
+ * @author Lucas Freixieiro
  */
 public class AdministrationMenu {
-    
+
     //Atributos
     InputReader reader;
     private ClassroomDB classrooms; //Será que isto devia de ficar aqui?
@@ -21,17 +21,17 @@ public class AdministrationMenu {
         this.users = users;
         this.classrooms = classrooms;
     }
-    
-    public void run(){
+
+    public void run() {
         int option; //Variável auxiliar para guardar temporáriamente a escolha do administrador
         showAdministrationMenu(); //Demonstra o menu ao administrador
         option = reader.getOption("");
-        
+
         //Enquanto a opção for diferente de 0 o programa continuará a correr
-        while(option != 0){
-            
+        while (option != 0) {
+
             //Ponte para os métodos correspondentes às opções
-            switch(option){
+            switch (option) {
                 case 1:
                     newUser();
                     break;
@@ -54,19 +54,19 @@ public class AdministrationMenu {
                     System.out.println("Opção não reconhecida");
                     break;
             }
-            
+
             //De forma a que a informação não apareça de seguida
             //ao utilizador é pedido que ele insira um enter para continuar o programa
             reader.getText("Prima Enter para continuar");
-            
+
             //Demonstração do menu e pedido de nova opção
             showAdministrationMenu();
             option = reader.getOption("");
         }
     }
-    
+
     //Menu com as opções
-    public void showAdministrationMenu(){
+    public void showAdministrationMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula");
         System.out.println("\t\tÁrea de administração");
         System.out.println("Insira a sua opção:");
@@ -78,68 +78,68 @@ public class AdministrationMenu {
         System.out.println("6 - Mostar lista de salas");
         System.out.println("0 - Sair");
     }
-    
-    public void newUser(){
+
+    public void newUser() {
         String numberID;
         UserState status;
-        
+
         numberID = reader.getUserID("Número de Utilizador");
-        if(users.verifyUser(numberID) == false){
+        if (users.verifyUser(numberID) == false) {
             status = reader.getUserState("Estado do Utilizador");
-        
+
             User user = new User(numberID, status);
             users.addUser(user);
             System.out.println("Utilizador adicionado");
-        }
-        else
+        } else {
             System.out.println("Utilizador já existente");
+        }
     }
-    
-    public void removeUser(){
+
+    public void removeUser() {
         String numberID;
         numberID = reader.getUserID("Número de Utilizador");
         User user = users.getUser(numberID);
-        if(user!=null){
+        if (user != null) {
             users.removeUser(user);
             System.out.println("Utilizador removido");
         }
     }
-    
-    public void showUsers(){
-        for(User user : users.getUsers()){
+
+    public void showUsers() {
+        for (User user : users.getUsers()) {
             System.out.println(user.getUserID());
         }
     }
-    
-    public void newClassroom(){
+
+    public void newClassroom() {
         String name;
         int capacity;
-        
+
         name = reader.getText("Nome da sala");
-        if(classrooms.verifyClassroom(name) == false){
+        if (classrooms.verifyClassroom(name) == false) {
             capacity = reader.getOption("Capacidade da sala"); //Provavelmente mudar o nome do método será melhor
-        
+
             Classroom classroom = new Classroom(name, capacity);
             classrooms.addClassrooms(classroom);
             System.out.println("Sala criada");
-        }
-        else
+        } else {
             System.out.println("Sala de aula existente");
-        
+        }
+
     }
-    
-    public void removeClassroom(){
+
+    public void removeClassroom() {
         String name;
         name = reader.getText("Nome da sala");
         Classroom classroom = classrooms.getClassroom(name);
-        if(classroom != null){
+        if (classroom != null) {
             classrooms.removeClassroom(classroom);
             System.out.println("Sala removida");
-        }    
+        }
     }
-    
-    public void showClassrooms(){
-        for(Classroom classroom : classrooms.getClassrooms()){
+
+    public void showClassrooms() {
+        for (Classroom classroom : classrooms.getClassrooms()) {
             System.out.println(classroom.getName());
         }
     }
