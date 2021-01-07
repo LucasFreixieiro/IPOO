@@ -63,6 +63,9 @@ public class Lesson {
     }
     
     public int getTotalAttendances(){
-        return getAttendances().getTotalCount();
+        if(getAttendances() != null)
+            return getAttendances().getTotalCount();
+        else
+            return 0;
     }
 }

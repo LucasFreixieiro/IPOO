@@ -60,11 +60,17 @@ public class TeacherMenu {
                         break;
                     }
                     case 4:{
-                        listLessons();
+                        if(!flag)
+                            listLessons();
+                        else
+                            System.out.println("Sem aulas");
                         break;
                     }
                     case 5:{
-                        listAttendances();
+                        if(!flag)
+                            listAttendances();
+                        else
+                            System.out.println("Sem aulas");
                         break;
                     }
                     default:{
@@ -98,17 +104,16 @@ public class TeacherMenu {
        showAttendanceMenu();
        option = reader.getOption("Opção");
        
-       while(option!=0 || numberOfStudents<capacity){
+       while(option!=0 && numberOfStudents<capacity){
            switch(option){
                case 1:{
-                   User user;
-                   user = userDB.getUser(reader.getUserID("Número de Aluno"));
-                   if(user!=null){
-                       attendances.addUser(user);
+                   User student = userDB.getUser(reader.getUserID("Número de Aluno"));
+                   if(student != null && (verifyAttendances(student) == false)){
+                       attendances.addUser(student);
                        numberOfStudents++;
                    } 
                    else
-                       System.out.println("Aluno inexistente");
+                       System.out.println("Aluno inexistente ou já inscrito");
                }
            }
            showAttendanceMenu();
@@ -157,7 +162,16 @@ public class TeacherMenu {
    }
    
    public void listLessons(){
-       lessonDB.listLessons();
+        lessonDB.listLessons();
    }
    
+   public boolean verifyAttendances(User student){
+       User[] users = attendances.getUsers();
+       for(int i=0; i<numberOfStudents; i++){
+           if(users[i].equals(user)){
+               return true;
+           }
+       }
+       return false;
+   }
 }

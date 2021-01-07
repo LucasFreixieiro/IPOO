@@ -52,16 +52,16 @@ public class AppStart {
                         teacherMenu.run(numberID, classroom);
                     else{
                         System.out.println("Dados inválidos");
-                        break;
                     }
+                    break;
                 case 2:
                     User user = userDB.getUser(reader.getUserID("Número de Utilizador"));
                     if(user != null)
                         userMenu.run(user);
                     else{
                         System.out.println("Dados inválidos");
-                        break;
                     }
+                    break;
                 case 3:
                     healthOrganizationMenu.run();
                     break;
