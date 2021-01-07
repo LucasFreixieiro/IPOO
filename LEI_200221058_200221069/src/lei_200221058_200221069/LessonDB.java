@@ -5,13 +5,12 @@
  */
 package lei_200221058_200221069;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 /**
  *
  * @author Lucas Freixieiro
  */
 public class LessonDB {
+
     private Lesson[] lessons;
 
     public LessonDB() {
@@ -21,62 +20,62 @@ public class LessonDB {
     public Lesson[] getLessons() {
         return lessons;
     }
-    
-    public void addLesson(Lesson lesson){
-        Lesson[] newLessonArray = new Lesson[lessons.length+1];
+
+    public void addLesson(Lesson lesson) {
+        Lesson[] newLessonArray = new Lesson[lessons.length + 1];
         System.arraycopy(lessons, 0, newLessonArray, 0, lessons.length);
         int j = lessons.length + 1;
         lessons = new Lesson[j];
         System.arraycopy(newLessonArray, 0, lessons, 0, lessons.length);
-        lessons[lessons.length-1] = lesson;
+        lessons[lessons.length - 1] = lesson;
     }
-    
-    public Lesson getLesson(int ID){
-        for(int i=0; i<lessons.length; i++){
-            if(lessons[i].getID() == ID){
+
+    public Lesson getLesson(int ID) {
+        for (int i = 0; i < lessons.length; i++) {
+            if (lessons[i].getID() == ID) {
                 return lessons[i];
             }
         }
         System.out.println("Sala inválida");
         return null;
     }
-    
+
     public int getArrayIndex(Lesson lesson) {
-        int index=0;
-        for(int i=0;i<lessons.length;i++){
-            if(lessons[i].equals(lesson)){
-                index=i;
+        int index = 0;
+        for (int i = 0; i < lessons.length; i++) {
+            if (lessons[i].equals(lesson)) {
+                index = i;
                 break;
             }
         }
         return index;
     }
-    
-    public void listLessons(){
-        for(int i=0; i<lessons.length; i++){
+
+    public void listLessons() {
+        for (int i = 0; i < lessons.length; i++) {
             System.out.println("Lição Nº: " + lessons[i].getID() + "\nTotal de presenças: " + lessons[i].getTotalAttendances());
         }
     }
-    
-    public void listAttendances(int option){
+
+    public void listAttendances(int option) {
         Lesson lesson = null;
-        for(int i=0; i<lessons.length; i++){
-            if(lessons[i].getID() == option){
+        for (int i = 0; i < lessons.length; i++) {
+            if (lessons[i].getID() == option) {
                 lesson = lessons[i];
                 break;
             }
         }
-        
-        if(lesson != null){
+
+        if (lesson != null) {
             int numberOfStudents = lesson.getTotalAttendances();
-            User[] students = lesson.getAttendances().getUsers();   
-        
-            for(int i=0; i<numberOfStudents; i++){
+            User[] students = lesson.getAttendances().getUsers();
+
+            for (int i = 0; i < numberOfStudents; i++) {
                 System.out.println(students[i].getUserID());
             }
-        }
-        else
+        } else {
             System.out.println("Lição não encontrada");
-        
+        }
+
     }
 }

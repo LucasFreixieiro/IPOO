@@ -11,7 +11,7 @@ package lei_200221058_200221069;
  * @v1.0.0
  */
 public class UserMenu {
-    
+
     private UserDB userDB;
     //Número de Utilizador
     private User user;
@@ -23,56 +23,56 @@ public class UserMenu {
         this.recomendations = recomendations;
         statistics = new Statistics(userDB);
     }
-    
-    public void run(User user){
+
+    public void run(User user) {
         user = user;
         int option;
-        
+
         InputReader reader = new InputReader();
         showUserMenu();
-        
+
         option = reader.getOption("");
-        while(option != 0){
-            switch(option){
-                case 1:{
+        while (option != 0) {
+            switch (option) {
+                case 1: {
                     showRecomendations();
                     break;
                 }
-                case 2:{
+                case 2: {
                     setNewState(UserState.INFECTED);
                     break;
                 }
-                case 3:{
+                case 3: {
                     //verificar se não está em isolamento ou infetado
                     setNewState(UserState.ISOLATION);
                     break;
                 }
-                case 4:{
+                case 4: {
                     //Verificar se está em isolamento
                     setNewState(UserState.NORMAL);
                     break;
                 }
-                case 5:{
+                case 5: {
                     statistics.Statistics();
                     break;
                 }
-                default:{
+                default: {
                     System.out.println("Opção não reconhecida");
                 }
             }
-            
+
             //De forma a que a informação não apareça de seguida
             //ao utilizador é pedido que ele insira um enter para continuar o programa
             reader.getText("Prima Enter para continuar");
-            
+
             //Demonstração do menu e pedido de nova opção
             showUserMenu();
             option = reader.getOption("");
         }
     }
-    
+
     //Menu do utilizador
-    public void showUserMenu(){
+    public void showUserMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula\n");
         System.out.println("\t\tUtilizador: " + user.getUserID());
         System.out.println("\t\tEstado: " + user.getUserState());
@@ -84,14 +84,14 @@ public class UserMenu {
         System.out.println("5 - Ver estatísticas diárias");
         System.out.println("0 - Sair");
     }
-    
-    public void setNewState(UserState userState){
-        if(user != null){
+
+    public void setNewState(UserState userState) {
+        if (user != null) {
             user.setUserState(userState);
         }
     }
-    
-    public void showRecomendations(){
+
+    public void showRecomendations() {
         recomendations.listRecomendations();
     }
 }

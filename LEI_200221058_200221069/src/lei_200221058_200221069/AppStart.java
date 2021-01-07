@@ -14,51 +14,48 @@ public class AppStart {
     /**
      * @param args the command line arguments
      */
-    
     //public static User[] users;
-    
     //UserMenu userMenu;
     //AdministrationMenu administrationMenu;
-    
     public static void main(String[] args) {
         //init instances
         InputReader reader = new InputReader();
-        
+
         UserDB userDB = new UserDB();
         ClassroomDB classroomDB = new ClassroomDB();
         LessonDB lessonDB = new LessonDB();
         HealthOrganizationRecomendations recomendations = new HealthOrganizationRecomendations();
-        
+
         UserMenu userMenu = new UserMenu(userDB, recomendations);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
         HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
-        
+
         //declare internal variables
         int option;
-        
+
         showMainMenu(); //Demonstra o menu principal
         option = reader.getOption("");
-        
+
         adminMenu.showUsers();
         //Enquanto a opção for diferente de 0 o programa continuará a correr
-        while(option!=0){
+        while (option != 0) {
             //Ponte para os métodos correspondentes às opções
-            switch(option){
+            switch (option) {
                 case 1:
                     Classroom classroom = classroomDB.getClassroom(reader.getText("Nome da sala"));
                     String numberID = reader.getUserID("Número de Utilizador");
-                    if(numberID != null && classroom != null)
+                    if (numberID != null && classroom != null) {
                         teacherMenu.run(numberID, classroom);
-                    else{
+                    } else {
                         System.out.println("Dados inválidos");
                     }
                     break;
                 case 2:
                     User user = userDB.getUser(reader.getUserID("Número de Utilizador"));
-                    if(user != null)
+                    if (user != null) {
                         userMenu.run(user);
-                    else{
+                    } else {
                         System.out.println("Dados inválidos");
                     }
                     break;
@@ -72,18 +69,18 @@ public class AppStart {
                     System.out.println("Opção não reconhecida");
                     break;
             }
-        
-        //De forma a que a informação não apareça de seguida
-        //ao utilizador é pedido que ele insira um enter para continuar o programa
-        reader.getText("Prima Enter para continuar");
-            
-        //Demonstração do menu e pedido de nova opção
-        showMainMenu();
-        option = reader.getOption("");
+
+            //De forma a que a informação não apareça de seguida
+            //ao utilizador é pedido que ele insira um enter para continuar o programa
+            reader.getText("Prima Enter para continuar");
+
+            //Demonstração do menu e pedido de nova opção
+            showMainMenu();
+            option = reader.getOption("");
         }
     }
-    
-    public static void showMainMenu(){
+
+    public static void showMainMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula");
         System.out.println("\t\tBem-vindo!!!");
         System.out.println("Insira a sua opção:");

@@ -9,14 +9,14 @@ import java.time.LocalDate;
 
 /**
  *
- * @author Lili
+ * @author Liliana Santos & Lucas Freixieiro
  */
 public class Id {
-    
+
     private LocalDate date;
     private String value;
-    
-    public Id(LocalDate date, String value){
+
+    public Id(LocalDate date, String value) {
         this.date = date;
         this.value = value;
     }
@@ -36,7 +36,5 @@ public class Id {
     public void setValue(String value) {
         this.value = value;
     }
-    
-   
-    
+
 }

@@ -15,8 +15,9 @@ import java.time.LocalTime;
 
 /*
 Classe que contém as informações acerca de uma aula
-*/
+ */
 public class Lesson {
+
     private int ID;
     private User teacher;
     private Classroom classroom;
@@ -48,24 +49,25 @@ public class Lesson {
     public LocalTime getLessonEnd() {
         return lessonEnd;
     }
-    
-    public void startLesson(){
+
+    public void startLesson() {
         lessonStart = LocalTime.now();
     }
-    
-    public void endLesson(UserDB attendances){
+
+    public void endLesson(UserDB attendances) {
         this.attendances = attendances;
         lessonEnd = LocalTime.now();
     }
-    
+
     public UserDB getAttendances() {
         return attendances;
     }
-    
-    public int getTotalAttendances(){
-        if(getAttendances() != null)
+
+    public int getTotalAttendances() {
+        if (getAttendances() != null) {
             return getAttendances().getTotalCount();
-        else
+        } else {
             return 0;
+        }
     }
 }
