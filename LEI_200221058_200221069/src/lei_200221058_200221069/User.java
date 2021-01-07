@@ -8,8 +8,6 @@ package lei_200221058_200221069;
 import java.util.UUID;
 import java.lang.Object;
 import java.time.LocalDate;
-import org.apache.commons.lang3.ArrayUtils;
-
 /**
  *
  * @author Lucas Freixieiro
@@ -74,7 +72,10 @@ public class User {
     
     //Método para atualizar o array que contém os ids transmitidos (gerados).
     public void setTransmitedIds() {
-        transmitedIds = ArrayUtils.add(transmitedIds,new Id(LocalDate.now(),UUID.randomUUID().toString()));
+        
+        
+        
+        //transmitedIds = ArrayUtils.add(transmitedIds,new Id(LocalDate.now(),UUID.randomUUID().toString()));
     }
     
     //Método para obter os Ids recebidos durante as aulas
@@ -93,7 +94,16 @@ public class User {
     //Método para atualizar o array dos ids recebidos
     //@params String[] ids
     public void setReceivedIDs(Id[] ids) {
-        receivedIds = ArrayUtils.addAll(receivedIds, ids);
+        Id[] newIdArray = new Id[receivedIds.length+1];
+
+        for(int i=0; i<receivedIds.length;i++){
+            int j = i+ 1;
+            receivedIds = new Id[j];     
+            System.arraycopy(receivedIds, 0, newIdArray, 0, receivedIds.length);
+            System.arraycopy(newIdArray, 0, receivedIds, 0, receivedIds.length);
+            receivedIds[receivedIds.length-1] = ids[i];
+        }
+        //receivedIds = ArrayUtils.addAll(receivedIds, ids);
     }
     
 }
