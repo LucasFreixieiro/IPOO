@@ -6,8 +6,9 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Área de administração
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class AdministrationMenu {
 
@@ -16,12 +17,20 @@ public class AdministrationMenu {
     private ClassroomDB classrooms; //Será que isto devia de ficar aqui?
     private UserDB users;
 
+    /**
+     * Construtor
+     * @param users Registo de utilizadores
+     * @param classrooms Registo de salas de aula
+     */
     public AdministrationMenu(UserDB users, ClassroomDB classrooms) {
         reader = new InputReader();
         this.users = users;
         this.classrooms = classrooms;
     }
 
+    /**
+     * Carrega o menu do administrador e executa a opção escolhida
+     */
     public void run() {
         int option; //Variável auxiliar para guardar temporáriamente a escolha do administrador
         showAdministrationMenu(); //Demonstra o menu ao administrador
@@ -65,7 +74,9 @@ public class AdministrationMenu {
         }
     }
 
-    //Menu com as opções
+    /**
+     * Menu do administrador
+     */
     public void showAdministrationMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula");
         System.out.println("\t\tÁrea de administração");
@@ -79,6 +90,9 @@ public class AdministrationMenu {
         System.out.println("0 - Sair");
     }
 
+    /**
+     * Adicionar um novo utilizador ao objeto users
+     */
     public void newUser() {
         String numberID;
         UserState status;
@@ -95,6 +109,9 @@ public class AdministrationMenu {
         }
     }
 
+    /**
+     * Remove um utilizador guardado
+     */
     public void removeUser() {
         String numberID;
         numberID = reader.getUserID("Número de Utilizador");
@@ -105,12 +122,18 @@ public class AdministrationMenu {
         }
     }
 
+    /**
+     * Mostra todos os utilizadores registados
+     */
     public void showUsers() {
         for (User user : users.getUsers()) {
             System.out.println(user.getUserID());
         }
     }
 
+    /**
+     * Cria uma nova sala de aula e guarda-a no objeto classrooms
+     */
     public void newClassroom() {
         String name;
         int capacity;
@@ -128,6 +151,9 @@ public class AdministrationMenu {
 
     }
 
+    /**
+     * Remove uma sala de aula existente
+     */
     public void removeClassroom() {
         String name;
         name = reader.getText("Nome da sala");
@@ -138,6 +164,9 @@ public class AdministrationMenu {
         }
     }
 
+    /**
+     * Mostra as salas de aula
+     */
     public void showClassrooms() {
         for (Classroom classroom : classrooms.getClassrooms()) {
             System.out.println(classroom.getName());

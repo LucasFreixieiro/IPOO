@@ -8,9 +8,11 @@ package lei_200221058_200221069;
 import java.time.LocalDate;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Classe inicial
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
+
 public class AppStart {
 
     /**
@@ -32,64 +34,7 @@ public class AppStart {
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
         HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
-
         
-        //Teste
-        /*User user1 = new User("200221069", UserState.NORMAL);
-        User user2 = new User("200221058", UserState.NORMAL);
-        userDB.addUser(user1);
-        userDB.addUser(user2);
-        
-        user1.setTransmitedIds("2500225", LocalDate.now());
-        user1.setTransmitedIds("2500277", LocalDate.of(2020, 12, 24));
-        user1.setTransmitedIds("2500278", LocalDate.of(2020, 1, 9));
-        user1.setTransmitedIds("2500215", LocalDate.now());
-        
-        user2.setTransmitedIds("2500125", LocalDate.now());
-        user2.setTransmitedIds("2500126", LocalDate.of(2020, 12, 24));
-        user2.setTransmitedIds("2500127", LocalDate.of(2020, 1, 9));
-        user2.setTransmitedIds("2500128", LocalDate.now());
-        //user2.setReceivedIDs("2500215", LocalDate.now());
-        
-        for(Id id : user1.getTransmitedIds()){
-            if(id!=null)
-            System.out.println(id.getDate());
-        }
-        userMenu.run(user1);
-        for(Id id : user1.getTransmitedIds()){
-            if(id!=null)
-            System.out.println(id.getDate());
-        }
-        System.out.println("---");
-        for(Id id : userDB.getInfectedIDs()){
-            if(id!=null)
-            System.out.println(id.getDate());
-        }
-        healthOrganizationMenu.run();
-        System.out.println(user2.getUserState());
-        user1.setUserState(UserState.NORMAL);
-        user2.setUserState(UserState.NORMAL);
-        user1.setTransmitedIds("2500225", LocalDate.now());
-        user1.setTransmitedIds("2500277", LocalDate.of(2020, 12, 24));
-        user1.setTransmitedIds("2500278", LocalDate.of(2021, 1, 2));
-        user1.setTransmitedIds("2500215", LocalDate.now());
-        
-        
-        user2.setTransmitedIds("2500125", LocalDate.now());
-        user2.setTransmitedIds("2500126", LocalDate.of(2020, 12, 24));
-        user2.setTransmitedIds("2500127", LocalDate.of(2021, 1, 1));
-        user2.setTransmitedIds("2500128", LocalDate.now());
-        user2.setReceivedIDs("2500278", LocalDate.now());
-        user1.setUserState(UserState.INFECTED);
-        userMenu.sendIDs();
-        healthOrganizationMenu.run();
-        System.out.println(user2.getUserState());
-        System.out.println(userDB.getInfectedIDs().length);
-        System.out.println("---");
-        for(Id id : userDB.getInfectedIDs()){
-            if(id!=null)
-            System.out.println(id.getValue());
-        }*/
         //declare internal variables
         int option;
 
@@ -143,6 +88,9 @@ public class AppStart {
         }
     }
 
+    /**
+     * Menu principal
+     */
     public static void showMainMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula");
         System.out.println("\t\tBem-vindo!!!");

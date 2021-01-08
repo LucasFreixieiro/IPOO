@@ -6,17 +6,25 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Liliana Santos & Lucas Freixieiro
+ * Estatísticas Diárias
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class Statistics {
 
     private UserDB users;
 
+    /**
+     * Construtor das Estatisticas
+     * @param users Registo de utilizadores
+     */
     public Statistics(UserDB users) {
         this.users = users;
     }
 
+    /**
+     * Método que corre as estatisticas
+     */
     public void Statistics() {
 
         int isolation = 0;

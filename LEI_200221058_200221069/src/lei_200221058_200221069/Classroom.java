@@ -6,9 +6,11 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Informação acerca de uma sala de aula
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
+
 //Classe para as salas de aula
 /*
 Requerimentos:
@@ -20,6 +22,11 @@ public class Classroom {
     private int capacity;
     private String name;
 
+    /**
+     * Construtor
+     * @param name Nome da sala de aula
+     * @param capacity Capacidade da sala de aula
+     */
     public Classroom(String name, int capacity) {
         if (capacity > 0 && name != null && !name.isEmpty()) {
             this.capacity = capacity;
@@ -30,10 +37,18 @@ public class Classroom {
 
     }
 
+    /**
+     * 
+     * @return Capacidade da sala de aula
+     */
     public int getCapacity() {
         return capacity;
     }
 
+    /**
+     * Altera a capacidade da sala de aula
+     * @param capacity Capacidade da sala de aula
+     */
     public void setCapacity(int capacity) {
         if (capacity > 0) {
             this.capacity = capacity;
@@ -42,10 +57,18 @@ public class Classroom {
         }
     }
 
+    /**
+     * 
+     * @return Nome da sala de aula
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Altera o nome da sala de aula
+     * @param name Nome da sala de aula
+     */
     public void setName(String name) {
         if (name != null && !name.isEmpty()) {
             this.name = name;

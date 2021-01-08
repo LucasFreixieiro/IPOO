@@ -6,8 +6,9 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Classe auxiliar para obter o que o utilizador escreve
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 //Importar classes bibliotecas necessárias
 import java.util.Scanner;
@@ -17,10 +18,18 @@ public class InputReader {
 
     private Scanner reader;
 
+    /**
+     * Construtor
+     */
     public InputReader() {
         reader = new Scanner(System.in);
     }
 
+    /**
+     * Obter o valor introduzido pelo utilizador
+     * @param question Pergunta
+     * @return Valor introduzido
+     */
     public int getOption(String question) {
         if (question == null) {
             question = "";
@@ -36,6 +45,12 @@ public class InputReader {
         return number;
     }
 
+    /**
+     * Obtem o numberID do utilizador
+     * Este é validado para que tenha 9 caracteres
+     * @param question Pergunta
+     * @return numberID
+     */
     public String getUserID(String question) {
         String userID;
         if (question == null) {
@@ -51,6 +66,11 @@ public class InputReader {
         return userID;
     }
 
+    /**
+     * Obtem aquilo que o utilizador introduzir
+     * @param question Pergunta
+     * @return texto
+     */
     public String getText(String question) {
         if (question == null) {
             question = "";
@@ -61,6 +81,11 @@ public class InputReader {
         return reader.nextLine();
     }
 
+    /**
+     * Ontem o estado
+     * @param question Pergunta
+     * @return Estado do utilizador
+     */
     public UserState getUserState(String question) {
         UserState status = UserState.NORMAL;
         System.out.println("Estados:");

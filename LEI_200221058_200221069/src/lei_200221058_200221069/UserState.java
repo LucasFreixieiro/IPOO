@@ -6,22 +6,21 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Enumerado com os tipos de estados
+ * NORMAL - continuo
+ * INFECTED - Infetado
+ * ISOLATION - Em isolamento
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 
-/*
-Enumerado para o estado do utilizador
- */
-
- /*
-NORMAL -> continuo
-INFECTED -> Infetado
-ISOLATION -> Em isolamento
- */
 public enum UserState {
     NORMAL, INFECTED, ISOLATION;
-
+    
+    /**
+     * 
+     * @return Estado do Utilizador
+     */
     public String toString() {
         switch (this) {
             case NORMAL:

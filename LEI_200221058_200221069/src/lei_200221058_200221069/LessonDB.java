@@ -6,20 +6,32 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Registo das aulas
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class LessonDB {
     private Lesson[] lessons;
 
+    /**
+     * Construtor
+     */
     public LessonDB() {
         this.lessons = new Lesson[0];
     }
-
+    
+    /**
+     * Obtem as lições que se encontram no array
+     * @return Lições
+     */
     public Lesson[] getLessons() {
         return lessons;
     }
     
+    /**
+     * Adiciona no array, redimensionando-o, uma nova lição
+     * @param lesson lição a ser inserida
+     */
     public void addLesson(Lesson lesson){
         Lesson[] newLessonArray = new Lesson[lessons.length+1];
         System.arraycopy(lessons, 0, newLessonArray, 0, lessons.length);
@@ -29,6 +41,11 @@ public class LessonDB {
         lessons[lessons.length-1] = lesson;
     }
     
+    /**
+     * Obtem uma determindada lição
+     * @param ID Número da lição
+     * @return lição que contém o mesmo número de lição que o parametro
+     */
     public Lesson getLesson(int ID){
         for(int i=0; i<lessons.length; i++){
             if(lessons[i].getID() == ID){
@@ -39,6 +56,11 @@ public class LessonDB {
         return null;
     }
     
+    /**
+     * Obtem a posição à qual se encontra uma lição
+     * @param lesson Lição a ser verificada
+     * @return posição no array da lição igual ao parametro
+     */
     public int getArrayIndex(Lesson lesson) {
         int index=0;
         for(int i=0;i<lessons.length;i++){
@@ -50,12 +72,19 @@ public class LessonDB {
         return index;
     }
     
+    /**
+     * Lista as lições através de texto
+     */
     public void listLessons(){
         for(int i=0; i<lessons.length; i++){
             System.out.println("Lição Nº: " + lessons[i].getID() + "\nTotal de presenças no inicio: " + lessons[i].getTotalAttendancesAtStart() + "\nTotal de presenças no fim: " + lessons[i].getTotalAttendancesAtEnd());
         }
     }
     
+    /**
+     * Lista as presenças num aula
+     * @param option opção escolhida
+     */
     public void listAttendances(int option){
         User[] studentsAtStart;
         User[] studentsAtEnd;

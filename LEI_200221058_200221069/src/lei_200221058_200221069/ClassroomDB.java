@@ -6,21 +6,33 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Registo de salas de aula
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class ClassroomDB {
 
     private Classroom[] classrooms;
 
+    /**
+     * Construtor
+     */
     public ClassroomDB() {
         this.classrooms = new Classroom[0];
     }
 
+    /**
+     * 
+     * @return Salas de aula
+     */
     public Classroom[] getClassrooms() {
         return classrooms;
     }
 
+    /**
+     * Cria mais uma sala de aula
+     * @param classroom Sala de aula a ser adicionada
+     */
     public void addClassrooms(Classroom classroom) {
         Classroom[] newClassroomArray = new Classroom[classrooms.length + 1];
         System.arraycopy(classrooms, 0, newClassroomArray, 0, classrooms.length);
@@ -30,6 +42,10 @@ public class ClassroomDB {
         classrooms[classrooms.length - 1] = classroom;
     }
 
+    /**
+     * Remove uma sala de aula
+     * @param classroom Sala de aula a ser removida
+     */
     public void removeClassroom(Classroom classroom) {
         int index = getArrayIndex(classroom);
         Classroom[] newClassroomArray = new Classroom[classrooms.length - 1];
@@ -39,6 +55,11 @@ public class ClassroomDB {
         System.arraycopy(newClassroomArray, 0, classrooms, 0, newClassroomArray.length);
     }
 
+    /**
+     * Obtem uma sala de aula com um determinado nome
+     * @param name Nome da sala de aula
+     * @return Sala com nome igual ao do parametro
+     */
     public Classroom getClassroom(String name) {
         for (Classroom classroom : classrooms) {
             if (classroom.getName().equalsIgnoreCase(name)) {
@@ -49,6 +70,11 @@ public class ClassroomDB {
         return null;
     }
 
+    /**
+     * Obter a posição da sala no array
+     * @param classroom sala de aula a procurar
+     * @return Posição da sala no aray quando igual à sala do parametro
+     */
     public int getArrayIndex(Classroom classroom) {
         int index = 0;
         for (int i = 0; i < classrooms.length; i++) {
@@ -60,6 +86,11 @@ public class ClassroomDB {
         return index;
     }
 
+    /**
+     * Verifica se sala já existe
+     * @param name Nome da sala de aula a verificar
+     * @return Verdadeiro se a sala de aula já existe/ Falso se não existe
+     */
     public boolean verifyClassroom(String name) {
         for (Classroom classroom : classrooms) {
             if (classroom.getName().equalsIgnoreCase(name)) {

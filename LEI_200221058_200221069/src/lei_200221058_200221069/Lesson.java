@@ -9,8 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Informações da aula
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 
 /*
@@ -26,6 +27,12 @@ public class Lesson {
     private LocalTime lessonStart;
     private LocalTime lessonEnd;
 
+    /**
+     * Construtor
+     * @param ID Identificador da aula
+     * @param teacher Utilizador que deu a aula
+     * @param classroom Sala de aula
+     */
     public Lesson(int ID, User teacher, Classroom classroom) {
         this.ID = ID;
         this.teacher = teacher;
@@ -34,28 +41,51 @@ public class Lesson {
         lessonStart = LocalTime.now();
     }
 
+    /**
+     * @return Id da aula
+     */
     public int getID() {
         return ID;
     }
 
+    /**
+     * 
+     * @return Data da aula
+     */
     public LocalDate getLessonDate() {
         return lessonDate;
     }
 
+    /**
+     * 
+     * @return Hora do inicio
+     */
     public LocalTime getLessonStart() {
         return lessonStart;
     }
 
+    /**
+     * 
+     * @return Hora do fim
+     */
     public LocalTime getLessonEnd() {
         return lessonEnd;
     }
     
+    /**
+     * Método para iniciar uma aula
+     * @param attendancesAtStart presenças no inicio da aula
+     */
     public void startLesson(UserDB attendancesAtStart){
         this.attendancesAtStart = attendancesAtStart;
         lessonStart = LocalTime.now();
         this.attendancesAtStart.setIDs();
     }
     
+    /**
+     * Método para terminar uma aula
+     * @param attendancesAtEnd presenças no fim da aula
+     */
     public void endLesson(UserDB attendancesAtEnd){
         int size = attendancesAtEnd.getUsers().length;
         User[] users = attendancesAtEnd.getUsers();
@@ -67,14 +97,25 @@ public class Lesson {
         this.attendancesAtEnd.setIDs();
     }
     
+    /**
+     * 
+     * @return Presenças no inicio da aula
+     */
     public UserDB getAttendancesAtStart() {
         return attendancesAtStart;
     }
     
+    /**
+     * @return Presenças no fim da aula
+     */
     public UserDB getAttendancesAtEnd() {
         return attendancesAtEnd;
     }
     
+    /**
+     * 
+     * @return Total de presenças no inicio da aula
+     */
     public int getTotalAttendancesAtStart(){
         if(getAttendancesAtStart() != null)
             return getAttendancesAtStart().getTotalCount();
@@ -82,6 +123,10 @@ public class Lesson {
             return 0;
     }
     
+    /**
+     * 
+     * @return Total de presenças no fim da aula
+     */
     public int getTotalAttendancesAtEnd(){
         if(getAttendancesAtEnd() != null)
             return getAttendancesAtEnd().getTotalCount();

@@ -6,23 +6,34 @@
 package lei_200221058_200221069;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Registo de Recomendações
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class HealthOrganizationRecomendations {
 
     private String[] recomendations;
     private InputReader reader;
 
+    /**
+     * Construtor
+     */
     public HealthOrganizationRecomendations() {
         reader = new InputReader();
         this.recomendations = new String[0];
     }
 
+    /**
+     * 
+     * @return Recomendações
+     */
     public String[] getRecomendations() {
         return recomendations;
     }
 
+    /**
+     * Cria nova recomendação e armazena-a no array redimensionando-o
+     */
     public void newRecomendation() {
         String recomendation;
         recomendation = reader.getText("Recomendação");
@@ -35,6 +46,10 @@ public class HealthOrganizationRecomendations {
         recomendations[recomendations.length - 1] = recomendation;
     }
 
+    /**
+     * Remove uma recomendação do array
+     * @param option opção/indice
+     */
     public void removeRecomendation(int option) {
         if (option < 0 || option > recomendations.length) {
             System.out.println("Opção não reconhecida");
@@ -47,12 +62,19 @@ public class HealthOrganizationRecomendations {
         }
     }
 
+    /**
+     * Edita uma recomendação
+     * @param option opção/indice da recomendação
+     */
     public void editRecomendation(int option) {
         String newRecomendation;
         newRecomendation = reader.getText("Recomendação");
         recomendations[option] = newRecomendation;
     }
 
+    /**
+     * Lista as recomendações no formato de texto
+     */
     public void listRecomendations() {
         for (int i = 0; i < recomendations.length; i++) {
             System.out.println(i + " - " + recomendations[i]);
