@@ -99,33 +99,38 @@ public class AppStart {
         //Enquanto a opção for diferente de 0 o programa continuará a correr
         while (option != 0) {
             //Ponte para os métodos correspondentes às opções
-            switch (option) {
-                case 1:
-                    Classroom classroom = classroomDB.getClassroom(reader.getText("Nome da sala"));
-                    String numberID = reader.getUserID("Número de Utilizador");
-                    if (numberID != null && classroom != null) {
-                        teacherMenu.run(numberID, classroom);
-                    } else {
-                        System.out.println("Dados inválidos");
-                    }
-                    break;
-                case 2:
-                    User user = userDB.getUser(reader.getUserID("Número de Utilizador"));
-                    if (user != null) {
-                        userMenu.run(user);
-                    } else {
-                        System.out.println("Dados inválidos");
-                    }
-                    break;
-                case 3:
-                    healthOrganizationMenu.run();
-                    break;
-                case 4:
-                    adminMenu.run();
-                    break;
-                default:
-                    System.out.println("Opção não reconhecida");
-                    break;
+            try{
+                switch (option) {
+                    case 1:
+                        Classroom classroom = classroomDB.getClassroom(reader.getText("Nome da sala"));
+                        String numberID = reader.getUserID("Número de Utilizador");
+                        if (numberID != null && classroom != null) {
+                            teacherMenu.run(numberID, classroom);
+                        } else {
+                            System.out.println("Dados inválidos");
+                        }
+                        break;
+                    case 2:
+                        User user = userDB.getUser(reader.getUserID("Número de Utilizador"));
+                        if (user != null) {
+                            userMenu.run(user);
+                        } else {
+                            System.out.println("Dados inválidos");
+                        }
+                        break;
+                    case 3:
+                        healthOrganizationMenu.run();
+                        break;
+                    case 4:
+                        adminMenu.run();
+                        break;
+                    default:
+                        System.out.println("Opção não reconhecida");
+                        break;
+                }
+            }
+            catch(Exception e){
+                System.out.println("Erro inesperado");
             }
 
             //De forma a que a informação não apareça de seguida
