@@ -63,14 +63,14 @@ public class TeacherMenu {
                         if(!flag)
                             listLessons();
                         else
-                            System.out.println("Sem aulas");
+                            System.out.println("Indisponivel");
                         break;
                     }
                     case 5:{
                         if(!flag)
                             listAttendances();
                         else
-                            System.out.println("Sem aulas");
+                            System.out.println("Indisponivel");
                         break;
                     }
                     default:{
@@ -127,8 +127,6 @@ public class TeacherMenu {
    }
    
    public void startLesson(Classroom classroom){
-       System.out.println(this.attendances.getUsers().length);
-       System.out.println(numberOfStudents);
        lesson = new Lesson(numberOfLessons, user, classroom);
        lesson.startLesson(attendances);
        lessonDB.addLesson(lesson);

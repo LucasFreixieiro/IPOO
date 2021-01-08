@@ -27,6 +27,7 @@ public class User {
     private Id[] transmitedIds;
     //Lista com os ID's recebidos
     private Id[] receivedIds;
+    private LocalDate changeStateDate;
 
     //Construtor
     public User(String userID, UserState userState) {
@@ -57,6 +58,12 @@ public class User {
     //Método para atualizar o estado do utilizador
     public void setUserState(UserState userState) {
         this.userState = userState;
+        changeStateDate = LocalDate.now();
+        
+    }
+
+    public LocalDate getChangeStateDate() {
+        return changeStateDate;
     }
 
     //Método para obter os Ids transmitidos
@@ -99,17 +106,6 @@ public class User {
     //Método para atualizar o array dos ids recebidos
     //@params String[] ids
     public void setReceivedIDs(String value, LocalDate date) {
-        /*
-        int size = receivedIds.length + ids.length;
-        //Criar array auxiliar com o tamanho do antigo mais os novos ids recebidos
-        Id[] newIDArray = new Id[size];
-        //copiar o array antigo para o array novo
-        System.arraycopy(receivedIds, 0, newIDArray, 0, receivedIds.length);
-        //copiar o array do parametro para o novo array
-        System.arraycopy(ids, 0, newIDArray, receivedIds.length, ids.length);
-        receivedIds = new Id[size];
-        System.arraycopy(newIDArray, 0, receivedIds, 0, newIDArray.length);
-        */
         int size = receivedIds.length + 1;
         Id[] newIdArray = new Id[size];
         System.arraycopy(receivedIds, 0, newIdArray, 0, receivedIds.length);
@@ -119,4 +115,19 @@ public class User {
         receivedIds[receivedIds.length-1] = id;
     }
     
+    public void removeTransmitedID(int index){
+        Id[] newArray = new Id[transmitedIds.length - 1];
+        System.arraycopy(transmitedIds, 0, newArray, 0, index);
+        System.arraycopy(transmitedIds, index + 1, newArray, index, transmitedIds.length - index - 1);
+        transmitedIds = new Id[transmitedIds.length - 1];
+        System.arraycopy(newArray, 0, transmitedIds, 0, newArray.length);
+    }
+    
+    public void removeReceivedID(int index){
+        Id[] newArray = new Id[receivedIds.length - 1];
+        System.arraycopy(receivedIds, 0, newArray, 0, index);
+        System.arraycopy(receivedIds, index + 1, newArray, index, receivedIds.length - index - 1);
+        receivedIds = new Id[receivedIds.length - 1];
+        System.arraycopy(newArray, 0, receivedIds, 0, newArray.length);
+    }
 }

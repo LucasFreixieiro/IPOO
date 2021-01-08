@@ -96,4 +96,8 @@ public class HealthOrganizationMenu {
         option = reader.getOption("Introduza o número");
         recomendations.editRecomendation(option);
     }
+    
+    public void sendList(){
+        
+    }
 }

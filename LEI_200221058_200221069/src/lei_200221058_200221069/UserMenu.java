@@ -5,6 +5,8 @@
  */
 package lei_200221058_200221069;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Lucas Freixieiro
@@ -28,8 +30,15 @@ public class UserMenu {
         this.user = user;
         int option;
         
+        //Limpar ids antigos
+        removeOldTransmitedIDs();
+        removeOldReceivedIDs();
+        
         InputReader reader = new InputReader();
         showUserMenu();
+        
+        //Verificar se o utilizador está em isolamento e se já passaram 15 dias
+        verifyState();
         
         option = reader.getOption("");
         while(option != 0){
@@ -39,12 +48,22 @@ public class UserMenu {
                     break;
                 }
                 case 2:{
-                    setNewState(UserState.INFECTED);
+                    if(user.getUserState() != UserState.INFECTED){
+                        setNewState(UserState.INFECTED);
+                        System.out.println("Estado alterado com  sucesso");
+                        sendIDs();
+                    }
+                    else
+                        System.out.println("O utilizador já está declarado como infetado");
                     break;
                 }
                 case 3:{
-                    //verificar se não está em isolamento ou infetado
-                    setNewState(UserState.ISOLATION);
+                    if(user.getUserState() != UserState.INFECTED && user.getUserState() != UserState.ISOLATION){
+                        setNewState(UserState.ISOLATION);
+                        System.out.println("Estado alterado com sucesso");
+                    }
+                    else
+                        System.out.println("O utilizador já está em isolamento");
                     break;
                 }
                 case 4:{
@@ -54,10 +73,6 @@ public class UserMenu {
                 }
                 case 5:{
                     statistics.Statistics();
-                    break;
-                }
-                case 6:{
-                    listIds();
                     break;
                 }
                 default:{
@@ -103,5 +118,50 @@ public class UserMenu {
     public void listIds(){
         user.listTransmitedIds();
         user.listReceivedIds();
+    }
+    
+    //Envia os IDs para a organização 
+    public void sendIDs(){
+        Id[] ids = user.getTransmitedIds();
+        userDB.setInfectedIDs(ids);
+    }
+    
+    public void removeOldTransmitedIDs(){
+        LocalDate after;
+        Id[] ids = user.getTransmitedIds();
+        if(ids != null){
+            for(int i=0; i<ids.length; i++){
+                after = ids[i].getDate().plusDays(28);
+                if(LocalDate.now().isAfter(after)){
+                    System.out.println(i);
+                    user.removeTransmitedID(i);
+                    ids = user.getTransmitedIds();
+                    i--;
+                }
+            }
+        }
+    }
+    
+    public void removeOldReceivedIDs(){
+        LocalDate after;
+        Id[] ids = user.getReceivedIDs();
+        if(ids != null){
+            for(int i=0; i<ids.length; i++){
+                after = ids[i].getDate().plusDays(28);
+                if(LocalDate.now().isAfter(after)){
+                    user.removeReceivedID(i);
+                    ids = user.getTransmitedIds();
+                    i--;
+                }
+            }
+        }
+    }
+    
+    public void verifyState(){
+        if(user.getUserState() == UserState.ISOLATION){
+            if(user.getChangeStateDate().isAfter(user.getChangeStateDate().plusDays(15))){
+                user.setUserState(UserState.NORMAL);
+            }
+        }
     }
 }

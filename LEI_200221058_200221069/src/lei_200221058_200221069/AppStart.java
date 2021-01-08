@@ -5,6 +5,8 @@
  */
 package lei_200221058_200221069;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Lucas Freixieiro
@@ -31,13 +33,38 @@ public class AppStart {
         HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
 
+        
+        //Teste
+        /*User user1 = new User("200221069", UserState.NORMAL);
+        User user2 = new User("200221058", UserState.NORMAL);
+        userDB.addUser(user1);
+        userDB.addUser(user2);
+        
+        user1.setTransmitedIds("2500225", LocalDate.now());
+       
+        user1.setTransmitedIds("2500277", LocalDate.of(2020, 12, 24));
+        user1.setTransmitedIds("2500278", LocalDate.of(2020, 1, 9));
+        user1.setTransmitedIds("2500215", LocalDate.now());
+        for(Id id : user1.getTransmitedIds()){
+            if(id!=null)
+            System.out.println(id.getDate());
+        }
+        userMenu.run(user1);
+        for(Id id : user1.getTransmitedIds()){
+            if(id!=null)
+            System.out.println(id.getDate());
+        }
+        System.out.println("---");
+        for(Id id : userDB.getInfectedIDs()){
+            if(id!=null)
+            System.out.println(id.getDate());
+        }*/
         //declare internal variables
         int option;
 
         showMainMenu(); //Demonstra o menu principal
         option = reader.getOption("");
-
-        adminMenu.showUsers();
+        
         //Enquanto a opção for diferente de 0 o programa continuará a correr
         while (option != 0) {
             //Ponte para os métodos correspondentes às opções
