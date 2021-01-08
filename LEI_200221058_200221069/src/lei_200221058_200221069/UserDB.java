@@ -137,4 +137,11 @@ public class UserDB {
         return newArray;
     }
     
+    //Limpa o array que contém os ids dos utilizadores infetados
+    //Só é acionado após o upload dos ids infetados em cada utilizador
+    //(é acionado através da organização)
+    public void clearInfectedIDs(){
+        infectedIDs = new Id[0];
+    }
+    
 }

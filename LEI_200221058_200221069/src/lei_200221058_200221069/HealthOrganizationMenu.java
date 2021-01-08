@@ -17,7 +17,7 @@ public class HealthOrganizationMenu {
     private InputReader reader;
     private Statistics statistics;
     private UserDB userDB;
-    private Id[] infectedUsers;
+    //private Id[] infectedUsers;
 
     public HealthOrganizationMenu(HealthOrganizationRecomendations recomendations, UserDB userDB) {
         reader = new InputReader();
@@ -104,8 +104,8 @@ public class HealthOrganizationMenu {
     
     public void sendList(){
         if(userDB.getTotalCount() != 0){
-            infectedUsers = userDB.getInfectedIDs();
-            infectedUsers = filterByDay(infectedUsers);
+            Id[] infectedUsers = userDB.getInfectedIDs();
+            //infectedUsers = filterByDay(infectedUsers);
             User[] user = userDB.getUsers();
             for(int index=0; index<infectedUsers.length; index++){
                 for (int i=0; i<user.length; i++){
@@ -118,10 +118,11 @@ public class HealthOrganizationMenu {
                     }
                 }
             }
+            userDB.clearInfectedIDs();
         }
     }
     
-    public Id[] filterByDay(Id[] ids){
+    /*public Id[] filterByDay(Id[] ids){
         if(ids != null){
             LocalDate today = LocalDate.now();
             for(int i=0; i<ids.length; i++){
@@ -139,6 +140,6 @@ public class HealthOrganizationMenu {
         System.arraycopy(ids, 0, newArray, 0, index);
         System.arraycopy(ids, index + 1, newArray, index, ids.length - index - 1);
         return newArray;
-    }
+    }*/
     
 }
