@@ -134,8 +134,6 @@ public class UserDB {
         Id[] newArray = new Id[ids.length - 1];
         System.arraycopy(ids, 0, newArray, 0, index);
         System.arraycopy(ids, index + 1, newArray, index, ids.length - index - 1);
-        //infectedIDs = new Id[infectedIDs.length - 1];
-        //System.arraycopy(newArray, 0, infectedIDs, 0, newArray.length);
         return newArray;
     }
     

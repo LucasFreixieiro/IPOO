@@ -41,10 +41,16 @@ public class AppStart {
         userDB.addUser(user2);
         
         user1.setTransmitedIds("2500225", LocalDate.now());
-       
         user1.setTransmitedIds("2500277", LocalDate.of(2020, 12, 24));
         user1.setTransmitedIds("2500278", LocalDate.of(2020, 1, 9));
         user1.setTransmitedIds("2500215", LocalDate.now());
+        
+        user2.setTransmitedIds("2500125", LocalDate.now());
+        user2.setTransmitedIds("2500126", LocalDate.of(2020, 12, 24));
+        user2.setTransmitedIds("2500127", LocalDate.of(2020, 1, 9));
+        user2.setTransmitedIds("2500128", LocalDate.now());
+        user2.setReceivedIDs("2500215", LocalDate.now());
+        
         for(Id id : user1.getTransmitedIds()){
             if(id!=null)
             System.out.println(id.getDate());
@@ -58,7 +64,9 @@ public class AppStart {
         for(Id id : userDB.getInfectedIDs()){
             if(id!=null)
             System.out.println(id.getDate());
-        }*/
+        }
+        healthOrganizationMenu.run();
+        System.out.println(user2.getUserState());*/
         //declare internal variables
         int option;
 

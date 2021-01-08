@@ -5,6 +5,8 @@
  */
 package lei_200221058_200221069;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Lucas Freixieiro
@@ -14,11 +16,14 @@ public class HealthOrganizationMenu {
     private HealthOrganizationRecomendations recomendations;
     private InputReader reader;
     private Statistics statistics;
+    private UserDB userDB;
+    private Id[] infectedUsers;
 
     public HealthOrganizationMenu(HealthOrganizationRecomendations recomendations, UserDB userDB) {
         reader = new InputReader();
         this.recomendations = recomendations;
         statistics = new Statistics(userDB);
+        this.userDB = userDB;
     }
 
     public void run() {
@@ -29,7 +34,7 @@ public class HealthOrganizationMenu {
         while (option != 0) {
             switch (option) {
                 case 1: {
-                    System.out.println("");
+                    sendList();
                     break;
                 }
                 case 2: {
@@ -98,6 +103,42 @@ public class HealthOrganizationMenu {
     }
     
     public void sendList(){
-        
+        if(userDB.getTotalCount() != 0){
+            infectedUsers = userDB.getInfectedIDs();
+            infectedUsers = filterByDay(infectedUsers);
+            User[] user = userDB.getUsers();
+            for(int index=0; index<infectedUsers.length; index++){
+                for (int i=0; i<user.length; i++){
+                    Id[] ids = user[i].getReceivedIDs();
+                    for(int j=0; j<ids.length; j++){
+                        if(ids[j].getValue().equals(infectedUsers[index].getValue())){
+                            user[i].setUserState(UserState.ISOLATION);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
+    
+    public Id[] filterByDay(Id[] ids){
+        if(ids != null){
+            LocalDate today = LocalDate.now();
+            for(int i=0; i<ids.length; i++){
+                if(!(LocalDate.now().equals(today))){
+                    ids = removeOldID(i, ids);
+                    i--;
+                }
+            }
+            return ids;
+        }
+        return null;
+    }
+    public Id[] removeOldID(int index, Id[] ids){
+        Id[] newArray = new Id[ids.length - 1];
+        System.arraycopy(ids, 0, newArray, 0, index);
+        System.arraycopy(ids, index + 1, newArray, index, ids.length - index - 1);
+        return newArray;
+    }
+    
 }
