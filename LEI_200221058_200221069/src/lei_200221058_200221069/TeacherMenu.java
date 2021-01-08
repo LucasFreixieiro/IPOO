@@ -7,8 +7,9 @@ package lei_200221058_200221069;
 
 
 /**
- *
- * @author Lucas Freixieiro
+ * Área do professor
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class TeacherMenu {
     
@@ -24,6 +25,11 @@ public class TeacherMenu {
     private int numberOfLessons;
     private int numberOfStudents;
 
+    /**
+     * Construtor
+     * @param lessonDB Registo de lições
+     * @param userDB Registo de utilizadores
+     */
     public TeacherMenu(LessonDB lessonDB, UserDB userDB) {
         reader = new InputReader();
         this.lessonDB = lessonDB;
@@ -32,6 +38,11 @@ public class TeacherMenu {
         numberOfStudents = 0;
     }
     
+    /**
+     * Método que corre o menu e todas as funções relacionadas com o menu do professor
+     * @param numberID número de utilizador
+     * @param classroom Sala de aula
+     */
     public void run(String numberID, Classroom classroom){
         user = userDB.getUser(numberID);
         if(user != null && classroom != null){
@@ -89,6 +100,9 @@ public class TeacherMenu {
         }
     }
     
+    /**
+     * Menu do Professor
+     */
     public void showTeacherMenu(){
        System.out.println("1 - Registar Presenças");
        System.out.println("2 - Iniciar aula");
@@ -98,6 +112,10 @@ public class TeacherMenu {
        System.out.println("0 - Sair");
    }
     
+   /**
+    * Regista as presenças não podendo ultrapassar a capacidade do parametro
+    * @param capacity capacidade da sala de aula
+    */
    public void setAttendances(int capacity){
        int option;
        
@@ -121,11 +139,18 @@ public class TeacherMenu {
        }
    }
    
+   /**
+    * Menu para as presenças
+    */
    public void showAttendanceMenu(){
        System.out.println("1 - Marcar presença");
        System.out.println("0 - Sair");
    }
    
+   /**
+    * Iniciar aula
+    * @param classroom sala de aula
+    */
    public void startLesson(Classroom classroom){
        lesson = new Lesson(numberOfLessons, user, classroom);
        lesson.startLesson(attendances);
@@ -134,6 +159,9 @@ public class TeacherMenu {
        numberOfLessons++;
    }
    
+   /**
+    * Terminar aula
+    */
    public void endLesson(){
        if(flag){
            lesson.endLesson(attendances);
@@ -144,6 +172,10 @@ public class TeacherMenu {
            System.out.println("Aula sem inicio");
    }
    
+   /**
+    * Listar as presenças
+    * Esta opção é feita através de um menu onde serão disponibilizadas as aulas com o seu respetivo número de aula
+    */
    public void listAttendances(){
        System.out.println("1 - Ver Aulas");
        System.out.println("0 - Sair");
@@ -162,10 +194,18 @@ public class TeacherMenu {
        }
    }
    
+   /**
+    * Lista as aulas já realizadas
+    */
    public void listLessons(){
         lessonDB.listLessons();
    }
    
+   /**
+    * Verifica se o aluno que está ser inscrito já foi inscrito
+    * @param student Utilizador
+    * @return Verdadeiro se já, falso se não
+    */
    public boolean verifyAttendances(User student){
        User[] users = attendances.getUsers();
        for(int i=0; i<numberOfStudents; i++){

@@ -8,24 +8,36 @@ package lei_200221058_200221069;
 import java.time.LocalDate;
 
 /**
- *
+ * Menu do utilzador
  * @author Lucas Freixieiro
- * @v1.0.0
+ * @version 1.0.0
  */
 public class UserMenu {
     
+    //Objeto que contém os utilziadores registados
     private UserDB userDB;
     //Número de Utilizador
     private User user;
+    //Recomendações
     private HealthOrganizationRecomendations recomendations;
+    //Estatisticas
     private Statistics statistics;
 
+    /**
+     * Construtor do Menu do Utilizador
+     * @param userDB Registo de utilizadores registados pelo administrador
+     * @param recomendations Recomendações registadas pela organização de saúde
+     */
     public UserMenu(UserDB userDB, HealthOrganizationRecomendations recomendations) {
         this.userDB = userDB;
         this.recomendations = recomendations;
         statistics = new Statistics(userDB);
     }
     
+    /**
+     * Método a ser executado quando se quer obter o menu e executar as suas opções
+     * @param user Utilizador que entrou no menu
+     */
     public void run(User user){
         this.user = user;
         int option;
@@ -91,7 +103,10 @@ public class UserMenu {
         }
     }
     
-    //Menu do utilizador
+    
+    /**
+     * Método onde está listado o menu do utilizador
+     */
     public void showUserMenu(){
         System.out.println("\tSistema de rastreio de contactos em sala de aula\n");
         System.out.println("\t\tUtilizador: " + user.getUserID());
@@ -105,27 +120,43 @@ public class UserMenu {
         System.out.println("0 - Sair");
     }
     
+    /**
+     * Define o estado do utilizador para o passado em parametro
+     * @param userState Estado do utilizador a ser definido
+     */
     public void setNewState(UserState userState){
         if(user != null){
             user.setUserState(userState);
         }
     }
     
+    /**
+     * Lista em formato de texto as recomendações da organização de saúde
+     */
     public void showRecomendations(){
         recomendations.listRecomendations();
     }
     
+    /**
+     * Lista os Ids transmitidos e recebidos
+     * Método feito a pensar nos testes
+     */
     public void listIds(){
         user.listTransmitedIds();
         user.listReceivedIds();
     }
     
-    //Envia os IDs para a organização 
+    /**
+     * Guarda no objeto userDB os ids transmitidos por este utilizador quando o mesmo se declara infetado
+     */
     public void sendIDs(){
         Id[] ids = user.getTransmitedIds();
         userDB.setInfectedIDs(ids);
     }
     
+    /**
+     * Remoção de Ids transmitidos que já tem uma data maior que 28 dias
+     */
     public void removeOldTransmitedIDs(){
         LocalDate after;
         Id[] ids = user.getTransmitedIds();
@@ -142,6 +173,9 @@ public class UserMenu {
         }
     }
     
+    /**
+     * Remoção de Ids recebidos que já tem uma data maior que 28 dias
+     */
     public void removeOldReceivedIDs(){
         LocalDate after;
         Id[] ids = user.getReceivedIDs();
@@ -157,6 +191,10 @@ public class UserMenu {
         }
     }
     
+    /**
+     * Verifica se o utilizador está em isolamento
+     * Se estiver e já se tiverem passado os 15 dias desde o inicio do isolamento então terá o seu estado alterado
+     */
     public void verifyState(){
         if(user.getUserState() == UserState.ISOLATION){
             if(user.getChangeStateDate().isAfter(user.getChangeStateDate().plusDays(15))){

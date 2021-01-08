@@ -8,8 +8,9 @@ package lei_200221058_200221069;
 import java.time.LocalDate;
 
 /**
- *
- * @author Lucas Freixieiro
+ * Área da organização de saúde
+ * @author Lucas Freixieiro e Liliana Santos
+ * @version 1.0.0
  */
 public class HealthOrganizationMenu {
 
@@ -19,6 +20,11 @@ public class HealthOrganizationMenu {
     private UserDB userDB;
     //private Id[] infectedUsers;
 
+    /**
+     * Construtor
+     * @param recomendations Registo de Recomendações
+     * @param userDB Registo de Utilizadores
+     */
     public HealthOrganizationMenu(HealthOrganizationRecomendations recomendations, UserDB userDB) {
         reader = new InputReader();
         this.recomendations = recomendations;
@@ -26,6 +32,10 @@ public class HealthOrganizationMenu {
         this.userDB = userDB;
     }
 
+    /**
+     * Corre o Menu da organização de saúde
+     * Aqui é onde é dividido todo o processo da organização
+     */
     public void run() {
         int option;
         showHealthOrganizationMenu();
@@ -72,7 +82,9 @@ public class HealthOrganizationMenu {
             option = reader.getOption("");
         }
     }
-
+    /**
+     * Menu da organização 
+    */
     public void showHealthOrganizationMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula");
         System.out.println("\t\tÁrea da organização de Saúde");
@@ -86,6 +98,9 @@ public class HealthOrganizationMenu {
         System.out.println("0 - Sair");
     }
 
+    /**
+     * Remoção de uma recomendação
+     */
     public void removeRecomendation() {
         int option;
 
@@ -94,6 +109,9 @@ public class HealthOrganizationMenu {
         recomendations.removeRecomendation(option);
     }
 
+    /**
+     * Edição de uma recomendação
+     */
     public void editRecomendation() {
         int option;
 
@@ -102,6 +120,10 @@ public class HealthOrganizationMenu {
         recomendations.editRecomendation(option);
     }
     
+    /**
+     * Enviar a lista com os ids infetados para os utilziadores
+     * Se se encontrarem estes ids nos ids recebidos o utilizador entrará automáticamente em quarentena
+     */
     public void sendList(){
         if(userDB.getTotalCount() != 0){
             Id[] infectedUsers = userDB.getInfectedIDs();
