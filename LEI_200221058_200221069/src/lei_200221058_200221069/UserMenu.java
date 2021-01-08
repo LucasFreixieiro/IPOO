@@ -121,6 +121,14 @@ public class UserMenu {
     }
     
     /**
+     * Define o utilizador a utilizar
+     * @param user utilizador a utilizar
+     */
+    public void setUser(User user){
+        this.user = user;
+    }
+    
+    /**
      * Define o estado do utilizador para o passado em parametro
      * @param userState Estado do utilizador a ser definido
      */
@@ -196,8 +204,8 @@ public class UserMenu {
      * Se estiver e já se tiverem passado os 15 dias desde o inicio do isolamento então terá o seu estado alterado
      */
     public void verifyState(){
-        if(user.getUserState() == UserState.ISOLATION){
-            if(user.getChangeStateDate().isAfter(user.getChangeStateDate().plusDays(15))){
+            if(user.getUserState() == UserState.ISOLATION){
+            if(user.getChangeStateDate().isBefore(LocalDate.now().minusDays(15))){
                 user.setUserState(UserState.NORMAL);
             }
         }
