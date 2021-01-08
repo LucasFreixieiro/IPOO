@@ -84,6 +84,14 @@ public class User {
     public LocalDate getChangeStateDate() {
         return changeStateDate;
     }
+    
+    /**
+     * Altera a data de alteração de estado
+     * @param date Data da alteração do estado
+     */
+    public void setChangeStateDate(LocalDate date){
+        changeStateDate = date;
+    }
 
     /**
      * Método para obter os Ids transmitidos
