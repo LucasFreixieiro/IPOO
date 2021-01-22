@@ -21,7 +21,7 @@ public class UserDB {
     private ArrayList<Id> infectedIDs;
 
     /**
-     * Construtor do UserDB Cria os arrays com tamnaho 0
+     * Construtor do UserDB Cria os arrays com tamanho 0
      */
     public UserDB() {
         users = new ArrayList<>();

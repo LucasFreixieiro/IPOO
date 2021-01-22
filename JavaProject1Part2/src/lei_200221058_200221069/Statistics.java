@@ -50,24 +50,37 @@ public class Statistics {
                 }
             }
         }
-        System.out.println("Infectados: " + infected);
-        System.out.println("Em isolamento: " + isolation);
-        System.out.println("Em contínuo: " + normal);
 
-        System.out.println("Infectados:");
-        for (int i = 0; i < infected; i++) {
-            System.out.print("x");
+        if ((infected + isolation + normal > 0)) {
+            int percentageOfInfected = infected * 100 / (infected + isolation + normal);
+            int percentageOfIsolation = isolation * 100 / (infected + isolation + normal);
+            int percentageOfNormal = normal * 100 / (infected + isolation + normal);
+
+            System.out.println("Infectados: " + infected);
+            System.out.println("Em isolamento: " + isolation);
+            System.out.println("Em contínuo: " + normal);
+
+            System.out.println("Infectados: ");
+
+            for (int i = 0; i < percentageOfInfected; i++) {
+                System.out.print("|");
+            }
+            System.out.print(" " + percentageOfInfected + "%");
+            System.out.println("\nEm Isolamento:");
+
+            for (int i = 0; i < percentageOfIsolation; i++) {
+                System.out.print("|");
+            }
+            System.out.print(" " + percentageOfIsolation + "%");
+            System.out.println("\nEm Contínuo:");
+
+            for (int i = 0; i < percentageOfNormal; i++) {
+                System.out.print("|");
+            }
+            System.out.print(" " + percentageOfNormal + "%");
+            System.out.println("");
+        } else {
+            System.out.println("Não existem utilizadores");
         }
-        System.out.println("\nEm Isolamento:");
-        for (int i = 0; i < isolation; i++) {
-            System.out.print("x");
-        }
-        System.out.println("\nEm Contínuo:");
-        for (int i = 0; i < isolation; i++) {
-            System.out.print("x");
-        }
-        System.out.println("");
     }
-
 }
-    

@@ -19,8 +19,9 @@ public class HealthOrganizationMenu {
     private InputReader reader;
     private Statistics statistics;
     private UserDB userDB;
-    //private Id[] infectedUsers;
 
+    //private Id[] infectedUsers;
+    
     /**
      * Construtor
      *
@@ -40,6 +41,7 @@ public class HealthOrganizationMenu {
      */
     public void run() {
         int option;
+
         showHealthOrganizationMenu();
 
         option = reader.getOption("");
@@ -47,7 +49,6 @@ public class HealthOrganizationMenu {
             switch (option) {
                 case 1: {
                     sendList();
-
                     break;
                 }
                 case 2: {
