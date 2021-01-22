@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Registo de salas de aula
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
@@ -24,7 +25,7 @@ public class ClassroomDB {
     }
 
     /**
-     * 
+     *
      * @return Salas de aula
      */
     public ArrayList<Classroom> getClassrooms() {
@@ -33,6 +34,7 @@ public class ClassroomDB {
 
     /**
      * Cria mais uma sala de aula
+     *
      * @param classroom Sala de aula a ser adicionada
      */
     public void addClassrooms(Classroom classroom) {
@@ -41,6 +43,7 @@ public class ClassroomDB {
 
     /**
      * Remove uma sala de aula
+     *
      * @param classroom Sala de aula a ser removida
      */
     public void removeClassroom(Classroom classroom) {
@@ -49,6 +52,7 @@ public class ClassroomDB {
 
     /**
      * Obtem uma sala de aula com um determinado nome
+     *
      * @param name Nome da sala de aula
      * @return Sala com nome igual ao do parametro
      */
@@ -64,6 +68,7 @@ public class ClassroomDB {
 
     /**
      * Verifica se sala já existe
+     *
      * @param name Nome da sala de aula a verificar
      * @return Verdadeiro se a sala de aula já existe/ Falso se não existe
      */
