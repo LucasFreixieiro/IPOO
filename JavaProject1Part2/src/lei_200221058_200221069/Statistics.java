@@ -49,12 +49,23 @@ public class Statistics {
                         break;
                 }
             }
-
         }
-
         System.out.println("Infectados: " + infected);
         System.out.println("Em isolamento: " + isolation);
         System.out.println("Em contínuo: " + normal);
+
+        System.out.println("Infectados:");
+        for (int i = 0; i < infected; i++) {
+            System.out.print("x");
+        }
+        System.out.println("Em Isolamento:");
+        for (int i = 0; i < isolation; i++) {
+            System.out.print("x");
+        }
+        System.out.println("Em Contínuo:");
+        for (int i = 0; i < isolation; i++) {
+            System.out.print("x");
+        }
     }
 
 }
