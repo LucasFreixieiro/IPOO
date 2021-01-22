@@ -58,14 +58,16 @@ public class Statistics {
         for (int i = 0; i < infected; i++) {
             System.out.print("x");
         }
-        System.out.println("Em Isolamento:");
+        System.out.println("\nEm Isolamento:");
         for (int i = 0; i < isolation; i++) {
             System.out.print("x");
         }
-        System.out.println("Em Contínuo:");
+        System.out.println("\nEm Contínuo:");
         for (int i = 0; i < isolation; i++) {
             System.out.print("x");
         }
+        System.out.println("");
     }
 
 }
+    
