@@ -86,7 +86,7 @@ public class AdministrationMenu {
         System.out.println("3 - Mostrar lista de utilizadores");
         System.out.println("4 - Criar sala de aula");
         System.out.println("5 - Eliminar sala de aula");
-        System.out.println("6 - Mostar lista de salas");
+        System.out.println("6 - Mostrar lista de salas");
         System.out.println("0 - Sair");
     }
 
@@ -118,7 +118,10 @@ public class AdministrationMenu {
         User user = users.getUser(numberID);
         if (user != null) {
             users.removeUser(user);
-            System.out.println("Utilizador removido");
+            System.out.println("Utilizador removido.");
+        }
+        else {
+            System.out.println("O utilizador não existe.");    
         }
     }
 
@@ -127,7 +130,7 @@ public class AdministrationMenu {
      */
     public void showUsers() {
         for (User user : users.getUsers()) {
-            System.out.println(user.getUserID());
+            System.out.println(user.getUserID()+ " - " + user.getUserState().toString());
         }
     }
 
@@ -146,7 +149,7 @@ public class AdministrationMenu {
             classrooms.addClassrooms(classroom);
             System.out.println("Sala criada");
         } else {
-            System.out.println("Sala de aula existente");
+            System.out.println("Essa sala já existe");
         }
 
     }
@@ -161,6 +164,9 @@ public class AdministrationMenu {
         if (classroom != null) {
             classrooms.removeClassroom(classroom);
             System.out.println("Sala removida");
+        }
+        else {
+            System.out.println("A sala não existe.");
         }
     }
 

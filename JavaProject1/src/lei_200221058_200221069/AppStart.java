@@ -5,14 +5,12 @@
  */
 package lei_200221058_200221069;
 
-import java.time.LocalDate;
-
 /**
  * Classe inicial
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
-
 public class AppStart {
 
     /**
@@ -28,23 +26,23 @@ public class AppStart {
         UserDB userDB = new UserDB();
         ClassroomDB classroomDB = new ClassroomDB();
         LessonDB lessonDB = new LessonDB();
-        HealthOrganizationRecomendations recomendations = new HealthOrganizationRecomendations();
+        HealthOrganizationRecommendations recommendations = new HealthOrganizationRecommendations();
 
-        UserMenu userMenu = new UserMenu(userDB, recomendations);
+        UserMenu userMenu = new UserMenu(userDB, recommendations);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
-        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recomendations, userDB);
+        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recommendations, userDB);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
-        
+
         //declare internal variables
         int option;
 
         showMainMenu(); //Demonstra o menu principal
         option = reader.getOption("");
-        
+
         //Enquanto a opção for diferente de 0 o programa continuará a correr
         while (option != 0) {
             //Ponte para os métodos correspondentes às opções
-            try{
+            try {
                 switch (option) {
                     case 1:
                         Classroom classroom = classroomDB.getClassroom(reader.getText("Nome da sala"));
@@ -73,9 +71,9 @@ public class AppStart {
                         System.out.println("Opção não reconhecida");
                         break;
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Erro inesperado");
+                System.out.println(e);
             }
 
             //De forma a que a informação não apareça de seguida

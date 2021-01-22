@@ -109,7 +109,7 @@ public class LessonDB {
             } 
             if(numberOfStudentsAtEnd>0){
                 studentsAtEnd = lesson.getAttendancesAtEnd().getUsers(); 
-                System.out.println("Presenças no fima da aula: ");
+                System.out.println("Presenças no fim da aula: ");
                 for(int i=0; i<numberOfStudentsAtEnd; i++){
                     System.out.println(studentsAtEnd[i].getUserID());
                 }

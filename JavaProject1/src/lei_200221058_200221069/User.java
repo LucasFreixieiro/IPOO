@@ -5,10 +5,7 @@
  */
 package lei_200221058_200221069;
 
-import java.util.UUID;
-import java.lang.Object;
 import java.time.LocalDate;
-import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Informação do utilizador
@@ -38,6 +35,7 @@ public class User {
     public User(String userID, UserState userState) {
         this.userID = userID;
         this.userState = userState;
+        changeStateDate = LocalDate.now();
         transmitedIds = new Id[0];
         receivedIds = new Id[0];
     }

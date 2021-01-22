@@ -19,18 +19,18 @@ public class UserMenu {
     //Número de Utilizador
     private User user;
     //Recomendações
-    private HealthOrganizationRecomendations recomendations;
+    private HealthOrganizationRecommendations recommendations;
     //Estatisticas
     private Statistics statistics;
 
     /**
      * Construtor do Menu do Utilizador
      * @param userDB Registo de utilizadores registados pelo administrador
-     * @param recomendations Recomendações registadas pela organização de saúde
+     * @param recommendations Recomendações registadas pela organização de saúde
      */
-    public UserMenu(UserDB userDB, HealthOrganizationRecomendations recomendations) {
+    public UserMenu(UserDB userDB, HealthOrganizationRecommendations recommendations) {
         this.userDB = userDB;
-        this.recomendations = recomendations;
+        this.recommendations = recommendations;
         statistics = new Statistics(userDB);
     }
     
@@ -42,11 +42,13 @@ public class UserMenu {
         this.user = user;
         int option;
         
+       
+        
         //Limpar ids antigos
         removeOldTransmitedIDs();
         removeOldReceivedIDs();
         
-        InputReader reader = new InputReader();
+        InputReader reader = new InputReader();  
         showUserMenu();
         
         //Verificar se o utilizador está em isolamento e se já passaram 15 dias
@@ -56,13 +58,13 @@ public class UserMenu {
         while(option != 0){
             switch(option){
                 case 1:{
-                    showRecomendations();
+                    showRecommendations();
                     break;
                 }
                 case 2:{
                     if(user.getUserState() != UserState.INFECTED){
                         setNewState(UserState.INFECTED);
-                        System.out.println("Estado alterado com  sucesso");
+                        System.out.println("Estado alterado com sucesso");
                         sendIDs();
                     }
                     else
@@ -79,8 +81,8 @@ public class UserMenu {
                     break;
                 }
                 case 4:{
-                    //Verificar se está em isolamento
                     setNewState(UserState.NORMAL);
+                    System.out.println("Saiu de isolamento.");
                     break;
                 }
                 case 5:{
@@ -141,8 +143,21 @@ public class UserMenu {
     /**
      * Lista em formato de texto as recomendações da organização de saúde
      */
-    public void showRecomendations(){
-        recomendations.listRecomendations();
+    public void showRecommendations(){
+        switch (user.getUserState()) {
+            case NORMAL:
+                recommendations.listRecommendationsNormal();
+                break;
+            case INFECTED:
+                recommendations.listRecommendationsInfected();
+                break;
+            case ISOLATION:
+                recommendations.listRecommendationsIsolation();
+                
+                break;
+            default:
+                break;
+        }
     }
     
     /**
@@ -204,7 +219,7 @@ public class UserMenu {
      * Se estiver e já se tiverem passado os 15 dias desde o inicio do isolamento então terá o seu estado alterado
      */
     public void verifyState(){
-            if(user.getUserState() == UserState.ISOLATION){
+            if(user.getUserState() == UserState.ISOLATION ){
             if(user.getChangeStateDate().isBefore(LocalDate.now().minusDays(15))){
                 user.setUserState(UserState.NORMAL);
             }

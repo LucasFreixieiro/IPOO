@@ -12,6 +12,7 @@ package lei_200221058_200221069;
  * ISOLATION - Em isolamento
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
+ * 
  */
 
 public enum UserState {
@@ -21,6 +22,7 @@ public enum UserState {
      * 
      * @return Estado do Utilizador
      */
+    @Override
     public String toString() {
         switch (this) {
             case NORMAL:
