@@ -7,6 +7,7 @@ package lei_200221058_200221069;
 
 /**
  * Classe auxiliar para obter o que o utilizador escreve
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
@@ -27,6 +28,7 @@ public class InputReader {
 
     /**
      * Obter o valor introduzido pelo utilizador
+     *
      * @param question Pergunta
      * @return Valor introduzido
      */
@@ -46,8 +48,9 @@ public class InputReader {
     }
 
     /**
-     * Obtem o numberID do utilizador
-     * Este é validado para que tenha 9 caracteres
+     * Obtem o numberID do utilizador Este é validado para que tenha 9
+     * caracteres
+     *
      * @param question Pergunta
      * @return numberID
      */
@@ -59,7 +62,7 @@ public class InputReader {
         question += "> ";
         System.out.print(question);
         userID = reader.nextLine();
-        while (userID.length() != 9) {
+        while (userID.length() != 9 && isNumeric(question)) {
             System.out.print(question);
             userID = reader.nextLine();
         }
@@ -68,6 +71,7 @@ public class InputReader {
 
     /**
      * Obtem aquilo que o utilizador introduzir
+     *
      * @param question Pergunta
      * @return texto
      */
@@ -83,6 +87,7 @@ public class InputReader {
 
     /**
      * Ontem o estado
+     *
      * @param question Pergunta
      * @return Estado do utilizador
      */
@@ -127,4 +132,23 @@ public class InputReader {
         reader.nextLine();
         return status;
     }
+
+    /**
+     * Verifica se a String é numérica
+     *
+     * @param strNum String para verificar
+     * @return boolean se sim true, se não false
+     */
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(strNum);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

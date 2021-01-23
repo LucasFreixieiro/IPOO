@@ -30,18 +30,10 @@ public class HealthOrganizationRecommendations {
     }
 
     /**
+     * Cria nova recomendação para quem se encontra no estado Em Isolamento e
+     * armazena-a no array redimensionando-o
      *
-     * @return Recomendações
-     */
-    /*
-    public String[] getRecommendations() {
-        
-        return recommendations;
-    }*/
-    /**
-     * Cria nova recomendação e armazena-a no array redimensionando-o
-     *
-     * @param recommendation
+     * @param recommendation String com a recomendação a armazenar
      */
     public void newRecommendationForIsolation(String recommendation) {
         String[] newRecommendationArray = new String[recommendationsForIsolation.length + 1];
@@ -49,9 +41,15 @@ public class HealthOrganizationRecommendations {
         int j = recommendationsForIsolation.length + 1;
         recommendationsForIsolation = new String[j];
         System.arraycopy(newRecommendationArray, 0, recommendationsForIsolation, 0, recommendationsForIsolation.length);
-        recommendationsForIsolation[recommendationsForIsolation.length - 1] = recommendation;      
+        recommendationsForIsolation[recommendationsForIsolation.length - 1] = recommendation;
     }
 
+    /**
+     * Cria nova recomendação para quem se encontra no estado Infectado e
+     * armazena-a no array redimensionando-o
+     *
+     * @param recommendation String com a recomendação a armazenar
+     */
     public void newRecommendationForInfected(String recommendation) {
         String[] newRecommendationArray = new String[recommendationsForInfected.length + 1];
         System.arraycopy(recommendationsForInfected, 0, newRecommendationArray, 0, recommendationsForInfected.length);
@@ -61,6 +59,12 @@ public class HealthOrganizationRecommendations {
         recommendationsForInfected[recommendationsForInfected.length - 1] = recommendation;
     }
 
+    /**
+     * Cria nova recomendação para quem se encontra em estado Contínuo e
+     * armazena-a no array redimensionando-o
+     *
+     * @param recommendation String com a recomendação a armazenar
+     */
     public void newRecommendationForNormal(String recommendation) {
         String[] newRecommendationArray = new String[recommendationsForNormal.length + 1];
         System.arraycopy(recommendationsForNormal, 0, newRecommendationArray, 0, recommendationsForNormal.length);
@@ -70,6 +74,12 @@ public class HealthOrganizationRecommendations {
         recommendationsForNormal[recommendationsForNormal.length - 1] = recommendation;
     }
 
+    /**
+     * Cria uma nova recomendação para todos os utilizadores e armazena-a nos
+     * três arrays redimensionando-os
+     *
+     * @param recommendation String com a recomendação a armazenar
+     */
     public void newRecommendation(String recommendation) {
         newRecommendationForInfected(recommendation);
         newRecommendationForNormal(recommendation);
@@ -77,7 +87,8 @@ public class HealthOrganizationRecommendations {
     }
 
     /**
-     * Remove uma recomendação do array
+     * Remove uma recomendação do array dos utilizadores com o estado Em
+     * Isolamento
      *
      * @param option opção/indice
      */
@@ -95,6 +106,11 @@ public class HealthOrganizationRecommendations {
         }
     }
 
+    /**
+     * Remove uma recomendação do array dos utilizadores com o estado Contínuo
+     *
+     * @param option opção/indice
+     */
     public void removeRecommendationForNormal(int option) {
         if (option < 0 || option > recommendationsForNormal.length) {
             System.out.println("Essa recomendação não existe");
@@ -109,6 +125,11 @@ public class HealthOrganizationRecommendations {
         }
     }
 
+    /**
+     * Remove uma recomendação do array dos utilizadores com o estado Infectado
+     *
+     * @param option opção/indice
+     */
     public void removeRecommendationForInfected(int option) {
         if (option < 0 || option > recommendationsForInfected.length) {
             System.out.println("Essa recomendação não existe");

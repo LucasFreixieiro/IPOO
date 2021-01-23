@@ -7,6 +7,7 @@ package lei_200221058_200221069;
 
 /**
  * Estatísticas Diárias
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
@@ -16,6 +17,7 @@ public class Statistics {
 
     /**
      * Construtor das Estatisticas
+     *
      * @param users Registo de utilizadores
      */
     public Statistics(UserDB users) {

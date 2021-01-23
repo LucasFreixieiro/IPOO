@@ -17,7 +17,6 @@ public class HealthOrganizationMenu {
     private InputReader reader;
     private Statistics statistics;
     private UserDB userDB;
-    //private Id[] infectedUsers;
 
     /**
      * Construtor
@@ -45,7 +44,7 @@ public class HealthOrganizationMenu {
             switch (option) {
                 case 1: {
                     sendList();
-                    
+
                     break;
                 }
                 case 2: {
@@ -211,7 +210,7 @@ public class HealthOrganizationMenu {
     }
 
     /**
-     * Enviar a lista com os ids infetados para os utilziadores Se se
+     * Enviar a lista com os ids infetados para os utilizadores Se se
      * encontrarem estes ids nos ids recebidos o utilizador entrará
      * automáticamente em quarentena
      */
@@ -233,29 +232,8 @@ public class HealthOrganizationMenu {
             }
             userDB.clearInfectedIDs();
             System.out.println("A lista foi enviada.");
-        }
-        else {
+        } else {
             System.out.println("Não foram encontrados utilizadores.");
         }
     }
-
-    /*public Id[] filterByDay(Id[] ids){
-        if(ids != null){
-            LocalDate today = LocalDate.now();
-            for(int i=0; i<ids.length; i++){
-                if(!(LocalDate.now().equals(today))){
-                    ids = removeOldID(i, ids);
-                    i--;
-                }
-            }
-            return ids;
-        }
-        return null;
-    }
-    public Id[] removeOldID(int index, Id[] ids){
-        Id[] newArray = new Id[ids.length - 1];
-        System.arraycopy(ids, 0, newArray, 0, index);
-        System.arraycopy(ids, index + 1, newArray, index, ids.length - index - 1);
-        return newArray;
-    }*/
 }

@@ -7,6 +7,7 @@ package lei_200221058_200221069;
 
 /**
  * Área de administração
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
@@ -14,11 +15,12 @@ public class AdministrationMenu {
 
     //Atributos
     InputReader reader;
-    private ClassroomDB classrooms; //Será que isto devia de ficar aqui?
+    private ClassroomDB classrooms;
     private UserDB users;
 
     /**
      * Construtor
+     *
      * @param users Registo de utilizadores
      * @param classrooms Registo de salas de aula
      */
@@ -54,6 +56,7 @@ public class AdministrationMenu {
                     newClassroom();
                     break;
                 case 5:
+                    showClassrooms();
                     removeClassroom();
                     break;
                 case 6:
@@ -119,9 +122,8 @@ public class AdministrationMenu {
         if (user != null) {
             users.removeUser(user);
             System.out.println("Utilizador removido.");
-        }
-        else {
-            System.out.println("O utilizador não existe.");    
+        } else {
+            System.out.println("O utilizador não existe.");
         }
     }
 
@@ -130,7 +132,7 @@ public class AdministrationMenu {
      */
     public void showUsers() {
         for (User user : users.getUsers()) {
-            System.out.println(user.getUserID()+ " - " + user.getUserState().toString());
+            System.out.println(user.getUserID() + " - " + user.getUserState().toString());
         }
     }
 
@@ -164,8 +166,7 @@ public class AdministrationMenu {
         if (classroom != null) {
             classrooms.removeClassroom(classroom);
             System.out.println("Sala removida");
-        }
-        else {
+        } else {
             System.out.println("A sala não existe.");
         }
     }

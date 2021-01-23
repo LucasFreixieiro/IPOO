@@ -9,26 +9,28 @@ import java.time.LocalDate;
 
 /**
  * Informação de um ID
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
 public class Id {
-    
+
     private LocalDate date;
     private String value;
-    
+
     /**
      * Construtor
+     *
      * @param value Valor do ID
      * @param date Data da criação do ID
      */
-    public Id(String value, LocalDate date){
+    public Id(String value, LocalDate date) {
         this.date = date;
         this.value = value;
     }
 
     /**
-     * 
+     *
      * @return Data que o Id foi gerado
      */
     public LocalDate getDate() {
@@ -37,6 +39,7 @@ public class Id {
 
     /**
      * Altera a data
+     *
      * @param date Data
      */
     public void setDate(LocalDate date) {
@@ -44,7 +47,7 @@ public class Id {
     }
 
     /**
-     * 
+     *
      * @return Valor do id gerado
      */
     public String getValue() {
@@ -53,12 +56,11 @@ public class Id {
 
     /**
      * Altera o valor
+     *
      * @param value Valor
      */
     public void setValue(String value) {
         this.value = value;
     }
-    
-   
-    
+
 }

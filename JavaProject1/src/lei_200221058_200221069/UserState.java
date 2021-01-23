@@ -6,20 +6,20 @@
 package lei_200221058_200221069;
 
 /**
- * Enumerado com os tipos de estados
+ * Enumerado com os tipos de estados:
  * NORMAL - continuo
  * INFECTED - Infetado
  * ISOLATION - Em isolamento
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
- * 
+ *
  */
-
 public enum UserState {
     NORMAL, INFECTED, ISOLATION;
-    
+
     /**
-     * 
+     *
      * @return Estado do Utilizador
      */
     @Override

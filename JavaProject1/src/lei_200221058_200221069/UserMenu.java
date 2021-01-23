@@ -8,13 +8,14 @@ package lei_200221058_200221069;
 import java.time.LocalDate;
 
 /**
- * Menu do utilzador
- * @author Lucas Freixieiro
+ * Menu do utilizador
+ *
+ * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
 public class UserMenu {
-    
-    //Objeto que contém os utilziadores registados
+
+    //Objeto que contém os utilizadores registados
     private UserDB userDB;
     //Número de Utilizador
     private User user;
@@ -25,6 +26,7 @@ public class UserMenu {
 
     /**
      * Construtor do Menu do Utilizador
+     *
      * @param userDB Registo de utilizadores registados pelo administrador
      * @param recommendations Recomendações registadas pela organização de saúde
      */
@@ -33,83 +35,82 @@ public class UserMenu {
         this.recommendations = recommendations;
         statistics = new Statistics(userDB);
     }
-    
+
     /**
-     * Método a ser executado quando se quer obter o menu e executar as suas opções
+     * Método a ser executado quando se quer obter o menu e executar as suas
+     * opções
+     *
      * @param user Utilizador que entrou no menu
      */
-    public void run(User user){
+    public void run(User user) {
         this.user = user;
         int option;
-        
-       
-        
+
         //Limpar ids antigos
         removeOldTransmitedIDs();
         removeOldReceivedIDs();
-        
-        InputReader reader = new InputReader();  
+
+        InputReader reader = new InputReader();
         showUserMenu();
-        
+
         //Verificar se o utilizador está em isolamento e se já passaram 15 dias
         verifyState();
-        
+
         option = reader.getOption("");
-        while(option != 0){
-            switch(option){
-                case 1:{
+        while (option != 0) {
+            switch (option) {
+                case 1: {
                     showRecommendations();
                     break;
                 }
-                case 2:{
-                    if(user.getUserState() != UserState.INFECTED){
+                case 2: {
+                    if (user.getUserState() != UserState.INFECTED) {
                         setNewState(UserState.INFECTED);
                         System.out.println("Estado alterado com sucesso");
                         sendIDs();
-                    }
-                    else
+                    } else {
                         System.out.println("O utilizador já está declarado como infetado");
+                    }
                     break;
                 }
-                case 3:{
-                    if(user.getUserState() != UserState.INFECTED && user.getUserState() != UserState.ISOLATION){
+                case 3: {
+                    if (user.getUserState() != UserState.INFECTED && user.getUserState() != UserState.ISOLATION) {
                         setNewState(UserState.ISOLATION);
                         System.out.println("Estado alterado com sucesso");
-                    }
-                    else
+                    } else {
                         System.out.println("O utilizador já está em isolamento");
+                    }
                     break;
                 }
-                case 4:{
+                case 4: {
                     setNewState(UserState.NORMAL);
                     System.out.println("Saiu de isolamento.");
                     break;
                 }
-                case 5:{
+                case 5: {
                     statistics.Statistics();
                     break;
                 }
-                default:{
+                default: {
                     System.out.println("Opção não reconhecida");
                     break;
                 }
             }
-            
+
             //De forma a que a informação não apareça de seguida
             //ao utilizador é pedido que ele insira um enter para continuar o programa
             reader.getText("Prima Enter para continuar");
-            
+
             //Demonstração do menu e pedido de nova opção
             showUserMenu();
             option = reader.getOption("");
         }
     }
-    
-    
+
     /**
      * Método onde está listado o menu do utilizador
      */
-    public void showUserMenu(){
+    public void showUserMenu() {
         System.out.println("\tSistema de rastreio de contactos em sala de aula\n");
         System.out.println("\t\tUtilizador: " + user.getUserID());
         System.out.println("\t\tEstado: " + user.getUserState());
@@ -121,29 +122,31 @@ public class UserMenu {
         System.out.println("5 - Ver estatísticas diárias");
         System.out.println("0 - Sair");
     }
-    
+
     /**
      * Define o utilizador a utilizar
+     *
      * @param user utilizador a utilizar
      */
-    public void setUser(User user){
+    public void setUser(User user) {
         this.user = user;
     }
-    
+
     /**
      * Define o estado do utilizador para o passado em parametro
+     *
      * @param userState Estado do utilizador a ser definido
      */
-    public void setNewState(UserState userState){
-        if(user != null){
+    public void setNewState(UserState userState) {
+        if (user != null) {
             user.setUserState(userState);
         }
     }
-    
+
     /**
      * Lista em formato de texto as recomendações da organização de saúde
      */
-    public void showRecommendations(){
+    public void showRecommendations() {
         switch (user.getUserState()) {
             case NORMAL:
                 recommendations.listRecommendationsNormal();
@@ -153,40 +156,40 @@ public class UserMenu {
                 break;
             case ISOLATION:
                 recommendations.listRecommendationsIsolation();
-                
+
                 break;
             default:
                 break;
         }
     }
-    
+
     /**
-     * Lista os Ids transmitidos e recebidos
-     * Método feito a pensar nos testes
+     * Lista os Ids transmitidos e recebidos Método feito a pensar nos testes
      */
-    public void listIds(){
+    public void listIds() {
         user.listTransmitedIds();
         user.listReceivedIds();
     }
-    
+
     /**
-     * Guarda no objeto userDB os ids transmitidos por este utilizador quando o mesmo se declara infetado
+     * Guarda no objeto userDB os ids transmitidos por este utilizador quando o
+     * mesmo se declara infetado
      */
-    public void sendIDs(){
+    public void sendIDs() {
         Id[] ids = user.getTransmitedIds();
         userDB.setInfectedIDs(ids);
     }
-    
+
     /**
      * Remoção de Ids transmitidos que já tem uma data maior que 28 dias
      */
-    public void removeOldTransmitedIDs(){
+    public void removeOldTransmitedIDs() {
         LocalDate after;
         Id[] ids = user.getTransmitedIds();
-        if(ids != null){
-            for(int i=0; i<ids.length; i++){
+        if (ids != null) {
+            for (int i = 0; i < ids.length; i++) {
                 after = ids[i].getDate().plusDays(28);
-                if(LocalDate.now().isAfter(after)){
+                if (LocalDate.now().isAfter(after)) {
                     System.out.println(i);
                     user.removeTransmitedID(i);
                     ids = user.getTransmitedIds();
@@ -195,17 +198,17 @@ public class UserMenu {
             }
         }
     }
-    
+
     /**
      * Remoção de Ids recebidos que já tem uma data maior que 28 dias
      */
-    public void removeOldReceivedIDs(){
+    public void removeOldReceivedIDs() {
         LocalDate after;
         Id[] ids = user.getReceivedIDs();
-        if(ids != null){
-            for(int i=0; i<ids.length; i++){
+        if (ids != null) {
+            for (int i = 0; i < ids.length; i++) {
                 after = ids[i].getDate().plusDays(28);
-                if(LocalDate.now().isAfter(after)){
+                if (LocalDate.now().isAfter(after)) {
                     user.removeReceivedID(i);
                     ids = user.getTransmitedIds();
                     i--;
@@ -213,14 +216,15 @@ public class UserMenu {
             }
         }
     }
-    
+
     /**
-     * Verifica se o utilizador está em isolamento
-     * Se estiver e já se tiverem passado os 15 dias desde o inicio do isolamento então terá o seu estado alterado
+     * Verifica se o utilizador está em isolamento Se estiver e já se tiverem
+     * passado os 15 dias desde o inicio do isolamento então terá o seu estado
+     * alterado
      */
-    public void verifyState(){
-            if(user.getUserState() == UserState.ISOLATION ){
-            if(user.getChangeStateDate().isBefore(LocalDate.now().minusDays(15))){
+    public void verifyState() {
+        if (user.getUserState() == UserState.ISOLATION) {
+            if (user.getChangeStateDate().isBefore(LocalDate.now().minusDays(15))) {
                 user.setUserState(UserState.NORMAL);
             }
         }

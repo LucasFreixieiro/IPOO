@@ -16,9 +16,6 @@ public class AppStart {
     /**
      * @param args the command line arguments
      */
-    //public static User[] users;
-    //UserMenu userMenu;
-    //AdministrationMenu administrationMenu;
     public static void main(String[] args) {
         //init instances
         InputReader reader = new InputReader();
@@ -77,7 +74,7 @@ public class AppStart {
             }
 
             //De forma a que a informação não apareça de seguida
-            //ao utilizador é pedido que ele insira um enter para continuar o programa
+            //ao utilizador é pedido que este insira um enter para continuar o programa
             reader.getText("Prima Enter para continuar");
 
             //Demonstração do menu e pedido de nova opção

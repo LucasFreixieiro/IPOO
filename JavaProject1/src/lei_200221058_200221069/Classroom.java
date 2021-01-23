@@ -7,10 +7,10 @@ package lei_200221058_200221069;
 
 /**
  * Informação acerca de uma sala de aula
+ *
  * @author Lucas Freixieiro e Liliana Santos
  * @version 1.0.0
  */
-
 //Classe para as salas de aula
 /*
 Requerimentos:
@@ -24,6 +24,7 @@ public class Classroom {
 
     /**
      * Construtor
+     *
      * @param name Nome da sala de aula
      * @param capacity Capacidade da sala de aula
      */
@@ -38,7 +39,7 @@ public class Classroom {
     }
 
     /**
-     * 
+     *
      * @return Capacidade da sala de aula
      */
     public int getCapacity() {
@@ -47,6 +48,7 @@ public class Classroom {
 
     /**
      * Altera a capacidade da sala de aula
+     *
      * @param capacity Capacidade da sala de aula
      */
     public void setCapacity(int capacity) {
@@ -58,7 +60,7 @@ public class Classroom {
     }
 
     /**
-     * 
+     *
      * @return Nome da sala de aula
      */
     public String getName() {
@@ -67,6 +69,7 @@ public class Classroom {
 
     /**
      * Altera o nome da sala de aula
+     *
      * @param name Nome da sala de aula
      */
     public void setName(String name) {
