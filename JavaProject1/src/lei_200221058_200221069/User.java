@@ -191,4 +191,13 @@ public class User {
         receivedIds = new Id[receivedIds.length - 1];
         System.arraycopy(newArray, 0, receivedIds, 0, newArray.length);
     }
+    
+    /**
+     * Método para verificar se um utilizador é professor
+     * @return true se for professor falso se não for
+     */
+    public boolean isTeacher() {
+        return userID.startsWith("000");
+    }
+    
 }
