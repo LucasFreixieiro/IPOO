@@ -32,15 +32,6 @@ public class HealthOrganizationRecommendations {
     }
 
     /**
-     *
-     * @return Recomendações
-     */
-    /*
-    public String[] getRecommendations() {
-        
-        return recommendations;
-    }*/
-    /**
      * Cria nova recomendação e armazena-a no array redimensionando-o
      *
      * @param recommendation

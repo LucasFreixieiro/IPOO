@@ -21,7 +21,7 @@ public class UserDB {
     private ArrayList<Id> infectedIDs;
 
     /**
-     * Construtor do UserDB Cria os arrays com tamanho 0
+     * Construtor do UserDB Cria as listas
      */
     public UserDB() {
         users = new ArrayList<>();
@@ -37,9 +37,7 @@ public class UserDB {
     }
 
     /**
-     * Adiciona um utilizador ao array users Para isso é feito o
-     * redimensionamento do array Copiando o mesmo para outro e depois copiando
-     * de volta para o original
+     * Adiciona um utilizador à lista users
      *
      * @param user Utilizador a ser adicionado
      */
@@ -57,7 +55,7 @@ public class UserDB {
     }
 
     /**
-     * Serve para obter um utilizador com um determindado numberID
+     * Serve para obter um utilizador com um determinado numberID
      *
      * @param numberID número do utilizador a ser procurado
      * @return Utilizador com o numberID igual ao do parametro
@@ -76,7 +74,7 @@ public class UserDB {
      * Obter posição de um utilizador no array users
      *
      * @param user utilizador a ser procurado
-     * @return indice ao qual um determinado utilizador se encontra no array
+     * @return indice ao qual um determinado utilizador se encontra na lista
      * users
      */
     public int getArrayIndex(User user) {
@@ -91,19 +89,19 @@ public class UserDB {
     }
 
     /**
-     * Obtem o total de utilizadores no array users
+     * Obtem o total de utilizadores na lista users
      *
-     * @return quantidade de utililizadores
+     * @return quantidade de utilizadores
      */
     public int getTotalCount() {
         return users.size();
     }
 
     /**
-     * Verifica se o utilizador já se encontra no array
+     * Verifica se o utilizador já se encontra na lista
      *
-     * @param numberID número do utilziador a ser verificado
-     * @return Verdadeiro se o utilizador está no array, false se não está
+     * @param numberID número do utilizador a ser verificado
+     * @return Verdadeiro se o utilizador está na lista, false se não está
      */
     public boolean verifyUser(String numberID) {
         for (User user : users) {
@@ -144,7 +142,7 @@ public class UserDB {
     }
 
     /**
-     * Define os ids infetados Redimensiona o array dos id infetados
+     * Define os ids infetados na lista
      *
      * @param ids IDs a serem inseridos na lista
      */
@@ -159,8 +157,8 @@ public class UserDB {
      * Verifica se já se passaram 7 dias desde que o array foi gerado Se sim ele
      * será eliminado
      *
-     * @param ids Array de ids a serem verificados
-     * @return Array do tipo Id que contém os ids mais atuais
+     * @param ids Lista de ids a serem verificados
+     * @return Lista do tipo Id que contém os ids mais atuais
      */
     public ArrayList<Id> verifyInfectedIDs(ArrayList<Id> ids) {
         LocalDate after;
@@ -178,11 +176,11 @@ public class UserDB {
     }
 
     /**
-     * Remove o id do array passado em parametro na posição indicada
+     * Remove o id da lista passado em parametro na posição indicada
      *
      * @param index posição a eliminar
-     * @param ids array a ser alterado
-     * @return array alterado
+     * @param ids ArrayList a ser alterado
+     * @return lista alterada
      */
     public ArrayList<Id> removeOldID(int index, ArrayList<Id> ids) {
         ids.remove(index);
@@ -190,7 +188,7 @@ public class UserDB {
     }
 
     /**
-     * Limpa o array que contém os ids dos utilizadores infetados Só é acionado
+     * Limpa a lista que contém os ids dos utilizadores infetados Só é acionado
      * após o upload dos ids infetados em cada utilizador (é acionado através da
      * organização)
      */

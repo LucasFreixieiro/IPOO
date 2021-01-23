@@ -20,8 +20,6 @@ public class HealthOrganizationMenu {
     private Statistics statistics;
     private UserDB userDB;
 
-    //private Id[] infectedUsers;
-    
     /**
      * Construtor
      *
@@ -104,8 +102,8 @@ public class HealthOrganizationMenu {
     }
 
     /**
-     * Escolher o estado para que queremos editar/adicionar/remover uma
-     * recomendação
+     * Menu para escolher o estado para que queremos editar/adicionar/remover
+     * uma recomendação
      */
     public void chooseState() {
         System.out.println("Insira a sua opção:");
@@ -214,7 +212,7 @@ public class HealthOrganizationMenu {
     }
 
     /**
-     * Enviar a lista com os ids infetados para os utilziadores Se se
+     * Enviar a lista com os ids infetados para os utilizadores Se se
      * encontrarem estes ids nos ids recebidos o utilizador entrará
      * automáticamente em quarentena
      */

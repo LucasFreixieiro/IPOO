@@ -25,7 +25,7 @@ public class LessonDB {
     }
 
     /**
-     * Obtem as lições que se encontram no array
+     * Obtem as lições que se encontram na lista
      *
      * @return Lições
      */
@@ -34,7 +34,7 @@ public class LessonDB {
     }
 
     /**
-     * Adiciona no array, redimensionando-o, uma nova lição
+     * Adiciona à lista uma nova lição
      *
      * @param lesson lição a ser inserida
      */
@@ -43,7 +43,7 @@ public class LessonDB {
     }
 
     /**
-     * Obtem uma determindada lição
+     * Obtem uma determinada lição
      *
      * @param ID Número da lição
      * @return lição que contém o mesmo número de lição que o parametro
@@ -59,23 +59,6 @@ public class LessonDB {
     }
 
     /**
-     * Obtem a posição à qual se encontra uma lição
-     *
-     * @param lesson Lição a ser verificada
-     * @return posição no array da lição igual ao parametro
-     */
-    public int getArrayIndex(Lesson lesson) {
-        int index = 0;
-        for (int i = 0; i < lessons.size(); i++) {
-            if (lessons.get(i).equals(lesson)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
-    /**
      * Lista as lições através de texto
      */
     public void listLessons() {
@@ -85,7 +68,7 @@ public class LessonDB {
     }
 
     /**
-     * Lista as presenças num aula
+     * Lista as presenças numa aula
      *
      * @param option opção escolhida
      */

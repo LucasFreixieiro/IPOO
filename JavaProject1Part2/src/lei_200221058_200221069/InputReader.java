@@ -49,7 +49,7 @@ public class InputReader {
 
     /**
      * Obtem o numberID do utilizador Este é validado para que tenha 9
-     * caracteres
+     * caracteres e se é numérico
      *
      * @param question Pergunta
      * @return numberID
@@ -62,7 +62,7 @@ public class InputReader {
         question += "> ";
         System.out.print(question);
         userID = reader.nextLine();
-        while (userID.length() != 9) {
+        while (userID.length() != 9 && isNumeric(question)) {
             System.out.print(question);
             userID = reader.nextLine();
         }
@@ -86,7 +86,7 @@ public class InputReader {
     }
 
     /**
-     * Ontem o estado
+     * Obtem o estado
      *
      * @param question Pergunta
      * @return Estado do utilizador
@@ -131,5 +131,23 @@ public class InputReader {
         }
         reader.nextLine();
         return status;
+    }
+
+    /**
+     * Verifica se a String é numérica
+     *
+     * @param strNum String para verificar
+     * @return boolean se sim true, se não false
+     */
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(strNum);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

@@ -50,7 +50,7 @@ public class TeacherMenu {
      */
     public void run(String numberID, Classroom classroom) {
         user = userDB.getUser(numberID);
-        if (user != null && classroom != null) {
+        if (user != null && classroom != null && user.isTeacher()) {
             int option;
             int capacity = classroom.getCapacity();
             attendances = new UserDB();
@@ -108,6 +108,12 @@ public class TeacherMenu {
                 showTeacherMenu();
                 option = reader.getOption("");
             }
+        } else if (user.isTeacher()) {
+            System.out.println("Este utilizador não pode aceder ao menu");
+        } else if (classroom != null) {
+            System.out.println("Não foi seleccionada uma sala.");
+        } else {
+            System.out.println("Utilizador não existe.");
         }
     }
 

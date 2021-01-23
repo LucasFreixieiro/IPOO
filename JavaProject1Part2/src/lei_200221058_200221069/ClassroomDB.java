@@ -62,7 +62,7 @@ public class ClassroomDB {
                 return classroom;
             }
         }
-        System.out.println("Sala inválida");
+        System.out.println("Não existe nenhuma sala com esse nome.");
         return null;
     }
 

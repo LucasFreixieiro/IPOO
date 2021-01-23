@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class UserMenu {
 
-    //Objeto que contém os utilziadores registados
+    //Objeto que contém os utilizadores registados
     private UserDB userDB;
     //Número de Utilizador
     private User user;

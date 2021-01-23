@@ -19,7 +19,7 @@ public class User {
 
     //Identificação do utilizador
     //No caso dos alunos o seu número de aluno
-    //No caso dos professores um número mecanográfico
+    //No caso dos professores um número mecanográfico, os números dos professores começam com 000
     private String userID;
     //Estado do utilizador (continuo, infetado ou em isolamento)
     private UserState userState;
@@ -32,7 +32,7 @@ public class User {
     /**
      * Construtor
      *
-     * @param userID Número de utilziador
+     * @param userID Número de utilizador
      * @param userState Estado do utilizador
      */
     public User(String userID, UserState userState) {
@@ -65,7 +65,7 @@ public class User {
     /**
      * Método para obter o estado do utilzador
      *
-     * @return UserState com o estado do utilziador
+     * @return UserState com o estado do utilizador
      */
     public UserState getUserState() {
         return userState;
@@ -172,4 +172,14 @@ public class User {
     public void removeReceivedID(int index) {
         receivedIds.remove(index);
     }
+
+    /**
+     * Método para verificar se um utilizador é professor
+     *
+     * @return true se for professor falso se não for
+     */
+    public boolean isTeacher() {
+        return userID.startsWith("000");
+    }
+
 }
