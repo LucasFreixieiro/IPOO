@@ -124,6 +124,5 @@ public class LessonDB {
         } else {
             System.out.println("Lição não encontrada");
         }
-
     }
 }

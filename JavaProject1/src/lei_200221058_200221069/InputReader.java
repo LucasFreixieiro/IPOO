@@ -62,7 +62,7 @@ public class InputReader {
         question += "> ";
         System.out.print(question);
         userID = reader.nextLine();
-        while (userID.length() != 9 && isNumeric(question)) {
+        while (userID.length() != 9 || !isNumeric(question)) {
             System.out.print(question);
             userID = reader.nextLine();
         }
