@@ -53,6 +53,22 @@ public class Lesson {
     }
 
     /**
+     * 
+     * @return Professor
+     */
+    public User getTeacher(){
+        return teacher;
+    }
+
+    /**
+     * 
+     * @return Sala de aula
+     */
+    public Classroom getClassroom(){
+        return classroom;
+    }
+
+    /**
      *
      * @return Data da aula
      */

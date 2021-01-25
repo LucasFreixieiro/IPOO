@@ -45,20 +45,57 @@ public class AppStart {
             try {
                 switch (option) {
                     case 1:
-                        Classroom classroom = classroomDB.getClassroom(reader.getText("Nome da sala"));
-                        String numberID = reader.getUserID("Número de Utilizador");
-                        if (numberID != null && classroom != null) {
-                            teacherMenu.run(numberID, classroom);
-                        } else {
-                            System.out.println("Dados inválidos");
+                        String classroomName = reader.getText("Nome da sala");
+                        if(!classroomName.equals("#")){
+
+                            Classroom classroom = classroomDB.getClassroom(classroomName);
+                            
+                            while(classroom == null && !classroomName.equals("#")){
+                                classroomName = reader.getText("Nome da sala");
+                                if(!classroomName.equals("#"))
+                                    classroom = classroomDB.getClassroom(classroomName);
+                            }
+
+                            if(classroom != null){
+
+                                String numberID = reader.getUserID("Número de Utilizador");      
+
+                                if(!numberID.equals("#")){
+                                    
+                                    User teacher = userDB.getUser(numberID);
+                                    
+                                    while(teacher == null && !numberID.equals("#")){
+                                        numberID = reader.getUserID("Número de Utilizador"); 
+                                        if(!numberID.equals("#"))
+                                            teacher = userDB.getUser(numberID);
+                                    }
+
+                                    if(teacher != null)
+                                        teacherMenu.run(teacher, classroom);
+                                    else
+                                        exitMessage();
+                                }
+                                else{
+                                    exitMessage();
+                                }
+                            }
+                        }
+                        else {
+                            exitMessage();
                         }
                         break;
                     case 2:
-                        User user = userDB.getUser(reader.getUserID("Número de Utilizador"));
-                        if (user != null) {
-                            userMenu.run(user);
-                        } else {
-                            System.out.println("Dados inválidos");
+                        String id = reader.getUserID("Número de Utilizador");
+                        if(id.equals("#")){
+                            exitMessage();
+                        }
+                        else{
+                            User user = userDB.getUser(id);
+                            if (user != null) {
+                                userMenu.run(user);
+                            } else {
+                                System.out.println("Dados inválidos");
+                            }
                         }
                         break;
                     case 3:
@@ -98,5 +135,9 @@ public class AppStart {
         System.out.println("3 - Área da Autoridade de Saúde.");
         System.out.println("4 - Área de administrador.");
         System.out.println("0 - Sair.");
+    }
+
+    public static void exitMessage(){
+        System.out.println("Saida com sucesso");
     }
 }

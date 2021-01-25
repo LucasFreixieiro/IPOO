@@ -89,7 +89,7 @@ public class UserMenu {
                     break;
                 }
                 case 5: {
-                    statistics.Statistics();
+                    statistics.run();
                     break;
                 }
                 default: {

@@ -17,6 +17,7 @@ public class Id {
 
     private LocalDate date;
     private String value;
+    private int distance;
 
     /**
      * Construtor
@@ -61,6 +62,23 @@ public class Id {
      */
     public void setValue(String value) {
         this.value = value;
+    }
+
+    /**
+     * Distância que o utilziador estava de outro
+     * @return Distância 
+     */
+    public int getDistance() {
+        return distance;
+    }
+
+    /**
+     * Alterar distância
+     * 
+     * @param distance Distância
+     */
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
 }

@@ -61,6 +61,9 @@ public class AdministrationMenu {
                 case 6:
                     showClassrooms();
                     break;
+                case 7:
+                    drawMap();
+                    break;
                 default:
                     System.out.println("Opção não reconhecida");
                     break;
@@ -89,6 +92,7 @@ public class AdministrationMenu {
         System.out.println("4 - Criar sala de aula");
         System.out.println("5 - Eliminar sala de aula");
         System.out.println("6 - Mostrar lista de salas");
+        System.out.println("7 - Mostrar planta da sala");
         System.out.println("0 - Sair");
     }
 
@@ -100,14 +104,23 @@ public class AdministrationMenu {
         UserState status;
 
         numberID = reader.getUserID("Número de Utilizador");
-        if (users.verifyUser(numberID) == false) {
-            status = reader.getUserState("Estado do Utilizador");
-
-            User user = new User(numberID, status);
-            users.addUser(user);
-            System.out.println("Utilizador adicionado");
-        } else {
-            System.out.println("Utilizador já existente");
+        if(!numberID.equals("#")) {
+            if (users.verifyUser(numberID) == false) {
+                status = reader.getUserState("Estado do Utilizador");
+                if(status != null){
+                    User user = new User(numberID, status);
+                    users.addUser(user);
+                    System.out.println("Utilizador adicionado");
+                }
+                else{
+                    System.out.println("Saida com sucesso");
+                }
+            } else {
+                System.out.println("Utilizador já existente");
+            }
+        }
+        else {
+            System.out.println("Saida com sucesso");
         }
     }
 
@@ -117,12 +130,17 @@ public class AdministrationMenu {
     public void removeUser() {
         String numberID;
         numberID = reader.getUserID("Número de Utilizador");
-        User user = users.getUser(numberID);
-        if (user != null) {
-            users.removeUser(user);
-            System.out.println("Utilizador removido.");
-        } else {
-            System.out.println("O utilizador não existe.");
+        if(!numberID.equals("#")){
+            User user = users.getUser(numberID);
+            if (user != null) {
+                users.removeUser(user);
+                System.out.println("Utilizador removido.");
+            } else {
+                System.out.println("O utilizador não existe.");
+            }
+        }
+        else{
+            System.out.println("Saida com sucesso");
         }
     }
 
@@ -140,18 +158,46 @@ public class AdministrationMenu {
      */
     public void newClassroom() {
         String name;
-        int capacity;
+        int capacity = 0;
+        boolean flag = false;
+        int columns;
+        int rows;
+        int[][] map = new int[0][0];
 
         name = reader.getText("Nome da sala");
-        if (classrooms.verifyClassroom(name) == false) {
-            capacity = reader.getOption("Capacidade da sala");
-            Classroom classroom = new Classroom(name, capacity);
-            classrooms.addClassrooms(classroom);
-            System.out.println("Sala criada");
-        } else {
-            System.out.println("Essa sala já existe");
+        if(name.equals("#")){
+            System.out.println("Saida com sucesso");
         }
-
+        else{
+            if (classrooms.verifyClassroom(name) == false) {
+                
+                //Saber a capacidade máxima de fileiras na sala
+                columns = reader.getOption("Quantas filas existem (horizontalmente)?");
+                if(columns > 0){
+                    map = new int[columns][];
+                    for(int i=0; i<columns; i++){
+                        rows = reader.getOption("Quantas mesas existem na fila: " + (i + 1) + "?");
+                        if(rows > 0){
+                            map[i] = new int[rows];
+                            capacity += rows;
+                        }
+                        else{
+                            flag = true;
+                            break;
+                        }      
+                    }  
+                    if(!flag){
+                        Classroom classroom = new Classroom(name, capacity, map);
+                        classrooms.addClassrooms(classroom);
+                        System.out.println("Sala criada");
+                        return;
+                    }
+                }
+                System.out.println("Mapa incorreto. Por favor tente novamente.");
+            } else {
+                System.out.println("Essa sala já existe");
+            }
+        }
     }
 
     /**
@@ -160,13 +206,19 @@ public class AdministrationMenu {
     public void removeClassroom() {
         String name;
         name = reader.getText("Nome da sala");
-        Classroom classroom = classrooms.getClassroom(name);
-        if (classroom != null) {
-            classrooms.removeClassroom(classroom);
-            System.out.println("Sala removida");
-        } else {
-            System.out.println("A sala não existe.");
+        if(!name.equals("#")){
+            Classroom classroom = classrooms.getClassroom(name);
+            if (classroom != null) {
+                classrooms.removeClassroom(classroom);
+                System.out.println("Sala removida");
+            } else {
+                System.out.println("A sala não existe.");
+            }
         }
+        else{
+            System.out.println("Saida com sucesso");
+        }
+        
     }
 
     /**
@@ -175,6 +227,22 @@ public class AdministrationMenu {
     public void showClassrooms() {
         for (Classroom classroom : classrooms.getClassrooms()) {
             System.out.println(classroom.getName());
+        }
+    }
+    
+    /**
+     * Desenhar a planta da sala de aula
+     */
+    public void drawMap(){
+        String name;
+        name = reader.getText("Nome da sala");
+        if(!name.equals("#")){
+            Classroom classroom = classrooms.getClassroom(name);
+            if (classroom != null) {
+                classroom.drawMap();
+            } else {
+                System.out.println("A sala não existe.");
+            }
         }
     }
 }

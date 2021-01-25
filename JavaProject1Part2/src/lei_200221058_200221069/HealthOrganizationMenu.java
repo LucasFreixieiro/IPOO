@@ -50,7 +50,7 @@ public class HealthOrganizationMenu {
                     break;
                 }
                 case 2: {
-                    statistics.Statistics();
+                    statistics.run();
                     break;
                 }
                 case 3: {

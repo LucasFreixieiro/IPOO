@@ -63,7 +63,7 @@ public class LessonDB {
      */
     public void listLessons() {
         for (int i = 0; i < lessons.size(); i++) {
-            System.out.println("Lição Nº: " + lessons.get(i).getID() + "\nTotal de presenças no inicio: " + lessons.get(i).getTotalAttendancesAtStart() + "\nTotal de presenças no fim: " + lessons.get(i).getTotalAttendancesAtEnd());
+            System.out.println("Lição Nº: " + lessons.get(i).getID() + 1 + "\nTotal de presenças no inicio: " + lessons.get(i).getTotalAttendancesAtStart() + "\nTotal de presenças no fim: " + lessons.get(i).getTotalAttendancesAtEnd());
         }
     }
 
@@ -77,9 +77,9 @@ public class LessonDB {
         ArrayList<User> studentsAtEnd;
 
         Lesson lesson = null;
-        for (int i = 0; i < lessons.size(); i++) {
-            if (lessons.get(i).getID() == option) {
-                lessons.set(i, lessons.get(i));
+        for (Lesson auxiliarLesson : lessons) {
+            if (auxiliarLesson.getID() == option) {
+                lesson = auxiliarLesson;
                 break;
             }
         }

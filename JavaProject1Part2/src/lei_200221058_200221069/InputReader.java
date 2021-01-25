@@ -33,9 +33,11 @@ public class InputReader {
      * @return Valor introduzido
      */
     public int getOption(String question) {
+        //Se a questão for nula o espaço dessa questão será preenchido com ""
         if (question == null) {
             question = "";
         }
+        //adicionar > à frente da questão para efeitos de estética
         question += "> ";
         System.out.print(question);
         while (!reader.hasNextInt()) {
@@ -62,7 +64,7 @@ public class InputReader {
         question += "> ";
         System.out.print(question);
         userID = reader.nextLine();
-        while (userID.length() != 9 && isNumeric(question)) {
+        while ((userID.length() != 9 || !isNumeric(userID)) && !userID.equals("#")) {
             System.out.print(question);
             userID = reader.nextLine();
         }
@@ -97,6 +99,7 @@ public class InputReader {
         System.out.println("1 - Contínuo");
         System.out.println("2 - Isolamento");
         System.out.println("3 - Infetado");
+        System.out.println("0 - Sair");
         if (question == null) {
             question = "";
         }
@@ -107,12 +110,16 @@ public class InputReader {
             System.out.print(question);
         }
         int option = reader.nextInt();
-        while (option > 3 || option < 1) {
+        while (option > 3 || option < 1 && option != 0) {
             System.out.print(question);
             System.out.println("Opção inválida! Escolha uma opção válida.");
             option = reader.nextInt();
         }
         switch (option) {
+            case 0: {
+                status = null;
+                break;
+            }
             case 1: {
                 status = UserState.NORMAL;
                 break;
@@ -144,7 +151,7 @@ public class InputReader {
             return false;
         }
         try {
-            int d = Integer.parseInt(strNum);
+            Integer.parseInt(strNum);
             return true;
         } catch (NumberFormatException e) {
             return false;

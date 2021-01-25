@@ -26,6 +26,7 @@ public class TeacherMenu {
     private boolean flag;
     private int numberOfLessons;
     private int numberOfStudents;
+    private int[][] lessonMap;
 
     /**
      * Construtor
@@ -45,14 +46,16 @@ public class TeacherMenu {
      * Método que corre o menu e todas as funções relacionadas com o menu do
      * professor
      *
-     * @param numberID número de utilizador
+     * @param user número de utilizador
      * @param classroom Sala de aula
      */
-    public void run(String numberID, Classroom classroom) {
-        user = userDB.getUser(numberID);
+    public void run(User user, Classroom classroom) {
+        this.user = user;
         if (user != null && classroom != null && user.isTeacher()) {
             int option;
+            lessonMap = classroom.getMap();
             int capacity = classroom.getCapacity();
+
             attendances = new UserDB();
 
             showTeacherMenu();
@@ -61,7 +64,7 @@ public class TeacherMenu {
             while (option != 0 || flag) {
                 switch (option) {
                     case 1: {
-                        setAttendances(capacity);
+                        setAttendances(lessonMap, capacity);
                         break;
                     }
                     case 2: {
@@ -108,9 +111,9 @@ public class TeacherMenu {
                 showTeacherMenu();
                 option = reader.getOption("");
             }
-        } else if (user.isTeacher()) {
+        } else if (!user.isTeacher()) {
             System.out.println("Este utilizador não pode aceder ao menu");
-        } else if (classroom != null) {
+        } else if (classroom == null) {
             System.out.println("Não foi seleccionada uma sala.");
         } else {
             System.out.println("Utilizador não existe.");
@@ -134,7 +137,7 @@ public class TeacherMenu {
      *
      * @param capacity capacidade da sala de aula
      */
-    public void setAttendances(int capacity) {
+    public void setAttendances(int[][] map, int capacity) {
         int option;
 
         showAttendanceMenu();
@@ -143,16 +146,30 @@ public class TeacherMenu {
         while (option != 0 && numberOfStudents < capacity) {
             switch (option) {
                 case 1: {
-                    User student = userDB.getUser(reader.getUserID("Número de Aluno"));
-                    if (student != null && (verifyAttendances(student) == false)) {
-                        attendances.addUser(student);
-                        numberOfStudents++;
-                        System.out.println("Foi marcada presença do aluno: " + student.getUserID());
-                    } else if (verifyAttendances(student) == true) {
-                        System.out.println("Já foi marcada presença deste aluno.");
-                    } else {
-                        System.out.println("Este aluno não existe.");
+                    String numberID = reader.getUserID("Número de Aluno");
+                    if(!numberID.equals("#")){
+                        User student = userDB.getUser(numberID);
+                        if (student != null && (verifyAttendances(student) == false)) {
+                            drawMap();
+                            String position = reader.getText("Posição do aluno");
+                            if(!position.equals("#")){
+                                if(setPosition(student, position)){
+                                    attendances.addUser(student);
+                                    numberOfStudents++;
+                                    System.out.println("Foi marcada presença do aluno: " + student.getUserID());
+                                }
+                                else
+                                    System.out.println("Lugar com aluno!");
+                            }
+                            else
+                                System.out.println("Saida com sucesso");
+                        } else if (verifyAttendances(student) == true) {
+                            System.out.println("Já foi marcada presença deste aluno.");
+                        } else {
+                            System.out.println("Este aluno não existe.");
+                        }
                     }
+                    
                 }
             }
             showAttendanceMenu();
@@ -205,12 +222,13 @@ public class TeacherMenu {
         System.out.println("0 - Sair");
 
         int option = reader.getOption("Opção");
-
-        while (option != 0) {
+        int lesson = 1;
+        while (option != 0 && lesson != 0) {
             if (option == 1) {
                 listLessons();
-                int lesson = reader.getOption("Opção");
-                lessonDB.listAttendances(lesson);
+                lesson = reader.getOption("Opção");
+                if(lesson != 0)
+                    lessonDB.listAttendances(lesson - 1);
             }
             System.out.println("1 - Ver Aulas");
             System.out.println("0 - Sair");
@@ -237,6 +255,48 @@ public class TeacherMenu {
             if (users.get(i).equals(user)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * Desenha o mapa da sala comos lugares
+     */
+    public void drawMap(){
+        for(int i=0; i<lessonMap.length; i++){
+            for(int j=0;j<lessonMap[i].length; j++){
+                //System.out.println(lessonMap[i][j]);
+                if(lessonMap[i][j] == 0)
+                    System.out.print("|"+ i + "," + j + "| ");
+                else
+                    System.out.print("|X| ");
+            }
+            System.out.println("\n");
+        }
+    }
+    
+    /**
+     * Coloca um aluno numa posição
+     * @param student Aluno
+     * @param position Mesa em que o aluno se encontra
+     * @return Verdadeiro se for definida uma nova posição, Falso se o lugar já está preenchido
+     */
+    public boolean setPosition(User student, String position){
+        String[] options = position.split(",");
+        int[] positionMap = new int[2];
+
+        if(positionMap[0] < lessonMap.length){
+            if(positionMap[1] < lessonMap[positionMap[0]].length){
+                for(int i=0; i<2; i++){
+                    positionMap[i] = Integer.parseInt(options[i]);
+                }
+                //Verificar a posição
+                if(lessonMap[positionMap[0]][positionMap[1]] == 0){
+                    //Atribuir o aluno à posição
+                    lessonMap[positionMap[0]][positionMap[1]] = Integer.parseInt(student.getUserID());
+                    return true;
+                }
+            }  
         }
         return false;
     }

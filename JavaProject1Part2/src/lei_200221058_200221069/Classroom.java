@@ -21,6 +21,7 @@ public class Classroom {
 
     private int capacity;
     private String name;
+    private int[][] map;
 
     /**
      * Construtor
@@ -28,10 +29,11 @@ public class Classroom {
      * @param name Nome da sala de aula
      * @param capacity Capacidade da sala de aula
      */
-    public Classroom(String name, int capacity) {
-        if (capacity > 0 && name != null && !name.isEmpty()) {
+    public Classroom(String name, int capacity, int[][] map) {
+        if (capacity > 0 && name != null && !name.isEmpty() && map != null) {
             this.capacity = capacity;
             this.name = name;
+            this.map = map;
         } else {
             System.out.println("Campos inválidos.\nPor favor insira novamente!");
         }
@@ -77,6 +79,34 @@ public class Classroom {
             this.name = name;
         } else {
             System.out.println("Campo inválido.\nPor favor insira um nome válido!");
+        }
+    }
+
+    /**
+     * 
+     * @return Mapa da Sala de aula
+     */
+    public int[][] getMap() {
+        return map;
+    }
+
+    /**
+     * Altera o mapa da sala de aula
+     * @param map Mapa da sala de aula
+     */
+    public void setMap(int[][] map) {
+        this.map = map;
+    }
+
+    /**
+     * Desenha a planta da sala de aula
+     */
+    public void drawMap(){
+        for(int i=0; i<map.length; i++){
+            for(int j=0;j<map[i].length; j++){
+                System.out.print("|_| ");
+            }
+            System.out.println("\n");
         }
     }
 

@@ -27,7 +27,7 @@ public class Statistics {
     /**
      * Método que corre as estatisticas
      */
-    public void Statistics() {
+    public void run() {
 
         int isolation = 0;
         int normal = 0;

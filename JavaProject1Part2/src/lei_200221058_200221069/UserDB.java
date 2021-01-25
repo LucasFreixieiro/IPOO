@@ -113,8 +113,8 @@ public class UserDB {
     }
 
     /**
-     * Define os Ids recebidos para cada utilizador Utiliza os ids transmitidos
-     * para preencher o array dos ids recebidos
+     * Define os Ids recebidos para cada utilizador.
+     * Utiliza os ids transmitidos para preencher o array dos ids recebidos
      */
     public void setIDs() {
         String ID;
