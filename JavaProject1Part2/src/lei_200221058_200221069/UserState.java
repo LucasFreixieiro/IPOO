@@ -29,6 +29,8 @@ public enum UserState {
                 return "Infetado";
             case ISOLATION:
                 return "Em Isolamento";
+            case CAREFUL:
+                return "Contínuo";
             default:
                 return "";
         }

@@ -242,7 +242,7 @@ public class HealthOrganizationMenu {
                     for (int j = 0; j < ids.size(); j++) {
                         if (ids.get(j).getValue().equals(infectedUser.getValue()) && ids.get(j).getDistance() == 2) {
                             user.setUserState(UserState.ISOLATION);
-                            return;
+                            break;
                         }
                         else if(ids.get(j).getValue().equals(infectedUser.getValue()) && ids.get(j).getDistance() == 4){
                             user.setUserState(UserState.CAREFUL);

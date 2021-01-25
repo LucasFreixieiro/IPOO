@@ -115,6 +115,8 @@ public class UserMenu {
         System.out.println("\tSistema de rastreio de contactos em sala de aula\n");
         System.out.println("\t\tUtilizador: " + user.getUserID());
         System.out.println("\t\tEstado: " + user.getUserState());
+        if(user.getUserState() == UserState.CAREFUL) 
+            System.out.println("\t\tMonitorize os seus sintomas");
         System.out.println("Insira a sua opção: ");
         System.out.println("1 - Verificar indicações da Entidade de Saúde");
         System.out.println("2 - Declarar-se como infetado");
