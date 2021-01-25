@@ -17,7 +17,8 @@ public class LessonTest {
     private User teacher = new User("000000000", UserState.NORMAL);
     private User student = new User("200200200", UserState.NORMAL);
     private User student2 = new User("200200201", UserState.NORMAL);
-    private Classroom classroom1 = new Classroom("F152", 10);
+    int [][] map = new int[5][4];
+    private Classroom classroom1 = new Classroom("F152", 16,map);
     private UserDB students = new UserDB();
 
     public LessonTest() {
@@ -39,7 +40,7 @@ public class LessonTest {
             assertEquals(students.getUsers().get(i).getUserID(), users.getUsers().get(i).getUserID());
         }
 
-        //assertEquals(instance.getAttendancesAtStart().getTotalCount(),students.getTotalCount());
+        assertEquals(instance.getAttendancesAtStart().getTotalCount(),students.getTotalCount());
     }
 
     /**
@@ -57,6 +58,7 @@ public class LessonTest {
             assertEquals(students.getUsers().get(i).getUserID(), users.getUsers().get(i).getUserID());
         }
 
+        assertEquals(instance.getAttendancesAtEnd().getTotalCount(),students.getTotalCount());
     }
 
     /**

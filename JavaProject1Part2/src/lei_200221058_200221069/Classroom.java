@@ -28,6 +28,7 @@ public class Classroom {
      *
      * @param name Nome da sala de aula
      * @param capacity Capacidade da sala de aula
+     * @param map mapa da sala
      */
     public Classroom(String name, int capacity, int[][] map) {
         if (capacity > 0 && name != null && !name.isEmpty() && map != null) {

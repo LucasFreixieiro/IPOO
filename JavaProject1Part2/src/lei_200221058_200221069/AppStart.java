@@ -32,6 +32,36 @@ public class AppStart {
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
         HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recommendations, userDB);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
+        
+        User joaoCapinha = new User("000021720", UserState.NORMAL);
+        User cedricGrueau = new User("000012619", UserState.NORMAL);
+        User paulaMiranda = new User("000003708", UserState.NORMAL);
+        User brunoPereira =  new User("000021114", UserState.NORMAL);
+        User lilianaSantos = new User("200221058", UserState.NORMAL);
+        User lucasFreixieiro = new User("200221069", UserState.NORMAL);
+        User joaoCapinha2 = new User("130221070", UserState.NORMAL);
+        User joaoCapinha3 = new User("170257012", UserState.NORMAL);
+        
+        userDB.addUser(joaoCapinha);
+        userDB.addUser(cedricGrueau);
+        userDB.addUser(paulaMiranda);
+        userDB.addUser(brunoPereira);
+        userDB.addUser(lilianaSantos);
+        userDB.addUser(lucasFreixieiro);
+        userDB.addUser(joaoCapinha2);
+        userDB.addUser(joaoCapinha3);
+        
+        recommendations.newRecommendationForInfected("Permaneça em casa.");
+        recommendations.newRecommendationForIsolation("Permaneça em casa.");
+        recommendations.newRecommendationForInfected("Não receba visitas.");
+        recommendations.newRecommendationForIsolation("Não receba visitas.");
+        recommendations.newRecommendationForInfected("Monitorize os seus sintomas.");
+        recommendations.newRecommendationForIsolation("Monitorize os seus sintomas.");
+        recommendations.newRecommendationForIsolation("Se ficar doente, permaneça em casa e ligue para o SNS24 (808 24 24 24)");
+        recommendations.newRecommendationForIsolation("Meça a sua temperatura corporal duas vezes ao dia.");
+        recommendations.newRecommendation("Lave e desinfecte as mãos com frequência.");
+        
+        
 
         //declare internal variables
         int option;

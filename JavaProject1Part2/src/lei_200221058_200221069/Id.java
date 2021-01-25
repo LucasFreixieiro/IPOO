@@ -65,7 +65,7 @@ public class Id {
     }
 
     /**
-     * Distância que o utilziador estava de outro
+     * Distância que o utilizador estava de outro
      * @return Distância 
      */
     public int getDistance() {
