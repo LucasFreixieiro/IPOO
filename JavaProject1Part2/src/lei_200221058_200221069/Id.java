@@ -44,7 +44,7 @@ public class Id {
     }
 
     /**
-     *
+     * Data do ID gerado
      * @return Data que o Id foi gerado
      */
     public LocalDate getDate() {
@@ -61,7 +61,7 @@ public class Id {
     }
 
     /**
-     *
+     * Valor do id gerado
      * @return Valor do id gerado
      */
     public String getValue() {
@@ -94,6 +94,9 @@ public class Id {
         this.distance = distance;
     }
 
+    /**
+     * @return String Descrição do ID
+     */
     public String toString(){
         if(distance == 2 || distance == 4)
             return "ID: " + getValue() + " - Data: " + getDate() + " - Distancia: " + distance + " metros";

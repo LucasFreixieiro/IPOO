@@ -100,6 +100,9 @@ public class Statistics {
         
     }
 
+    /**
+     * Calcular o número total de infetados, em isolamento e em estado continuo
+     */
     public void calc(){
         for (User user : users.getUsers()) {
             if (null != user.getUserState()) {
@@ -120,38 +123,76 @@ public class Statistics {
         }
     }
 
+    /**
+     * Obter o número total de pessoas em isolamento
+     * @return int Total de pessoas em isolamento
+     */
     public int getIsolation() {
         return isolation;
     }
 
+    /**
+     * Atribui um novo valor ao atributo de isolamento
+     * @param isolation Valor de utilizadores em isolamento
+     */
     public void setIsolation(int isolation) {
         this.isolation = isolation;
     }
 
+    /**
+     * Obter o número total de pessoas em estado continuo
+     * @return int Total de pessoas em estado continuo
+     */
     public int getNormal() {
         return normal;
     }
 
+    /**
+     * Atribui um novo valor ao atributo que guarda o valor total de pessoas em estado continuo
+     * @param normal Valor de utilizadores em estado continuo
+     */
     public void setNormal(int normal) {
         this.normal = normal;
     }
 
+    /**
+     * Obter o número total de pessoas em estado infetado
+     * @return int Total de pessoas em estado infetado
+     */
     public int getInfected() {
         return infected;
     }
 
+    /**
+     * Atribui um novo valor ao atributo que guarda o valor total de pessoas em estado infetados
+     * @param infected Valor de utilizadores em estado infetado
+     */
     public void setInfected(int infected) {
         this.infected = infected;
     }
 
+    /**
+     * Calcula a diferença entre dois valores 
+     * @param firstValue Valor de parametro
+     * @param lastValue Valor de parametro
+     * @return Diferença
+     */
     public int difference(int firstValue, int lastValue){
         return firstValue - lastValue;
     }
 
+    /**
+     * Data da estatística
+     * @return Obtem a data da criação da estatística
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Altera a data da criação da estatística
+     * @param date Data da estatística
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }

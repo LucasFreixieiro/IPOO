@@ -32,22 +32,33 @@ public class HealthOrganizationRecommendations {
     }
 
     /**
-     * Cria nova recomendação e armazena-a no array redimensionando-o
+     * Cria nova recomendação para estado em isolamento
      *
-     * @param recommendation
+     * @param recommendation Recomendação
      */
     public void newRecommendationForIsolation(String recommendation) {
         recommendationsForIsolation.add(recommendation);
     }
 
+    /**
+     * Adiciona nova recomendação para pessoas em estado infetado
+     * @param recommendation
+     */
     public void newRecommendationForInfected(String recommendation) {
         recommendationsForInfected.add(recommendation);
     }
 
+    /**
+     * Adiciona nova recomendação para pessoas em estado continuo
+     */
     public void newRecommendationForNormal(String recommendation) {
         recommendationsForNormal.add(recommendation);
     }
 
+    /**
+     * Nova recomendação
+     * @param recommendation Recomendação
+     */
     public void newRecommendation(String recommendation) {
         newRecommendationForInfected(recommendation);
         newRecommendationForNormal(recommendation);
@@ -68,6 +79,10 @@ public class HealthOrganizationRecommendations {
         }
     }
 
+    /**
+     * Remove recomendação do arraylist de estado continuo
+     * @param option indice da recomendação
+     */
     public void removeRecommendationForNormal(int option) {
         if (option < 0 || option > recommendationsForNormal.size()) {
             System.out.println("Essa recomendação não existe");
@@ -77,6 +92,10 @@ public class HealthOrganizationRecommendations {
         }
     }
 
+    /**
+     * Remove recomendação do arraylist de estado infetado
+     * @param option indice da recomendação
+     */
     public void removeRecommendationForInfected(int option) {
         if (option < 0 || option > recommendationsForInfected.size()) {
             System.out.println("Essa recomendação não existe");

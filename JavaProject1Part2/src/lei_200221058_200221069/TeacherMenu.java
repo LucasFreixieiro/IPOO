@@ -76,7 +76,8 @@ public class TeacherMenu {
                         break;
                     }
                     case 3: {
-                        endLesson();
+                        if(endLesson())
+                            return;
                         break;
                     }
                     case 4: {
@@ -203,16 +204,17 @@ public class TeacherMenu {
     /**
      * Terminar aula
      */
-    public void endLesson() {
+    public boolean endLesson() {
         if (flag) {
             lesson.endLesson(attendances, lessonMap);
             flag = false;
             numberOfStudents = 0;
             //lessonMap = new int[0][0];
             System.out.println("Aula terminada.");
-            return;
+            return true;
         } else {
             System.out.println("Não está nenhuma aula a decorrer.");
+            return false;
         }
     }
 

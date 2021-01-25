@@ -28,7 +28,6 @@ public class User {
     //Lista com os ID's recebidos
     private ArrayList<Id> receivedIds;
     private LocalDate changeStateDate;
-    private boolean beCareful;
 
     /**
      * Construtor
@@ -183,13 +182,4 @@ public class User {
     public boolean isTeacher() {
         return userID.startsWith("000");
     }
-
-    public boolean isBeCareful() {
-        return beCareful;
-    }
-
-    public void setBeCareful(boolean beCareful) {
-        this.beCareful = beCareful;
-    }
-
 }

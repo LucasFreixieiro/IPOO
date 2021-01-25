@@ -115,17 +115,12 @@ public class Lesson {
      * @param map mapa da sala com as presenças no fim da aula
      */
     public void endLesson(UserDB attendancesAtEnd, int[][] map) {
-        /*int size = attendancesAtEnd.getUsers().size();
-        ArrayList<User> users = attendancesAtEnd.getUsers();
-        for (int i = 0; i < size; i++) {
-            users.get(i).getUserID();
-        }*/
 
         this.attendancesAtEnd = attendancesAtEnd;
         lessonEnd = LocalTime.now();
         this.lessonMapEnd = map;
         setIDAtEnd();
-        ArrayList<User> users1 = this.attendancesAtEnd.getUsers();
+        /*ArrayList<User> users1 = this.attendancesAtEnd.getUsers();
         for(User user1 : users1){
             System.out.println(user1.getUserID());
             System.out.println("Transmitidos:");
@@ -140,7 +135,7 @@ public class Lesson {
                 System.out.println(id.toString());
             }
             System.out.println("----------");
-        }
+        }*/
         //this.attendancesAtEnd.setIDsAtEnd();
     }
 
@@ -200,14 +195,12 @@ public class Lesson {
                         ID = UUID.randomUUID().toString();
                         today = LocalDate.now();
                         user.setTransmitedIds(ID, today);
-                        System.out.println(ID);
                         //Repetir a repetição do array
                         //Serve para enviar o id parra os alunos na sala de aula
                         for(int z=0; z<lessonMapStart.length; z++){
                             for(int x=0; x<lessonMapStart[z].length; x++){
                                 if(lessonMapStart[z][x] != 0){
                                     if(z != i || x != j){
-                                        System.out.println(lessonMapStart[z][x]);
                                         user2 = getUser(lessonMapStart[z][x], 1);
                                         if(isBelow(z, i) && x == j){
                                             user2.setReceivedIDs(ID, today, 2);
@@ -258,7 +251,7 @@ public class Lesson {
         }
     }
 
-        /**
+    /**
      * Define os Ids recebidos para cada utilizador.
      * Utiliza os ids transmitidos para preencher o array dos ids recebidos
      */
@@ -281,7 +274,6 @@ public class Lesson {
                             for(int x=0; x<lessonMapEnd[z].length; x++){
                                 if(lessonMapStart[z][x] != 0){
                                     if(z != i || x != j){
-                                        System.out.println(lessonMapStart[z][x]);
                                         user2 = getUser(lessonMapStart[z][x], 1);
                                         if(isBelow(z, i) && x == j){
                                             user2.setReceivedIDs(ID, today, 2);
@@ -330,21 +322,6 @@ public class Lesson {
                 }
             }
         }
-
-        /*String ID;
-        LocalDate today;
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(i);
-            ID = UUID.randomUUID().toString();
-            today = LocalDate.now();
-            System.out.println(users.get(i).getUserID());
-            users.get(i).setTransmitedIds(ID, today);
-            for (int j = 0; j < users.size(); j++) {
-                if (i != j) {
-                    users.get(j).setReceivedIDs(ID, today);
-                }
-            }
-        }*/
     }
 
     public User getUser(int number, int mode){
@@ -359,26 +336,58 @@ public class Lesson {
         
     }
 
+    /**
+     * Verifica se a posição que estamos a verificar está embaixo da posição principal 
+     * @param currentPosition Posição atual
+     * @param mainPosition Posição principal
+     * @return Verdadeiro se estiver | Falso se não estiver
+     */
     public boolean isBelow(int currentPosition, int mainPosition){
         return currentPosition - mainPosition == 1;
     }
 
+    /**
+     * Verifica se a posição que estamos a verificar está emcima da posição principal 
+     * @param currentPosition Posição atual
+     * @param mainPosition Posição principal
+     * @return Verdadeiro se estiver | Falso se não estiver
+     */
     public boolean isUp(int currentPosition, int mainPosition){
         return mainPosition - currentPosition == 1;
     }
 
+    /**
+     * Verifica se a posição que estamos a verificar está à direita da posição principal 
+     * @param currentPosition Posição atual
+     * @param mainPosition Posição principal
+     * @return Verdadeiro se estiver | Falso se não estiver
+     */
     public boolean isLeft(int currentPosition, int mainPosition){
         return mainPosition - currentPosition == 1;
     }
 
+    /**
+     * Verifica se a posição que estamos a verificar está à esquerda da posição principal 
+     * @param currentPosition Posição atual
+     * @param mainPosition Posição principal
+     * @return Verdadeiro se estiver | Falso se não estiver
+     */
     public boolean isRight(int currentPosition, int mainPosition){
         return currentPosition - mainPosition == 1;
     }
 
+    /**
+     * Atribui as presenças no inicio da aula
+     * @param attendancesAtStart Presenças no inicio da aula
+     */
     public void setAttendancesAtStart(UserDB attendancesAtStart) {
         this.attendancesAtStart = attendancesAtStart;
     }
 
+    /**
+     * Atribui as presenças no fim da aula
+     * @param attendancesAtStart Presenças no fim da aula
+     */
     public void setAttendancesAtEnd(UserDB attendancesAtEnd) {
         this.attendancesAtEnd = attendancesAtEnd;
     }
