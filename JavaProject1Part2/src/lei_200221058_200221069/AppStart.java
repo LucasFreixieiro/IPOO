@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package lei_200221058_200221069;
-
+import java.util.ArrayList;
 /**
  * Classe inicial
  *
@@ -27,12 +27,14 @@ public class AppStart {
         ClassroomDB classroomDB = new ClassroomDB();
         LessonDB lessonDB = new LessonDB();
         HealthOrganizationRecommendations recommendations = new HealthOrganizationRecommendations();
+        ArrayList<Statistics> weeklyStatistics = new ArrayList<Statistics>();
 
-        UserMenu userMenu = new UserMenu(userDB, recommendations);
+        UserMenu userMenu = new UserMenu(userDB, recommendations, weeklyStatistics);
         AdministrationMenu adminMenu = new AdministrationMenu(userDB, classroomDB);
-        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recommendations, userDB);
+        HealthOrganizationMenu healthOrganizationMenu = new HealthOrganizationMenu(recommendations, userDB, weeklyStatistics);
         TeacherMenu teacherMenu = new TeacherMenu(lessonDB, userDB);
         
+
         User joaoCapinha = new User("000021720", UserState.NORMAL);
         User cedricGrueau = new User("000012619", UserState.NORMAL);
         User paulaMiranda = new User("000003708", UserState.NORMAL);
@@ -42,10 +44,10 @@ public class AppStart {
         User joaoCapinha2 = new User("130221070", UserState.NORMAL);
         User joaoCapinha3 = new User("170257012", UserState.NORMAL);
         User bernardo = new User("200221070", UserState.NORMAL);
-        User Diogo = new User("200221053", UserState.NORMAL);
-        User Joao = new User("130221078", UserState.NORMAL);
-        User Miguel = new User("170257020", UserState.NORMAL);
-        User Ricardo = new User("150221033", UserState.NORMAL);
+        User diogo = new User("200221053", UserState.NORMAL);
+        User joao = new User("130221078", UserState.NORMAL);
+        User miguel = new User("170257020", UserState.NORMAL);
+        User ricardo = new User("150221033", UserState.NORMAL);
 
         int[][] map = new int[3][3];
 
@@ -61,7 +63,13 @@ public class AppStart {
         userDB.addUser(lucasFreixieiro);
         userDB.addUser(joaoCapinha2);
         userDB.addUser(joaoCapinha3);
-        
+        userDB.addUser(bernardo);
+        userDB.addUser(diogo);
+        userDB.addUser(joao);
+        userDB.addUser(miguel);
+        userDB.addUser(ricardo);
+
+
         recommendations.newRecommendationForInfected("Permaneça em casa.");
         recommendations.newRecommendationForIsolation("Permaneça em casa.");
         recommendations.newRecommendationForInfected("Não receba visitas.");

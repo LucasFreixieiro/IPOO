@@ -24,6 +24,7 @@ public class UserMenu {
     private HealthOrganizationRecommendations recommendations;
     //Estatisticas
     private Statistics statistics;
+    private ArrayList<Statistics> weeklyStatistics; 
 
     /**
      * Construtor do Menu do Utilizador
@@ -31,10 +32,11 @@ public class UserMenu {
      * @param userDB Registo de utilizadores registados pelo administrador
      * @param recommendations Recomendações registadas pela organização de saúde
      */
-    public UserMenu(UserDB userDB, HealthOrganizationRecommendations recommendations) {
+    public UserMenu(UserDB userDB, HealthOrganizationRecommendations recommendations, ArrayList<Statistics> weeklyStatistics) {
         this.userDB = userDB;
         this.recommendations = recommendations;
         statistics = new Statistics(userDB);
+        this.weeklyStatistics = weeklyStatistics;
     }
 
     /**
@@ -89,7 +91,7 @@ public class UserMenu {
                     break;
                 }
                 case 5: {
-                    statistics.run();
+                    statistics.run(weeklyStatistics);
                     break;
                 }
                 default: {

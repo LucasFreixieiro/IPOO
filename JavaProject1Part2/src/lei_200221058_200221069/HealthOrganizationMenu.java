@@ -19,6 +19,7 @@ public class HealthOrganizationMenu {
     private InputReader reader;
     private Statistics statistics;
     private UserDB userDB;
+    private ArrayList<Statistics> weeklyStatistics;
 
     /**
      * Construtor
@@ -26,11 +27,12 @@ public class HealthOrganizationMenu {
      * @param recommendation Registo de Recomendações
      * @param userDB Registo de Utilizadores
      */
-    public HealthOrganizationMenu(HealthOrganizationRecommendations recommendation, UserDB userDB) {
+    public HealthOrganizationMenu(HealthOrganizationRecommendations recommendation, UserDB userDB, ArrayList<Statistics> weeklyStatistics) {
         reader = new InputReader();
         this.recommendation = recommendation;
         statistics = new Statistics(userDB);
         this.userDB = userDB;
+        this.weeklyStatistics = weeklyStatistics;
     }
 
     /**
@@ -50,7 +52,7 @@ public class HealthOrganizationMenu {
                     break;
                 }
                 case 2: {
-                    statistics.run();
+                    statistics.run(weeklyStatistics);
                     break;
                 }
                 case 3: {
@@ -249,6 +251,14 @@ public class HealthOrganizationMenu {
                         }
                     }
                 }
+            }
+            Statistics stats = new Statistics(userDB);
+            stats.calc();
+            if(weeklyStatistics.size()<7)
+                weeklyStatistics.add(stats);
+            else{
+                weeklyStatistics.remove(0);
+                weeklyStatistics.add(stats);
             }
             userDB.clearInfectedIDs();
             System.out.println("A lista foi enviada.");
