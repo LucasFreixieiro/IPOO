@@ -218,14 +218,14 @@ public class HealthOrganizationMenu {
         if (userDB.getTotalCount() != 0) {
             Id[] infectedUsers = userDB.getInfectedIDs();
             //infectedUsers = filterByDay(infectedUsers);
-            User[] user = userDB.getUsers();
-            for (int index = 0; index < infectedUsers.length; index++) {
-                for (int i = 0; i < user.length; i++) {
-                    Id[] ids = user[i].getReceivedIDs();
-                    for (int j = 0; j < ids.length; j++) {
-                        if (ids[j].getValue().equals(infectedUsers[index].getValue())) {
-                            user[i].setUserState(UserState.ISOLATION);
-                            return;
+            User[] users = userDB.getUsers();
+            for (Id infectedUser : infectedUsers) {
+                for (User user : users) {
+                    Id[] ids = user.getReceivedIDs();
+                    for (Id id : ids) {
+                        if (id.getValue().equals(infectedUser.getValue())) {
+                            user.setUserState(UserState.ISOLATION);
+                            break;
                         }
                     }
                 }
