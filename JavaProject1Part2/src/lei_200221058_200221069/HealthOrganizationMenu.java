@@ -125,27 +125,31 @@ public class HealthOrganizationMenu {
             option = reader.getOption("");
             if (option != 0) {
                 String recommendations = reader.getText("Recomendação");
-                switch (option) {
-                    case 1:
-                        recommendation.newRecommendationForIsolation(recommendations);
-                        System.out.println("A sua recomendação foi adicionada.");
-                        break;
-                    case 2:
-                        recommendation.newRecommendationForInfected(recommendations);
-                        System.out.println("A sua recomendação foi adicionada.");
-                        break;
-                    case 3:
-                        recommendation.newRecommendationForNormal(recommendations);
-                        System.out.println("A sua recomendação foi adicionada.");
-                        break;
-                    case 4:
-                        recommendation.newRecommendation(recommendations);
-                        System.out.println("A sua recomendação foi adicionada.");
-                        break;
-                    default:
-                        System.out.println("Opção inválida.");
-                        break;
+                if(!recommendations.equals("#")){
+                    switch (option) {
+                        case 1:
+                            recommendation.newRecommendationForIsolation(recommendations);
+                            System.out.println("A sua recomendação foi adicionada.");
+                            break;
+                        case 2:
+                            recommendation.newRecommendationForInfected(recommendations);
+                            System.out.println("A sua recomendação foi adicionada.");
+                            break;
+                        case 3:
+                            recommendation.newRecommendationForNormal(recommendations);
+                            System.out.println("A sua recomendação foi adicionada.");
+                            break;
+                        case 4:
+                            recommendation.newRecommendation(recommendations);
+                            System.out.println("A sua recomendação foi adicionada.");
+                            break;
+                        default:
+                            System.out.println("Opção inválida.");
+                            break;
+                    }
                 }
+                else
+                    break; 
             }
         } while (option != 0);
     }
@@ -166,17 +170,20 @@ public class HealthOrganizationMenu {
                     case 1:
                         recommendation.listRecommendationsIsolation();
                         remove = reader.getOption("Introduza o número");
-                        recommendation.removeRecommendationForIsolation(remove);
+                        if(remove != 0)
+                            recommendation.removeRecommendationForIsolation(remove - 1);
                         break;
                     case 2:
                         recommendation.listRecommendationsInfected();
                         remove = reader.getOption("Introduza o número");
-                        recommendation.removeRecommendationForInfected(remove);
+                        if(remove != 0)
+                            recommendation.removeRecommendationForInfected(remove - 1);
                         break;
                     case 3:
                         recommendation.listRecommendationsNormal();
                         remove = reader.getOption("Introduza o número");
-                        recommendation.removeRecommendationForNormal(remove);
+                        if(remove != 0)
+                            recommendation.removeRecommendationForNormal(remove - 1);
                         break;
                     default:
                         System.out.println("Essa recomendação não existe.");
@@ -194,6 +201,9 @@ public class HealthOrganizationMenu {
         System.out.println("0 - Sair");
         int state = reader.getOption("");
         switch (state) {
+            case 0:
+            System.out.println("...");
+                break;
             case 1:
                 recommendation.listRecommendationsIsolation();
                 break;
@@ -207,8 +217,13 @@ public class HealthOrganizationMenu {
                 System.out.println("Opção inválida.");
                 break;
         }
-        int option = reader.getOption("Introduza o número");
-        recommendation.editRecommendation(option, state);
+        if(state>0 && state<4){
+            int option = reader.getOption("Introduza o número");
+            if(option != 0)
+                recommendation.editRecommendation(option - 1, state);
+            else
+                return;
+        } 
     }
 
     /**

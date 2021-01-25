@@ -31,6 +31,19 @@ public class Id {
     }
 
     /**
+     * Construtor
+     *
+     * @param value Valor do ID
+     * @param date Data da criação do ID
+     * @param distance Distância do ID recebido ao utilizador
+     */
+    public Id(String value, LocalDate date, int distance) {
+        this.date = date;
+        this.value = value;
+        this.distance = distance;
+    }
+
+    /**
      *
      * @return Data que o Id foi gerado
      */

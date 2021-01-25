@@ -98,8 +98,12 @@ public class HealthOrganizationRecommendations {
             case 1:
                 if (option < recommendationsForIsolation.size()) {
                     newRecommendation = reader.getText("Recomendação");
-                    recommendationsForIsolation.set(option, newRecommendation);
-                    System.out.println("A sua recomendação foi editada.");
+                    if(!newRecommendation.equals("#")){
+                        recommendationsForIsolation.set(option, newRecommendation);
+                        System.out.println("A sua recomendação foi editada.");
+                    }
+                    else
+                        System.out.println("Saindo com sucesso...");
                 } else {
                     System.out.println("Essa recomendação não existe");
                 }
@@ -107,8 +111,12 @@ public class HealthOrganizationRecommendations {
             case 2:
                 if (option < recommendationsForInfected.size()) {
                     newRecommendation = reader.getText("Recomendação");
-                    recommendationsForInfected.set(option, newRecommendation);
-                    System.out.println("A sua recomendação foi editada.");
+                    if(!newRecommendation.equals("#")){
+                        recommendationsForInfected.set(option, newRecommendation);
+                        System.out.println("A sua recomendação foi editada.");
+                    }
+                    else
+                        System.out.println("Saindo com sucesso...");
                 } else {
                     System.out.println("Essa recomendação não existe");
                 }
@@ -117,12 +125,15 @@ public class HealthOrganizationRecommendations {
             case 3:
                 if (option < recommendationsForNormal.size()) {
                     newRecommendation = reader.getText("Recomendação");
-                    recommendationsForNormal.set(option, newRecommendation);
-                    System.out.println("A sua recomendação foi editada.");
+                    if(!newRecommendation.equals("#")){
+                        recommendationsForNormal.set(option, newRecommendation);
+                        System.out.println("A sua recomendação foi editada.");
+                    }
+                    else
+                        System.out.println("Saindo com sucesso...");
                 } else {
                     System.out.println("Essa recomendação não existe");
                 }
-
                 break;
             default:
                 System.out.println("Opção não reconhecida");
@@ -135,12 +146,15 @@ public class HealthOrganizationRecommendations {
      */
     public void listRecommendations() {
         System.out.println("Recomendações para Infectados: ");
+        System.out.println("0 - Sair");
         listRecommendationsInfected();
 
         System.out.println("Recomendações para em contínuo: ");
+        System.out.println("0 - Sair");
         listRecommendationsNormal();
 
         System.out.println("Recomendações para em Isolamento: ");
+        System.out.println("0 - Sair");
         listRecommendationsIsolation();
 
     }
@@ -150,7 +164,7 @@ public class HealthOrganizationRecommendations {
      */
     public void listRecommendationsInfected() {
         for (int i = 0; i < recommendationsForInfected.size(); i++) {
-            System.out.println(i + " - " + recommendationsForInfected.get(i));
+            System.out.println((i + 1) + " - " + recommendationsForInfected.get(i));
         }
     }
 
@@ -159,7 +173,7 @@ public class HealthOrganizationRecommendations {
      */
     public void listRecommendationsNormal() {
         for (int i = 0; i < recommendationsForNormal.size(); i++) {
-            System.out.println(i + " - " + recommendationsForNormal.get(i));
+            System.out.println((i + 1) + " - " + recommendationsForNormal.get(i));
         }
     }
 
@@ -168,7 +182,7 @@ public class HealthOrganizationRecommendations {
      */
     public void listRecommendationsIsolation() {
         for (int i = 0; i < recommendationsForIsolation.size(); i++) {
-            System.out.println(i + " - " + recommendationsForIsolation.get(i));
+            System.out.println((i + 1) + " - " + recommendationsForIsolation.get(i));
         }
     }
 

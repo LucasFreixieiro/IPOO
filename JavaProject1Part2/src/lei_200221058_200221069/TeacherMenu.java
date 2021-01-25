@@ -159,7 +159,7 @@ public class TeacherMenu {
                                     System.out.println("Foi marcada presença do aluno: " + student.getUserID());
                                 }
                                 else
-                                    System.out.println("Lugar com aluno!");
+                                    System.out.println("Lugar com aluno ou Posição inválida.");
                             }
                             else
                                 System.out.println("Saida com sucesso");
@@ -192,7 +192,7 @@ public class TeacherMenu {
      */
     public void startLesson(Classroom classroom) {
         lesson = new Lesson(numberOfLessons, user, classroom);
-        lesson.startLesson(attendances);
+        lesson.startLesson(attendances, lessonMap);
         lessonDB.addLesson(lesson);
         flag = true;
         numberOfLessons++;
@@ -204,9 +204,10 @@ public class TeacherMenu {
      */
     public void endLesson() {
         if (flag) {
-            lesson.endLesson(attendances);
+            lesson.endLesson(attendances, lessonMap);
             flag = false;
             numberOfStudents = 0;
+            lessonMap = new int[0][0];
             System.out.println("Aula terminada.");
         } else {
             System.out.println("Não está nenhuma aula a decorrer.");
@@ -252,7 +253,7 @@ public class TeacherMenu {
     public boolean verifyAttendances(User student) {
         ArrayList<User> users = attendances.getUsers();
         for (int i = 0; i < numberOfStudents; i++) {
-            if (users.get(i).equals(user)) {
+            if (users.get(i).equals(student)) {
                 return true;
             }
         }
@@ -285,19 +286,27 @@ public class TeacherMenu {
         String[] options = position.split(",");
         int[] positionMap = new int[2];
 
-        if(positionMap[0] < lessonMap.length){
-            if(positionMap[1] < lessonMap[positionMap[0]].length){
-                for(int i=0; i<2; i++){
-                    positionMap[i] = Integer.parseInt(options[i]);
-                }
-                //Verificar a posição
-                if(lessonMap[positionMap[0]][positionMap[1]] == 0){
-                    //Atribuir o aluno à posição
-                    lessonMap[positionMap[0]][positionMap[1]] = Integer.parseInt(student.getUserID());
-                    return true;
-                }
-            }  
+        try{
+            //Copiar as posições que o utilizador escolheu para um array inteiro estático de 2 posições 
+            for(int i=0; i<2; i++){
+                positionMap[i] = Integer.parseInt(options[i]);
+            }
+
+            if(positionMap[0] < lessonMap.length){
+                if(positionMap[1] < lessonMap[positionMap[0]].length){
+                    
+                    //Verificar a posição
+                    if(lessonMap[positionMap[0]][positionMap[1]] == 0){
+                        //Atribuir o aluno à posição
+                        lessonMap[positionMap[0]][positionMap[1]] = Integer.parseInt(student.getUserID());
+                        return true;
+                    }
+                }  
+            }
+            return false;
         }
-        return false;
+        catch(Exception e){
+            return false;
+        }
     }
 }

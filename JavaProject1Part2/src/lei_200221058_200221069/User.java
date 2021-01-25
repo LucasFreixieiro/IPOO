@@ -150,9 +150,10 @@ public class User {
      *
      * @param value Valor do ID
      * @param date Data da criação do ID
+     * @param distance Distância do ID recebido ao utilizador
      */
-    public void setReceivedIDs(String value, LocalDate date) {
-        receivedIds.add(new Id(value, date));
+    public void setReceivedIDs(String value, LocalDate date, int distance) {
+        receivedIds.add(new Id(value, date, distance));
     }
 
     /**
