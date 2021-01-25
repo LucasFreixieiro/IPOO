@@ -94,4 +94,12 @@ public class Id {
         this.distance = distance;
     }
 
+    public String toString(){
+        if(distance == 2 || distance == 4)
+            return "ID: " + getValue() + " - Data: " + getDate() + " - Distancia: " + distance + " metros";
+        else if(distance == 5)
+            return "ID: " + getValue() + " - Data: " + getDate() + " - Distancia: + de 4 metros";
+        else
+            return "ID: " + getValue() + " - Data: " + getDate() + ""; 
+    }
 }

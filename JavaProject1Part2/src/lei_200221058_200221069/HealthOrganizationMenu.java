@@ -235,14 +235,17 @@ public class HealthOrganizationMenu {
         if (userDB.getTotalCount() != 0) {
             ArrayList<Id> infectedUsers = userDB.getInfectedIDs();
             //infectedUsers = filterByDay(infectedUsers);
-            ArrayList<User> user = userDB.getUsers();
+            ArrayList<User> users = userDB.getUsers();
             for (Id infectedUser : infectedUsers) {
-                for (User user1 : user) {
-                    ArrayList<Id> ids = user1.getReceivedIDs();
+                for (User user : users) {
+                    ArrayList<Id> ids = user.getReceivedIDs();
                     for (int j = 0; j < ids.size(); j++) {
-                        if (ids.get(j).getValue().equals(infectedUser.getValue())) {
-                            user1.setUserState(UserState.ISOLATION);
+                        if (ids.get(j).getValue().equals(infectedUser.getValue()) && ids.get(j).getDistance() == 2) {
+                            user.setUserState(UserState.ISOLATION);
                             return;
+                        }
+                        else if(ids.get(j).getValue().equals(infectedUser.getValue()) && ids.get(j).getDistance() == 4){
+                            user.setUserState(UserState.CAREFUL);
                         }
                     }
                 }

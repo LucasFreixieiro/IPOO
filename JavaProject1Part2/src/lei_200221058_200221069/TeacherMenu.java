@@ -148,8 +148,9 @@ public class TeacherMenu {
                 case 1: {
                     String numberID = reader.getUserID("Número de Aluno");
                     if(!numberID.equals("#")){
+                        System.out.println("--");
                         User student = userDB.getUser(numberID);
-                        if (student != null && (verifyAttendances(student) == false)) {
+                        if (student != null && (verifyAttendances(student) == false) && !student.isTeacher()) {
                             drawMap();
                             String position = reader.getText("Posição do aluno");
                             if(!position.equals("#")){
@@ -207,8 +208,9 @@ public class TeacherMenu {
             lesson.endLesson(attendances, lessonMap);
             flag = false;
             numberOfStudents = 0;
-            lessonMap = new int[0][0];
+            //lessonMap = new int[0][0];
             System.out.println("Aula terminada.");
+            return;
         } else {
             System.out.println("Não está nenhuma aula a decorrer.");
         }

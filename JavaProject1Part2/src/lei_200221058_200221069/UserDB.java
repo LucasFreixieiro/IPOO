@@ -113,27 +113,6 @@ public class UserDB {
     }
 
     /**
-     * Define os Ids recebidos para cada utilizador.
-     * Utiliza os ids transmitidos para preencher o array dos ids recebidos
-     */
-    public void setIDs() {
-        String ID;
-        LocalDate today;
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println(i);
-            ID = UUID.randomUUID().toString();
-            today = LocalDate.now();
-            System.out.println(users.get(i).getUserID());
-            users.get(i).setTransmitedIds(ID, today);
-            for (int j = 0; j < users.size(); j++) {
-                if (i != j) {
-                    users.get(j).setReceivedIDs(ID, today);
-                }
-            }
-        }
-    }
-
-    /**
      *
      * @return Ids infetados
      */
@@ -149,13 +128,13 @@ public class UserDB {
     public void setInfectedIDs(ArrayList<Id> ids) {
         ids = verifyInfectedIDs(ids);
         if (ids != null) {
-            infectedIDs = ids;
+            infectedIDs.addAll(ids);
         }
     }
 
     /**
-     * Verifica se já se passaram 7 dias desde que o array foi gerado Se sim ele
-     * será eliminado
+     * Verifica se já se passaram 7 dias desde que o id foi gerado 
+     * Se sim ele será eliminado
      *
      * @param ids Lista de ids a serem verificados
      * @return Lista do tipo Id que contém os ids mais atuais

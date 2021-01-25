@@ -14,7 +14,7 @@ package lei_200221058_200221069;
  *
  */
 public enum UserState {
-    NORMAL, INFECTED, ISOLATION;
+    NORMAL, INFECTED, ISOLATION, CAREFUL;
 
     /**
      *

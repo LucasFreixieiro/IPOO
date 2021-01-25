@@ -41,7 +41,18 @@ public class AppStart {
         User lucasFreixieiro = new User("200221069", UserState.NORMAL);
         User joaoCapinha2 = new User("130221070", UserState.NORMAL);
         User joaoCapinha3 = new User("170257012", UserState.NORMAL);
+        User bernardo = new User("200221070", UserState.NORMAL);
+        User Diogo = new User("200221053", UserState.NORMAL);
+        User Joao = new User("130221078", UserState.NORMAL);
+        User Miguel = new User("170257020", UserState.NORMAL);
+        User Ricardo = new User("150221033", UserState.NORMAL);
+
+        int[][] map = new int[3][3];
+
+        Classroom classroom2 = new Classroom("e2", 9, map);
         
+        classroomDB.addClassrooms(classroom2);
+
         userDB.addUser(joaoCapinha);
         userDB.addUser(cedricGrueau);
         userDB.addUser(paulaMiranda);
